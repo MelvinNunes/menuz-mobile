@@ -45,7 +45,7 @@ export default function RestaurantSharingScreen() {
       ...mockMenuItems.desserts
     ];
     const popularDish = allItems.find(item => item.popular);
-    
+
     if (popularDish) {
       return {
         name: popularDish.name,
@@ -53,7 +53,7 @@ export default function RestaurantSharingScreen() {
         description: popularDish.description
       };
     }
-    
+
     return undefined;
   };
 
@@ -76,7 +76,7 @@ export default function RestaurantSharingScreen() {
         <Text style={styles.sectionSubtitle}>
           Partilhe este código QR para que outros possam aceder rapidamente ao menu digital
         </Text>
-        
+
         <View style={styles.qrContainer}>
           <QRCodeGenerator
             value={generateQRValue()}
@@ -98,7 +98,7 @@ export default function RestaurantSharingScreen() {
           </View>
         </View>
 
-        <TouchableOpacity 
+        <TouchableOpacity
           style={styles.scanButton}
           onPress={() => setShowQRScanner(true)}
         >
@@ -115,7 +115,7 @@ export default function RestaurantSharingScreen() {
       <Text style={styles.sectionSubtitle}>
         Crie um cartão visual atrativo para partilhar nas redes sociais
       </Text>
-      
+
       <SocialSharingCard
         restaurant={restaurant}
         featuredDish={getFeaturedDish()}
@@ -128,7 +128,7 @@ export default function RestaurantSharingScreen() {
   return (
     <ScreenLayout>
       <Header title="Partilhar Restaurante" showBackButton />
-      
+
       <View style={styles.container}>
         {/* Restaurant Header */}
         <View style={styles.restaurantHeader}>

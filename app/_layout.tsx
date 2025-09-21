@@ -25,19 +25,6 @@ export default function RootLayout() {
     }
   }, [fontsLoaded, fontError]);
 
-  // Add keyboard navigation for web
-  useEffect(() => {
-    if (Platform.OS === 'web') {
-      const handleKeyPress = (event: KeyboardEvent) => {
-        // This will be handled by the OnboardingStepper component
-        // when it's active
-      };
-
-      document.addEventListener('keydown', handleKeyPress);
-      return () => document.removeEventListener('keydown', handleKeyPress);
-    }
-  }, []);
-
   if (!fontsLoaded && !fontError) {
     return null;
   }

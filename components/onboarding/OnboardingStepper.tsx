@@ -9,14 +9,14 @@ import {
   Platform,
   ScrollView,
 } from 'react-native';
-import { 
-  Search, 
-  Users, 
-  Heart, 
-  QrCode, 
-  ChevronLeft, 
+import {
+  Search,
+  Users,
+  Heart,
+  QrCode,
+  ChevronLeft,
   ChevronRight,
-  X 
+  X
 } from 'lucide-react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useRouter } from 'expo-router';
@@ -76,7 +76,7 @@ export default function OnboardingStepper({ onComplete }: OnboardingStepperProps
   const router = useRouter();
   const [currentStep, setCurrentStep] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
-  
+
   // Animation values
   const slideAnim = useRef(new Animated.Value(0)).current;
   const fadeAnim = useRef(new Animated.Value(0)).current;
@@ -191,14 +191,14 @@ export default function OnboardingStepper({ onComplete }: OnboardingStepperProps
     return (
       <View style={styles.progressContainer}>
         <View style={styles.progressTrack}>
-          <Animated.View 
+          <Animated.View
             style={[
-              styles.progressFill, 
-              { 
+              styles.progressFill,
+              {
                 width: progressWidth,
-                backgroundColor: onboardingSteps[currentStep].color 
+                backgroundColor: onboardingSteps[currentStep].color
               }
-            ]} 
+            ]}
           />
         </View>
         <Text style={styles.progressText}>
@@ -216,8 +216,8 @@ export default function OnboardingStepper({ onComplete }: OnboardingStepperProps
           style={[
             styles.stepDot,
             {
-              backgroundColor: index === currentStep 
-                ? onboardingSteps[currentStep].color 
+              backgroundColor: index === currentStep
+                ? onboardingSteps[currentStep].color
                 : '#E5E7EB',
               transform: [{ scale: index === currentStep ? 1.2 : 1 }],
             }
@@ -235,7 +235,7 @@ export default function OnboardingStepper({ onComplete }: OnboardingStepperProps
     const IconComponent = step.icon;
 
     return (
-      <Animated.View 
+      <Animated.View
         style={[
           styles.stepContent,
           {
@@ -272,9 +272,9 @@ export default function OnboardingStepper({ onComplete }: OnboardingStepperProps
         accessibilityRole="button"
         accessibilityLabel="Voltar ao passo anterior"
       >
-        <ChevronLeft 
-          size={20} 
-          color={currentStep === 0 ? '#9CA3AF' : '#374151'} 
+        <ChevronLeft
+          size={20}
+          color={currentStep === 0 ? '#9CA3AF' : '#374151'}
         />
         <Text style={[
           styles.navButtonText,
@@ -305,9 +305,9 @@ export default function OnboardingStepper({ onComplete }: OnboardingStepperProps
   if (!isVisible) return null;
 
   return (
-    <Animated.View style={[styles.container, { opacity: fadeAnim }]}>
+    <Animated.View style={[styles.container]}>
       <View style={styles.overlay}>
-        <ScrollView 
+        <ScrollView
           contentContainerStyle={styles.scrollContent}
           showsVerticalScrollIndicator={false}
           bounces={false}
@@ -318,9 +318,9 @@ export default function OnboardingStepper({ onComplete }: OnboardingStepperProps
               <Text style={styles.brandTitle}>Menuz</Text>
               <Text style={styles.brandSubtitle}>Bem-vindo à sua jornada gastronómica</Text>
             </View>
-            
-            <TouchableOpacity 
-              style={styles.skipButton} 
+
+            <TouchableOpacity
+              style={styles.skipButton}
               onPress={handleSkip}
               accessibilityRole="button"
               accessibilityLabel="Saltar introdução"

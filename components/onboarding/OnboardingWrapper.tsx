@@ -16,7 +16,7 @@ export default function OnboardingWrapper({ children }: OnboardingWrapperProps) 
 
   const checkOnboardingStatus = async () => {
     try {
-      const hasCompleted = await AsyncStorage.getItem('hasCompletedOnboarding');
+      const hasCompleted = await AsyncStorage.getItem('hasCompletedOnboardingp');
       setShowOnboarding(hasCompleted !== 'true');
     } catch (error) {
       console.error('Error checking onboarding status:', error);
@@ -37,10 +37,10 @@ export default function OnboardingWrapper({ children }: OnboardingWrapperProps) 
 
   return (
     <>
-      {children}
       {showOnboarding && (
         <OnboardingStepper onComplete={handleOnboardingComplete} />
       )}
+      {children}
     </>
   );
 }

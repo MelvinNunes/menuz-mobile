@@ -3,11 +3,11 @@ import { useRouter } from 'expo-router';
 import { useState } from 'react';
 import { Plus, QrCode, Camera, Sparkles, TrendingUp, Clock, Users } from 'lucide-react-native';
 import { promotionalBanners, featuredRestaurants } from '@/data/mockData';
-import { 
-  ScreenLayout, 
-  Header, 
-  HeroSection, 
-  RestaurantCard, 
+import {
+  ScreenLayout,
+  Header,
+  HeroSection,
+  RestaurantCard,
   PromoBanner,
   QRCodeScanner
 } from '@/components';
@@ -71,9 +71,9 @@ export default function HomeScreen() {
             <Text style={styles.sectionTitle}>Acções Rápidas</Text>
             <View style={styles.sectionDivider} />
           </View>
-          
+
           <View style={styles.quickActionsGrid}>
-            <TouchableOpacity 
+            <TouchableOpacity
               style={[styles.quickActionCard, styles.qrCard]}
               onPress={() => setShowQRScanner(true)}
             >
@@ -85,7 +85,7 @@ export default function HomeScreen() {
               <Text style={styles.quickActionSubtext}>Menu digital instantâneo</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity 
+            <TouchableOpacity
               style={[styles.quickActionCard, styles.suggestCard]}
               onPress={handleSuggestRestaurant}
             >
@@ -105,14 +105,14 @@ export default function HomeScreen() {
             <Text style={styles.sectionTitle}>Explorar por Momento</Text>
             <View style={styles.sectionDivider} />
           </View>
-          
+
           <View style={styles.categoryRow}>
-            <TouchableOpacity 
+            <TouchableOpacity
               style={styles.categoryCard}
               onPress={() => handleCategoryPress('dinner')}
               activeOpacity={0.8}
             >
-              <Image 
+              <Image
                 source={{ uri: 'https://images.pexels.com/photos/1267320/pexels-photo-1267320.jpeg?auto=compress&cs=tinysrgb&w=400' }}
                 style={styles.categoryImage}
               />
@@ -127,12 +127,12 @@ export default function HomeScreen() {
               </View>
             </TouchableOpacity>
 
-            <TouchableOpacity 
+            <TouchableOpacity
               style={styles.categoryCard}
               onPress={() => handleCategoryPress('lunch')}
               activeOpacity={0.8}
             >
-              <Image 
+              <Image
                 source={{ uri: 'https://images.pexels.com/photos/696218/pexels-photo-696218.jpeg?auto=compress&cs=tinysrgb&w=400' }}
                 style={styles.categoryImage}
               />
@@ -158,9 +158,9 @@ export default function HomeScreen() {
               <Text style={styles.trendingText}>Em Alta</Text>
             </View>
           </View>
-          
-          <ScrollView 
-            horizontal 
+
+          <ScrollView
+            horizontal
             showsHorizontalScrollIndicator={false}
             style={styles.promoBanners}
             contentContainerStyle={styles.promoBannersContent}
@@ -213,7 +213,7 @@ export default function HomeScreen() {
                 </Text>
               </View>
             </View>
-            <TouchableOpacity 
+            <TouchableOpacity
               style={styles.suggestButton}
               onPress={handleSuggestRestaurant}
               activeOpacity={0.8}
@@ -303,10 +303,6 @@ const styles = StyleSheet.create({
   qrCard: {
     backgroundColor: '#EFF6FF',
     borderColor: '#BFDBFE',
-  },
-  suggestCard: {
-    backgroundColor: '#FFF7F5',
-    borderColor: '#FFE5D9',
   },
   quickActionIconContainer: {
     width: 64,
