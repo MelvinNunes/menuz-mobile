@@ -1,14 +1,14 @@
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Switch, Alert } from 'react-native';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'expo-router';
-import { 
-  Bell, 
-  Star, 
-  Heart, 
-  MessageCircle, 
-  Users, 
-  MapPin, 
-  TrendingUp, 
+import {
+  Bell,
+  Star,
+  Heart,
+  MessageCircle,
+  Users,
+  MapPin,
+  TrendingUp,
   Calendar,
   Clock,
   Smartphone,
@@ -102,59 +102,6 @@ const defaultPreferences: NotificationPreferences = {
           soundEnabled: true,
           vibrationEnabled: false,
           priority: 'medium'
-        }
-      ]
-    },
-    {
-      id: 'community',
-      title: 'Comunidade',
-      description: 'Atividades da comunidade e interações sociais',
-      icon: Users,
-      color: '#10B981',
-      settings: [
-        {
-          id: 'new-follower',
-          title: 'Novo seguidor',
-          description: 'Quando alguém começa a seguir-te',
-          enabled: true,
-          pushEnabled: true,
-          emailEnabled: false,
-          soundEnabled: false,
-          vibrationEnabled: true,
-          priority: 'low'
-        },
-        {
-          id: 'experience-like',
-          title: 'Gosto na experiência',
-          description: 'Quando alguém gosta da sua experiência partilhada',
-          enabled: true,
-          pushEnabled: true,
-          emailEnabled: false,
-          soundEnabled: false,
-          vibrationEnabled: false,
-          priority: 'low'
-        },
-        {
-          id: 'experience-comment',
-          title: 'Comentário na experiência',
-          description: 'Quando alguém comenta na sua experiência',
-          enabled: true,
-          pushEnabled: true,
-          emailEnabled: true,
-          soundEnabled: true,
-          vibrationEnabled: true,
-          priority: 'medium'
-        },
-        {
-          id: 'community-trending',
-          title: 'Tendências da comunidade',
-          description: 'Quando há novos tópicos em alta',
-          enabled: false,
-          pushEnabled: false,
-          emailEnabled: true,
-          soundEnabled: false,
-          vibrationEnabled: false,
-          priority: 'low'
         }
       ]
     },
@@ -356,13 +303,13 @@ export default function NotificationPreferencesScreen() {
       categories: prev.categories.map(category =>
         category.id === categoryId
           ? {
-              ...category,
-              settings: category.settings.map(setting =>
-                setting.id === settingId
-                  ? { ...setting, [field]: value }
-                  : setting
-              )
-            }
+            ...category,
+            settings: category.settings.map(setting =>
+              setting.id === settingId
+                ? { ...setting, [field]: value }
+                : setting
+            )
+          }
           : category
       )
     }));
@@ -425,7 +372,7 @@ export default function NotificationPreferencesScreen() {
   const renderGlobalSettings = () => (
     <View style={styles.section}>
       <Text style={styles.sectionTitle}>Configurações Gerais</Text>
-      
+
       {/* Master Toggle */}
       <View style={styles.settingItem}>
         <View style={styles.settingInfo}>
@@ -465,7 +412,7 @@ export default function NotificationPreferencesScreen() {
           { key: 'never', label: 'Nunca' }
         ].map((option) => {
           const isSelected = preferences.globalSettings.emailDigest.frequency === option.key;
-          
+
           return (
             <TouchableOpacity
               key={option.key}
@@ -497,12 +444,12 @@ export default function NotificationPreferencesScreen() {
       <Text style={styles.sectionSubtitle}>
         Configure notificações específicas para cada tipo de atividade
       </Text>
-      
+
       {preferences.categories.map((category) => {
         const IconComponent = category.icon;
         const isExpanded = expandedCategory === category.id;
         const enabledCount = category.settings.filter(s => s.enabled).length;
-        
+
         return (
           <View key={category.id} style={styles.categoryCard}>
             <TouchableOpacity
@@ -523,10 +470,10 @@ export default function NotificationPreferencesScreen() {
               </View>
               <View style={styles.categoryMeta}>
                 {enabledCount > 0 && (
-                  <Badge 
-                    text={enabledCount.toString()} 
-                    variant="success" 
-                    size="small" 
+                  <Badge
+                    text={enabledCount.toString()}
+                    variant="success"
+                    size="small"
                     style={styles.categoryBadge}
                   />
                 )}
@@ -550,14 +497,14 @@ export default function NotificationPreferencesScreen() {
                           {setting.description}
                         </Text>
                         <View style={styles.priorityBadge}>
-                          <Badge 
+                          <Badge
                             text={
                               setting.priority === 'high' ? 'Alta' :
-                              setting.priority === 'medium' ? 'Média' : 'Baixa'
+                                setting.priority === 'medium' ? 'Média' : 'Baixa'
                             }
                             variant={
                               setting.priority === 'high' ? 'error' :
-                              setting.priority === 'medium' ? 'warning' : 'secondary'
+                                setting.priority === 'medium' ? 'warning' : 'secondary'
                             }
                             size="small"
                           />
@@ -685,12 +632,12 @@ export default function NotificationPreferencesScreen() {
         {/* Reset Section */}
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Opções Avançadas</Text>
-          
+
           <TouchableOpacity style={styles.resetButton} onPress={resetToDefaults}>
             <Settings size={20} color="#6B7280" />
             <Text style={styles.resetButtonText}>Repor Predefinições</Text>
           </TouchableOpacity>
-          
+
           <Text style={styles.resetDescription}>
             Isto irá repor todas as preferências de notificação para os valores predefinidos.
           </Text>
@@ -699,7 +646,7 @@ export default function NotificationPreferencesScreen() {
 
       {/* Save Button */}
       <View style={styles.saveContainer}>
-        <TouchableOpacity 
+        <TouchableOpacity
           style={styles.saveButton}
           onPress={savePreferences}
           disabled={saving}

@@ -1,13 +1,13 @@
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Linking, Alert } from 'react-native';
 import { useState } from 'react';
 import { useRouter } from 'expo-router';
-import { 
-  CircleHelp as HelpCircle, 
-  MessageCircle, 
-  Mail, 
-  Phone, 
-  ExternalLink, 
-  ChevronRight, 
+import {
+  CircleHelp as HelpCircle,
+  MessageCircle,
+  Mail,
+  Phone,
+  ExternalLink,
+  ChevronRight,
   ChevronDown,
   Star,
   Shield,
@@ -103,34 +103,6 @@ const supportCategories: SupportCategory[] = [
     ]
   },
   {
-    id: 'community',
-    title: 'Comunidade e Experiências',
-    description: 'Partilha de experiências e interação com a comunidade',
-    icon: Users,
-    color: '#10B981',
-    items: [
-      {
-        id: 'community-1',
-        question: 'Como posso partilhar uma experiência gastronómica?',
-        answer: 'Na aba Comunidade, toque em "Experiência Gastronómica" e preencha os detalhes da sua experiência, incluindo fotos, localização e descrição.',
-        category: 'community',
-        popular: true
-      },
-      {
-        id: 'community-2',
-        question: 'O que são os níveis de utilizador (Novato, Explorador, etc.)?',
-        answer: 'Os níveis reflectem a sua atividade na comunidade. Ganha pontos ao escrever avaliações, partilhar experiências e interagir com outros utilizadores.',
-        category: 'community'
-      },
-      {
-        id: 'community-3',
-        question: 'Como posso seguir outros utilizadores?',
-        answer: 'Toque no perfil de qualquer utilizador e selecione "Seguir". Verá as suas atividades no feed "Seguindo" da comunidade.',
-        category: 'community'
-      }
-    ]
-  },
-  {
     id: 'privacy',
     title: 'Privacidade e Segurança',
     description: 'Proteção de dados e configurações de privacidade',
@@ -147,7 +119,7 @@ const supportCategories: SupportCategory[] = [
       {
         id: 'privacy-2',
         question: 'Posso controlar quem vê as minhas avaliações?',
-        answer: 'Todas as avaliações são públicas por defeito para ajudar a comunidade. No entanto, pode ajustar as configurações de privacidade nas definições da conta.',
+        answer: 'Todas as avaliações são públicas por defeito. No entanto, pode ajustar as configurações de privacidade nas definições da conta.',
         category: 'privacy'
       },
       {
@@ -249,8 +221,8 @@ export default function HelpSupportScreen() {
   const renderCategoryFilter = () => (
     <View style={styles.filterSection}>
       <Text style={styles.filterTitle}>Categorias</Text>
-      <ScrollView 
-        horizontal 
+      <ScrollView
+        horizontal
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={styles.filterContent}
       >
@@ -288,7 +260,7 @@ export default function HelpSupportScreen() {
         {supportCategories.map((category) => {
           const IconComponent = category.icon;
           const isSelected = selectedCategory === category.id;
-          
+
           return (
             <TouchableOpacity
               key={category.id}
@@ -298,9 +270,9 @@ export default function HelpSupportScreen() {
               ]}
               onPress={() => setSelectedCategory(category.id)}
             >
-              <IconComponent 
-                size={16} 
-                color={isSelected ? 'white' : category.color} 
+              <IconComponent
+                size={16}
+                color={isSelected ? 'white' : category.color}
               />
               <Text style={[
                 styles.filterChipText,
@@ -318,10 +290,10 @@ export default function HelpSupportScreen() {
   const renderFAQItem = (item: FAQItem) => {
     const isExpanded = expandedFAQ === item.id;
     const category = supportCategories.find(cat => cat.id === item.category);
-    
+
     return (
       <View key={item.id} style={styles.faqItem}>
-        <TouchableOpacity 
+        <TouchableOpacity
           style={styles.faqQuestion}
           onPress={() => handleFAQToggle(item.id)}
         >
@@ -340,16 +312,16 @@ export default function HelpSupportScreen() {
               )}
             </View>
           </View>
-          <ChevronDown 
-            size={20} 
-            color="#6B7280" 
+          <ChevronDown
+            size={20}
+            color="#6B7280"
             style={[
               styles.chevron,
               isExpanded && styles.chevronExpanded
             ]}
           />
         </TouchableOpacity>
-        
+
         {isExpanded && (
           <View style={styles.faqAnswer}>
             <Text style={styles.faqAnswerText}>{item.answer}</Text>
@@ -365,10 +337,10 @@ export default function HelpSupportScreen() {
       <Text style={styles.sectionSubtitle}>
         Não encontrou a resposta que procurava? A nossa equipa está aqui para ajudar!
       </Text>
-      
+
       {contactMethods.map((method) => {
         const IconComponent = method.icon;
-        
+
         return (
           <TouchableOpacity
             key={method.id}
@@ -393,7 +365,7 @@ export default function HelpSupportScreen() {
   const renderAppInfo = () => (
     <View style={styles.appInfoSection}>
       <Text style={styles.sectionTitle}>Informações da Aplicação</Text>
-      
+
       <View style={styles.appInfoGrid}>
         <View style={styles.appInfoItem}>
           <Text style={styles.appInfoLabel}>Versão</Text>
@@ -410,12 +382,12 @@ export default function HelpSupportScreen() {
           <Text style={styles.legalLinkText}>Termos de Serviço</Text>
           <ExternalLink size={16} color="#FF6B35" />
         </TouchableOpacity>
-        
+
         <TouchableOpacity style={styles.legalLink}>
           <Text style={styles.legalLinkText}>Política de Privacidade</Text>
           <ExternalLink size={16} color="#FF6B35" />
         </TouchableOpacity>
-        
+
         <TouchableOpacity style={styles.legalLink}>
           <Text style={styles.legalLinkText}>Sobre Nós</Text>
           <ExternalLink size={16} color="#FF6B35" />
@@ -427,7 +399,7 @@ export default function HelpSupportScreen() {
   return (
     <ScreenLayout>
       <Header title="Ajuda e Suporte" showBackButton />
-      
+
       <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
         {/* Welcome Section */}
         <View style={styles.welcomeSection}>
@@ -449,7 +421,7 @@ export default function HelpSupportScreen() {
           <Text style={styles.sectionSubtitle}>
             {getFilteredFAQs().length} pergunta{getFilteredFAQs().length !== 1 ? 's' : ''} encontrada{getFilteredFAQs().length !== 1 ? 's' : ''}
           </Text>
-          
+
           <View style={styles.faqList}>
             {getFilteredFAQs().map(renderFAQItem)}
           </View>

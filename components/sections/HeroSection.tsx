@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, ImageBackground, TouchableOpacity, Dimensions } from 'react-native';
-import { Users, Search, Sparkles, MapPin } from 'lucide-react-native';
+import { Search, Sparkles, MapPin } from 'lucide-react-native';
 import { LocationPicker } from '@/components';
 
 const { width } = Dimensions.get('window');
@@ -11,7 +11,6 @@ interface HeroSectionProps {
   backgroundImage: string;
   selectedLocation: string;
   onLocationChange?: (location: string, coordinates?: { latitude: number; longitude: number }) => void;
-  onCommunityPress?: () => void;
   onSearchPress?: () => void;
 }
 
@@ -21,7 +20,6 @@ export default function HeroSection({
   backgroundImage,
   selectedLocation,
   onLocationChange,
-  onCommunityPress,
   onSearchPress
 }: HeroSectionProps) {
   return (
@@ -40,11 +38,11 @@ export default function HeroSection({
                 <Sparkles size={24} color="#FFD700" fill="#FFD700" />
               </View>
             </View>
-            
+
             <Text style={styles.subtitle}>{subtitle}</Text>
 
             <View style={styles.buttonsContainer}>
-              <TouchableOpacity 
+              <TouchableOpacity
                 style={styles.primaryButton}
                 onPress={onSearchPress}
                 activeOpacity={0.9}
@@ -53,17 +51,6 @@ export default function HeroSection({
                   <Search size={22} color="white" />
                 </View>
                 <Text style={styles.primaryButtonText}>Explorar Restaurantes</Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity 
-                style={styles.secondaryButton}
-                onPress={onCommunityPress}
-                activeOpacity={0.9}
-              >
-                <View style={styles.buttonIconContainer}>
-                  <Users size={22} color="#FF6B35" />
-                </View>
-                <Text style={styles.secondaryButtonText}>Ver Comunidade</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -169,24 +156,6 @@ const styles = StyleSheet.create({
     width: width * 0.8,
     maxWidth: 320,
   },
-  secondaryButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'rgba(255, 255, 255, 0.95)',
-    paddingVertical: 18,
-    paddingHorizontal: 32,
-    borderRadius: 25,
-    elevation: 6,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 3 },
-    shadowOpacity: 0.2,
-    shadowRadius: 8,
-    width: width * 0.8,
-    maxWidth: 320,
-    borderWidth: 2,
-    borderColor: 'rgba(255, 255, 255, 0.3)',
-  },
   buttonIconContainer: {
     marginRight: 12,
   },
@@ -194,12 +163,6 @@ const styles = StyleSheet.create({
     fontSize: 17,
     fontFamily: 'Inter-Bold',
     color: 'white',
-    letterSpacing: -0.2,
-  },
-  secondaryButtonText: {
-    fontSize: 17,
-    fontFamily: 'Inter-Bold',
-    color: '#FF6B35',
     letterSpacing: -0.2,
   },
 });

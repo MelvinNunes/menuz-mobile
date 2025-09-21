@@ -1,5 +1,5 @@
 import { Tabs } from 'expo-router';
-import { Home, Search, Heart, User, Users } from 'lucide-react-native';
+import { Home, Search, Heart, User } from 'lucide-react-native';
 import { Platform } from 'react-native';
 import { useRouter, usePathname } from 'expo-router';
 
@@ -56,15 +56,6 @@ export default function TabLayout() {
             e.preventDefault();
             handleSearchTabPress();
           },
-        }}
-      />
-      <Tabs.Screen
-        name="community"
-        options={{
-          title: 'Comunidade',
-          tabBarIcon: ({ size, color }) => (
-            <Users size={size} color={color} />
-          ),
         }}
       />
       <Tabs.Screen

@@ -28,7 +28,7 @@ export default function AuthScreen() {
     }
 
     setLoading(true);
-    
+
     // Simulate API call
     setTimeout(() => {
       setLoading(false);
@@ -45,7 +45,7 @@ export default function AuthScreen() {
   };
 
   const SkipButton = () => (
-    <TouchableOpacity 
+    <TouchableOpacity
       style={styles.skipButton}
       onPress={handleSkip}
       accessibilityLabel="Pular autenticação"
@@ -57,20 +57,20 @@ export default function AuthScreen() {
 
   return (
     <ScreenLayout backgroundColor="white">
-      <Header 
-        title="Taste of Maputo" 
+      <Header
+        title="Taste of Maputo"
         rightComponent={<SkipButton />}
       />
-      
+
       <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
         <View style={styles.content}>
           <Text style={styles.title}>
             {isLogin ? 'Bem-vindo de volta!' : 'Criar conta'}
           </Text>
           <Text style={styles.subtitle}>
-            {isLogin 
-              ? 'Entre na sua conta para continuar' 
-              : 'Junte-se à comunidade gastronómica de Maputo'
+            {isLogin
+              ? 'Entre na sua conta para continuar'
+              : 'Junte-se à plataforma gastronómica de Maputo'
             }
           </Text>
 
@@ -140,7 +140,7 @@ export default function AuthScreen() {
               </TouchableOpacity>
             )}
 
-            <TouchableOpacity 
+            <TouchableOpacity
               style={[styles.authButton, loading && styles.authButtonDisabled]}
               onPress={handleAuth}
               disabled={loading}
@@ -160,14 +160,14 @@ export default function AuthScreen() {
               <View style={styles.dividerLine} />
             </View>
 
-            <TouchableOpacity 
+            <TouchableOpacity
               style={styles.socialButton}
               onPress={() => handleSocialAuth('Google')}
             >
               <Text style={styles.socialButtonText}>Continuar com Google</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity 
+            <TouchableOpacity
               style={styles.socialButton}
               onPress={() => handleSocialAuth('Facebook')}
             >
@@ -175,7 +175,7 @@ export default function AuthScreen() {
             </TouchableOpacity>
 
             {/* Skip Authentication Option */}
-            <TouchableOpacity 
+            <TouchableOpacity
               style={styles.skipAuthButton}
               onPress={handleSkip}
             >
@@ -195,7 +195,7 @@ export default function AuthScreen() {
           </View>
 
           <Text style={styles.disclaimer}>
-            Ao continuar sem conta, algumas funcionalidades podem estar limitadas. 
+            Ao continuar sem conta, algumas funcionalidades podem estar limitadas.
             Pode sempre criar uma conta mais tarde para aceder a todas as funcionalidades.
           </Text>
         </View>

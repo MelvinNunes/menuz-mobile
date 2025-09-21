@@ -2,12 +2,12 @@ import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Alert, Modal, Tex
 import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'expo-router';
 import { Star, Calendar, CreditCard as Edit3, Trash2, Filter, ChevronDown, Camera, X, Plus, RefreshCw } from 'lucide-react-native';
-import { 
-  ScreenLayout, 
-  Header, 
-  EmptyState, 
-  LoadingSpinner, 
-  Toast, 
+import {
+  ScreenLayout,
+  Header,
+  EmptyState,
+  LoadingSpinner,
+  Toast,
   UserAvatar,
   Badge
 } from '@/components';
@@ -211,7 +211,7 @@ export default function MyReviewsScreen() {
   const [editText, setEditText] = useState('');
   const [editRating, setEditRating] = useState(5);
   const [hasMoreReviews, setHasMoreReviews] = useState(true);
-  
+
   const reviewsPerLoad = 5;
 
   useEffect(() => {
@@ -230,7 +230,7 @@ export default function MyReviewsScreen() {
       setLoading(true);
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1000));
-      
+
       const sorted = sortReviews(mockUserReviews, sortBy);
       setAllReviews(mockUserReviews);
       setDisplayedReviews(sorted.slice(0, reviewsPerLoad));
@@ -249,11 +249,11 @@ export default function MyReviewsScreen() {
       setLoadingMore(true);
       // Simulate API call delay
       await new Promise(resolve => setTimeout(resolve, 800));
-      
+
       const sorted = sortReviews(allReviews, sortBy);
       const currentLength = displayedReviews.length;
       const nextBatch = sorted.slice(currentLength, currentLength + reviewsPerLoad);
-      
+
       setDisplayedReviews(prev => [...prev, ...nextBatch]);
       setHasMoreReviews(currentLength + nextBatch.length < sorted.length);
     } catch (error) {
@@ -268,7 +268,7 @@ export default function MyReviewsScreen() {
       setRefreshing(true);
       // Simulate refresh API call
       await new Promise(resolve => setTimeout(resolve, 1000));
-      
+
       const sorted = sortReviews(allReviews, sortBy);
       setDisplayedReviews(sorted.slice(0, reviewsPerLoad));
       setHasMoreReviews(sorted.length > reviewsPerLoad);
@@ -311,27 +311,27 @@ export default function MyReviewsScreen() {
       const updatedAllReviews = allReviews.map(review =>
         review.id === editingReview.id
           ? {
-              ...review,
-              reviewText: editText,
-              rating: editRating,
-              isEdited: true,
-              editedDate: new Date().toISOString().split('T')[0],
-            }
+            ...review,
+            reviewText: editText,
+            rating: editRating,
+            isEdited: true,
+            editedDate: new Date().toISOString().split('T')[0],
+          }
           : review
       );
-      
+
       const updatedDisplayedReviews = displayedReviews.map(review =>
         review.id === editingReview.id
           ? {
-              ...review,
-              reviewText: editText,
-              rating: editRating,
-              isEdited: true,
-              editedDate: new Date().toISOString().split('T')[0],
-            }
+            ...review,
+            reviewText: editText,
+            rating: editRating,
+            isEdited: true,
+            editedDate: new Date().toISOString().split('T')[0],
+          }
           : review
       );
-      
+
       setAllReviews(updatedAllReviews);
       setDisplayedReviews(updatedDisplayedReviews);
       setShowEditModal(false);
@@ -355,14 +355,14 @@ export default function MyReviewsScreen() {
             try {
               const updatedAllReviews = allReviews.filter(review => review.id !== reviewId);
               const updatedDisplayedReviews = displayedReviews.filter(review => review.id !== reviewId);
-              
+
               setAllReviews(updatedAllReviews);
               setDisplayedReviews(updatedDisplayedReviews);
-              
+
               // Update hasMoreReviews status
               const sorted = sortReviews(updatedAllReviews, sortBy);
               setHasMoreReviews(updatedDisplayedReviews.length < sorted.length);
-              
+
               showToast('Avaliação eliminada com sucesso', 'success');
             } catch (error) {
               showToast('Erro ao eliminar avaliação', 'error');
@@ -376,7 +376,7 @@ export default function MyReviewsScreen() {
   const handleScroll = useCallback((event: any) => {
     const { layoutMeasurement, contentOffset, contentSize } = event.nativeEvent;
     const paddingToBottom = 20;
-    
+
     if (layoutMeasurement.height + contentOffset.y >= contentSize.height - paddingToBottom) {
       loadMoreReviews();
     }
@@ -400,10 +400,10 @@ export default function MyReviewsScreen() {
             disabled={!interactive}
             onPress={() => interactive && setEditRating(star)}
           >
-            <Star 
-              size={size} 
-              color="#FFA500" 
-              fill={star <= rating ? "#FFA500" : "transparent"} 
+            <Star
+              size={size}
+              color="#FFA500"
+              fill={star <= rating ? "#FFA500" : "transparent"}
             />
           </TouchableOpacity>
         ))}
@@ -414,11 +414,11 @@ export default function MyReviewsScreen() {
   const renderReviewCard = (item: UserReview) => (
     <View key={item.id} style={styles.reviewCard}>
       {/* Restaurant Info */}
-      <TouchableOpacity 
+      <TouchableOpacity
         style={styles.restaurantHeader}
         onPress={() => router.push(`/restaurant/${item.restaurantId}`)}
       >
-        <UserAvatar 
+        <UserAvatar
           imageUri={item.restaurantImage}
           size={50}
         />
@@ -439,8 +439,8 @@ export default function MyReviewsScreen() {
 
       {/* Photos */}
       {item.photos.length > 0 && (
-        <ScrollView 
-          horizontal 
+        <ScrollView
+          horizontal
           showsHorizontalScrollIndicator={false}
           style={styles.photosContainer}
           contentContainerStyle={styles.photosContent}
@@ -467,7 +467,7 @@ export default function MyReviewsScreen() {
             )}
           </Text>
         </View>
-        
+
         <View style={styles.engagementStats}>
           <Text style={styles.statText}>{item.helpful} úteis</Text>
           <Text style={styles.statText}>•</Text>
@@ -477,15 +477,15 @@ export default function MyReviewsScreen() {
 
       {/* Action Buttons */}
       <View style={styles.actionButtons}>
-        <TouchableOpacity 
+        <TouchableOpacity
           style={styles.actionButton}
           onPress={() => handleEditReview(item)}
         >
           <Edit3 size={16} color="#FF6B35" />
           <Text style={styles.actionButtonText}>Editar</Text>
         </TouchableOpacity>
-        
-        <TouchableOpacity 
+
+        <TouchableOpacity
           style={[styles.actionButton, styles.deleteButton]}
           onPress={() => handleDeleteReview(item.id)}
         >
@@ -498,7 +498,7 @@ export default function MyReviewsScreen() {
 
   const renderLoadMoreIndicator = () => {
     if (!loadingMore) return null;
-    
+
     return (
       <View style={styles.loadMoreContainer}>
         <LoadingSpinner size={24} color="#FF6B35" />
@@ -509,12 +509,12 @@ export default function MyReviewsScreen() {
 
   const renderEndOfListMessage = () => {
     if (hasMoreReviews || displayedReviews.length === 0) return null;
-    
+
     return (
       <View style={styles.endOfListContainer}>
         <Text style={styles.endOfListText}>
-          {displayedReviews.length === 1 
-            ? 'Visualizou a sua única avaliação' 
+          {displayedReviews.length === 1
+            ? 'Visualizou a sua única avaliação'
             : `Visualizou todas as suas ${displayedReviews.length} avaliações`}
         </Text>
       </View>
@@ -528,13 +528,13 @@ export default function MyReviewsScreen() {
       animationType="fade"
       onRequestClose={() => setShowSortModal(false)}
     >
-      <TouchableOpacity 
+      <TouchableOpacity
         style={styles.modalOverlay}
         onPress={() => setShowSortModal(false)}
       >
         <View style={styles.sortModal}>
           <Text style={styles.modalTitle}>Ordenar por</Text>
-          
+
           {[
             { key: 'newest', label: 'Mais recentes' },
             { key: 'oldest', label: 'Mais antigas' },
@@ -596,14 +596,14 @@ export default function MyReviewsScreen() {
           />
 
           <View style={styles.editModalActions}>
-            <TouchableOpacity 
+            <TouchableOpacity
               style={styles.cancelButton}
               onPress={() => setShowEditModal(false)}
             >
               <Text style={styles.cancelButtonText}>Cancelar</Text>
             </TouchableOpacity>
-            
-            <TouchableOpacity 
+
+            <TouchableOpacity
               style={styles.saveButton}
               onPress={handleSaveEdit}
             >
@@ -619,7 +619,7 @@ export default function MyReviewsScreen() {
     <EmptyState
       icon={Star}
       title="Nenhuma avaliação ainda"
-      subtitle="Comece a explorar restaurantes e partilhe as suas experiências com a comunidade"
+      subtitle="Comece a explorar restaurantes e partilhe as suas experiências"
       buttonText="Explorar Restaurantes"
       onButtonPress={() => router.push('/search')}
       iconColor="#FF6B35"
@@ -652,7 +652,7 @@ export default function MyReviewsScreen() {
       {allReviews.length === 0 ? (
         renderEmptyState()
       ) : (
-        <ScrollView 
+        <ScrollView
           style={styles.container}
           showsVerticalScrollIndicator={false}
           contentContainerStyle={styles.scrollContent}
@@ -690,7 +690,7 @@ export default function MyReviewsScreen() {
 
           {/* Controls */}
           <View style={styles.controlsContainer}>
-            <TouchableOpacity 
+            <TouchableOpacity
               style={styles.sortButton}
               onPress={() => setShowSortModal(true)}
             >
@@ -704,14 +704,14 @@ export default function MyReviewsScreen() {
               <ChevronDown size={16} color="#6B7280" />
             </TouchableOpacity>
 
-            <TouchableOpacity 
+            <TouchableOpacity
               style={styles.refreshButton}
               onPress={handleRefresh}
               disabled={refreshing}
             >
-              <RefreshCw 
-                size={16} 
-                color={refreshing ? "#9CA3AF" : "#6B7280"} 
+              <RefreshCw
+                size={16}
+                color={refreshing ? "#9CA3AF" : "#6B7280"}
                 style={refreshing ? styles.spinning : undefined}
               />
             </TouchableOpacity>
@@ -725,10 +725,10 @@ export default function MyReviewsScreen() {
                 {index < displayedReviews.length - 1 && <View style={styles.separator} />}
               </View>
             ))}
-            
+
             {/* Load More Indicator */}
             {renderLoadMoreIndicator()}
-            
+
             {/* End of List Message */}
             {renderEndOfListMessage()}
           </View>

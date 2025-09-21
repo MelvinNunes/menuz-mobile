@@ -27,9 +27,6 @@ export default function HomeScreen() {
     router.push(`/restaurant/${id}`);
   };
 
-  const handleCommunityPress = () => {
-    router.push('/community');
-  };
 
   const handleSuggestRestaurant = () => {
     router.push('/suggest-restaurant');
@@ -61,7 +58,6 @@ export default function HomeScreen() {
           backgroundImage="https://images.pexels.com/photos/1267320/pexels-photo-1267320.jpeg?auto=compress&cs=tinysrgb&w=1200"
           selectedLocation={selectedLocation}
           onLocationChange={handleLocationChange}
-          onCommunityPress={handleCommunityPress}
           onSearchPress={handleSearch}
         />
 
@@ -209,7 +205,7 @@ export default function HomeScreen() {
               <View style={styles.suggestText}>
                 <Text style={styles.suggestTitle}>Conhece um restaurante incrível?</Text>
                 <Text style={styles.suggestSubtitle}>
-                  Ajude a comunidade a descobrir novos sabores! Sugira o seu restaurante favorito e ganhe pontos de recompensa.
+                  Sugira o seu restaurante favorito e ganhe pontos de recompensa.
                 </Text>
               </View>
             </View>

@@ -11,7 +11,6 @@ import {
 } from 'react-native';
 import {
   Search,
-  Users,
   Heart,
   QrCode,
   ChevronLeft,
@@ -41,14 +40,6 @@ const onboardingSteps: OnboardingStep[] = [
     description: 'Explore os melhores restaurantes de Maputo com avaliações autênticas e filtros personalizados para encontrar exatamente o que procura.',
     color: '#FF6B35',
     backgroundColor: '#FFF7F5',
-  },
-  {
-    id: 'community',
-    icon: Users,
-    title: 'Junte-se à Comunidade',
-    description: 'Partilhe experiências gastronómicas, descubra novos pratos através de outros utilizadores e conecte-se com amantes da boa comida.',
-    color: '#10B981',
-    backgroundColor: '#ECFDF5',
   },
   {
     id: 'favorites',
