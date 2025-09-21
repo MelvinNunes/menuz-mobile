@@ -73,7 +73,6 @@ interface OnboardingStepperProps {
 }
 
 export default function OnboardingStepper({ onComplete }: OnboardingStepperProps) {
-  const router = useRouter();
   const [currentStep, setCurrentStep] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
 
