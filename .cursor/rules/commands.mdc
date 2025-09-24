@@ -1,0 +1,30 @@
+## Local development
+
+```bash
+# Start Expo (QR + web preview)
+yarn dev
+
+# Open web in the browser after starting
+# In Expo dev UI, press "w" or open the Web platform
+```
+
+## Linting
+
+```bash
+# Run lint
+yarn expo lint || yarn lint
+```
+
+## Build (web static export)
+
+```bash
+# Export web build to dist/
+yarn build:web
+```
+
+## Useful notes
+
+- Environment: Expo SDK 54, React Native 0.81, TypeScript ~5.9, strict mode.
+- Path alias: import using `@/` (e.g., `import { Foo } from '@/components/ui/Foo'`).
+- Router: Use `expo-router` APIs (`Link`, `useRouter`, `useLocalSearchParams`).
+- UI primitives: check `components/ui/*` before building new components.
