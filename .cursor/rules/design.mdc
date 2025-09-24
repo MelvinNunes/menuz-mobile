@@ -1,3 +1,109 @@
+---
+alwaysApply: true
+---
+
+## Design principles
+
+- Consistency over novelty. Reuse existing primitives in `components/ui/*`.
+- Clarity first: prioritize readable typography, spacing, and contrast.
+- Touch-first interactions with responsive web support.
+- Motion with purpose: subtle, fast, and interruptible.
+
+## Visual language
+
+- Color:
+  - Prefer existing theme tokens where available. Maintain sufficient contrast (WCAG AA+).
+  - Use accent colors sparingly for primary actions and highlights.
+- Typography:
+  - Use the configured Inter font family via `@expo-google-fonts/inter`.
+  - Establish a simple type scale: titles > subtitles > body > caption. Avoid more than 4 sizes per screen.
+- Spacing:
+  - Base unit: 8px rhythm. Common paddings: 8, 12, 16, 24.
+  - Keep consistent spacing between related elements; double spacing between sections.
+- Corners/shadows:
+  - Prefer subtle radii; avoid heavy shadows. Use blur or elevation sparingly for hierarchy.
+
+## Component usage
+
+- Layout:
+  - Wrap screens with `components/layouts/ScreenLayout` for safe areas and consistent margins.
+  - Use `ScrollView` or `FlatList` for vertical screens; avoid nested scrolls.
+- Inputs and actions:
+  - Use `FilterButton`, `EngagementButton`, and other existing buttons for consistent states.
+  - Primary action: 1 per screen when possible. Secondary actions should be less prominent.
+  - Ensure minimum touch target 44x44.
+- Lists and cards:
+  - Use `RestaurantCard`, `ReviewCard`, and `MenuSection` for content presentation.
+  - Provide skeletons (`Skeleton`) while loading and `EmptyState` with clear next steps when empty.
+- Feedback:
+  - Use `useToast` for transient feedback; avoid modal interruptions unless critical.
+  - Use `LoadingSpinner` for short waits; prefer optimistic UI where safe.
+- Media and icons:
+  - Use `lucide-react-native` or `@expo/vector-icons` for consistent iconography.
+  - Respect `react-native-svg` constraints for performance.
+
+## Navigation and flows
+
+- Tabs:
+  - Keep labels concise (max 12 chars). Icons + labels for clarity.
+  - Preserve state when switching tabs; avoid destructive side effects on focus.
+- Detail pages:
+  - Surface key info above the fold (name, rating, primary action).
+  - Progressive disclosure: collapse long content into sections (`MenuSection`).
+- Sharing:
+  - Expose share entry points near primary content; provide QR (`QRCodeGenerator`) and system share options.
+
+## Accessibility
+
+- Color contrast meets WCAG AA for text and interactive elements.
+- Add `accessibilityRole` and `accessibilityLabel` for interactive elements.
+- Support dynamic type where feasible; avoid text truncation of critical info.
+- Focus order logical; ensure keyboard navigation works on web (`useKeyboardNavigation`).
+- Provide haptics feedback for primary actions via `expo-haptics` when appropriate.
+
+## Motion and transitions
+
+- Keep animations <200ms for simple transitions; <350ms for complex.
+- Use `react-native-reanimated` where already adopted; avoid janky transitions.
+- Reduce motion preferences respected when possible.
+
+## Empty, error, and loading
+
+- Loading: show `Skeleton` for list/card placeholders.
+- Empty: use `EmptyState` with a clear call-to-action.
+- Error: show toast with retry when non-blocking; inline error blocks for form validation.
+
+## Content guidelines
+
+- Titles sentence case; avoid all caps.
+- Keep copy concise and action-oriented. Use consistent terminology across screens.
+- Numbers and ratings: round sensibly; avoid excessive precision.
+
+## Images and assets
+
+- Optimize image sizes; avoid oversized images in lists.
+- Use `react-native-view-shot` sparingly; ensure performance on low-end devices.
+
+## Performance UX
+
+- Avoid layout shifts; pre-measure where possible.
+- Defer non-critical work until after first paint.
+- Virtualize long lists; paginate or infinite-scroll with clear affordances.
+
+## Platform specifics
+
+- iOS/Android:
+  - Respect safe areas and notch cutouts.
+  - Back gestures should not conflict with swipeable elements.
+- Web:
+  - Cursor changes for clickable elements; keyboard focus outlines visible.
+
+## Do-nots
+
+- Do not introduce new color palettes without mapping to theme tokens.
+- Do not block the UI with modal spinners for background tasks.
+- Do not add inconsistent padding/margins; adhere to spacing scale.
+
 ## Design principles
 
 - Consistency over novelty. Reuse existing primitives in `components/ui/*`.

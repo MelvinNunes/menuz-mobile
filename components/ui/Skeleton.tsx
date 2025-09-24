@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, Animated } from 'react-native';
+import { getColor } from '@/theme/colors';
 
 interface SkeletonProps {
   width?: number | string;
@@ -52,6 +53,6 @@ export default function Skeleton({
 
 const styles = StyleSheet.create({
   skeleton: {
-    backgroundColor: '#E5E7EB',
+    backgroundColor: getColor('border.default'),
   },
 });

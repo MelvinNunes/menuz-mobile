@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Platform } from 'react-native';
 import { ArrowLeft, Plus } from 'lucide-react-native';
 import { useRouter } from 'expo-router';
+import { getColor } from '@/theme/colors';
 
 interface HeaderProps {
   title: string;
@@ -18,8 +19,8 @@ export default function Header({
   showBackButton = false,
   rightComponent,
   onBackPress,
-  backgroundColor = 'white',
-  titleColor = '#1F2937',
+  backgroundColor = getColor('bg.elevated'),
+  titleColor = getColor('fg.primary'),
   showSuggestButton = false
 }: HeaderProps) {
   const router = useRouter();
@@ -40,15 +41,15 @@ export default function Header({
     if (rightComponent) {
       return rightComponent;
     }
-    
+
     if (showSuggestButton) {
       return (
         <TouchableOpacity onPress={handleSuggestPress} style={styles.suggestButton}>
-          <Plus size={20} color="#FF6B35" />
+          <Plus size={20} color={getColor('action.primary')} />
         </TouchableOpacity>
       );
     }
-    
+
     return <View style={styles.spacer} />;
   };
 
@@ -56,17 +57,17 @@ export default function Header({
     <View style={[styles.container, { backgroundColor }]}>
       {showBackButton ? (
         <TouchableOpacity onPress={handleBackPress} style={styles.backButton}>
-          <ArrowLeft size={24} color="#374151" />
+          <ArrowLeft size={24} color={getColor('fg.primary')} />
         </TouchableOpacity>
       ) : (
         <View style={styles.spacer} />
       )}
-      
+
       <View style={styles.titleContainer}>
         <Text style={[styles.title, { color: titleColor }]}>{title}</Text>
         <View style={styles.titleUnderline} />
       </View>
-      
+
       {renderRightComponent()}
     </View>
   );
@@ -80,7 +81,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 20,
     borderBottomWidth: 1,
-    borderBottomColor: '#F9FAFB',
+    borderBottomColor: getColor('bg.subtle'),
     elevation: 2,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 1 },
@@ -105,16 +106,16 @@ const styles = StyleSheet.create({
   titleUnderline: {
     width: 40,
     height: 3,
-    backgroundColor: '#FF6B35',
+    backgroundColor: getColor('action.primary'),
     borderRadius: 2,
     marginTop: 4,
   },
   backButton: {
     padding: 8,
     borderRadius: 12,
-    backgroundColor: '#F9FAFB',
+    backgroundColor: getColor('bg.subtle'),
     borderWidth: 1,
-    borderColor: '#E5E7EB',
+    borderColor: getColor('border.default'),
   },
   spacer: {
     width: 40,
@@ -122,11 +123,11 @@ const styles = StyleSheet.create({
   suggestButton: {
     padding: 12,
     borderRadius: 16,
-    backgroundColor: '#FFF7F5',
+    backgroundColor: getColor('action.secondary'),
     borderWidth: 2,
-    borderColor: '#FFE5D9',
+    borderColor: getColor('border.default'),
     elevation: 2,
-    shadowColor: '#FF6B35',
+    shadowColor: getColor('action.primary'),
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 4,

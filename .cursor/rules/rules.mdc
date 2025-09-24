@@ -1,3 +1,106 @@
+---
+alwaysApply: true
+---
+
+## Purpose
+
+These rules guide code generation and edits for this Expo Router + React Native + TypeScript app. Prefer clarity, type-safety, and alignment with the existing structure under `app/`, `components/`, `hooks/`, and `data/`.
+
+## Stack and routing
+
+- Use Expo Router (v6). Respect file-based routing in `app/`:
+  - Tabs live under `app/(tabs)/` with `app/(tabs)/_layout.tsx` managing tab config.
+  - Dynamic routes like `app/restaurant/[id].tsx` and `app/category/[type].tsx` must import from `expo-router` and use typed params.
+  - Use `Link`, `useRouter`, `useLocalSearchParams` from `expo-router` for navigation.
+- Keep web compatibility unless platform-specific APIs are required. If platform-specific, gate with `Platform.select`.
+
+## TypeScript
+
+- Strict mode is enabled. Avoid `any`. Add/extend types and interfaces as needed.
+- Use path alias `@/*` as configured in `tsconfig.json`.
+- Export component props and shared types from a co-located `types.ts` when reused.
+
+## React Native components
+
+- Prefer functional components with hooks. Avoid class components.
+- Keep components small and focused. Extract UI primitives under `components/ui/` when reusable.
+- For icons, use `@expo/vector-icons` or `lucide-react-native` per current usage.
+- For images/assets, use `expo-asset` semantics and existing `assets/images/` conventions.
+
+## Styling and UI
+
+- Match existing design patterns in `components/ui/` (e.g., `RestaurantCard`, `SearchBar`, `Badge`).
+- Maintain accessible touch targets and semantics. Use `Pressable` with `accessibilityRole` where appropriate.
+- Use `expo-blur`, `expo-linear-gradient`, and native modules already in `package.json` when needed.
+
+## Navigation and state
+
+- Use `useRouter` for imperative navigation; prefer declarative `Link` when feasible.
+- For screen layouts, reuse `components/layouts/ScreenLayout` where applicable.
+- Keep screen-level state inside screens; lift to hooks under `hooks/` if reused across screens.
+
+## Data and side effects
+
+- Use `hooks/` for cross-cutting concerns (e.g., `useToast`, `useKeyboardNavigation`).
+- Mock data lives under `data/mockData.ts`. Guard real API calls behind easily swappable adapters.
+- Handle async with `try/catch` and meaningful error surfaces (toasts, fallback UI).
+
+## Code style (enforced in generation)
+
+- Write high-verbosity, readable code. Prefer full words. No cryptic names.
+- Use early returns and guard clauses. Avoid deep nesting.
+- Add concise docstrings/comments only for non-obvious logic (explain "why").
+- Keep imports ordered: built-ins, external, aliased `@/...`, then relative.
+- Do not introduce linter errors; run `expo lint` locally for verification.
+
+## File organization
+
+- New screens → `app/` respecting router conventions.
+- Reusable UI → `components/ui/`.
+- Feature-specific shared components → a subfolder under `components/` (e.g., `components/sharing/`).
+- Cross-feature hooks → `hooks/`.
+- Types reused in multiple places → co-located `types.ts` or `@/types` if global.
+
+## Platform APIs
+
+- When using camera/QR features, follow existing patterns in `components/sharing/QRCodeScanner.tsx` and ensure web fallbacks.
+- Gate permissions (e.g., location, camera) via `expo` modules and request at point of use.
+
+## Performance
+
+- Avoid unnecessary re-renders: memoize heavy subtrees, use `useCallback`/`useMemo` where needed.
+- Prefer FlatList/SectionList for large lists; ensure `keyExtractor` is stable.
+- Defer heavy work off the UI thread when possible.
+
+## Testing and reliability
+
+- Provide graceful empty/loading states using existing `components/ui/Skeleton` and `components/ui/EmptyState`.
+- Use `components/ui/Toast` via `useToast` for user feedback on success/failure.
+
+## Commits and diffs
+
+- Keep edits minimal and focused. Do not reformat unrelated code.
+- Describe intent and impact clearly in commit messages.
+
+## Do-nots
+
+- Do not add new state management libraries without discussion.
+- Do not introduce breaking route changes or rename existing routes without updating all links/usages.
+- Do not disable strict TypeScript checks.
+
+## Quick reference imports
+
+```md
+- Navigation: import { Link, useRouter, useLocalSearchParams } from "expo-router";
+- Icons: import { Ionicons } from "@expo/vector-icons"; or from "lucide-react-native";
+- UI primitives exist under components/ui/\* (Badge, Header, LoadingSpinner, SearchBar, Skeleton, Toast, etc.)
+```
+
+## When in doubt
+
+- Mirror patterns from existing screens in `app/(tabs)` and `app/restaurant/[id].tsx`.
+- Prefer composition over deep prop drilling; create small helpers and hooks.
+
 ## Purpose
 
 These rules guide code generation and edits for this Expo Router + React Native + TypeScript app. Prefer clarity, type-safety, and alignment with the existing structure under `app/`, `components/`, `hooks/`, and `data/`.

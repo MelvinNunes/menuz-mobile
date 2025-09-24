@@ -1,0 +1,171 @@
+---
+alwaysApply: true
+---
+
+## Color palette rules
+
+Follow a token-based palette. Never hardcode raw hex in components; use tokens/roles.
+
+## Token naming
+
+- Base tokens (example): `--color-bg`, `--color-fg`, `--color-muted`, `--color-border`.
+- Brand tokens: `--color-brand`, `--color-brand-foreground`.
+- Accent/feedback tokens: `--color-success`, `--color-warning`, `--color-danger`, each with `-fg` and `-surface` variants.
+- State tokens: `--state-hover`, `--state-pressed`, `--state-focus-outline`.
+
+## Semantic roles
+
+- Backgrounds: `bg.default`, `bg.subtle`, `bg.elevated`.
+- Text: `fg.primary`, `fg.secondary`, `fg.muted`, `fg.inverse`.
+- Border/dividers: `border.default`, `border.subtle`.
+- Interactive: `action.primary`, `action.secondary`, `action.ghost`.
+- Feedback: `success`, `warning`, `danger` (with text/surface/border mappings).
+
+Map roles to tokens centrally (theme or style module). Components reference roles only.
+
+## Usage rules
+
+- Components in `components/ui/*` must consume semantic roles, not raw tokens.
+- Screens/styles should not redefine colors; extend via roles if needed.
+- Primary action uses `action.primary` for background and `fg.inverse` for text.
+- Disabled state lowers contrast via opacity, not a different hue.
+
+## States and interactions
+
+- Hover (web): darken background by ~6–8% or increase opacity subtly.
+- Pressed: darken by ~10–14% vs default.
+- Focus: apply `--state-focus-outline` with 2px outline; offset by 2px.
+- Selected: keep background persistent at pressed-1 step and border emphasized.
+
+## Dark mode
+
+- Provide 1:1 token mapping for dark scheme.
+- Maintain contrast: body text ratio ≥ 7:1; interactive ≥ 4.5:1.
+- Avoid pure black/white; prefer near-black/near-white to reduce glare.
+
+## Accessibility
+
+- All text over surfaces meets WCAG AA (≥4.5:1 for normal text, ≥3:1 for large text).
+- Icons must meet the same ratio if conveying meaning.
+- Do not convey state with color alone. Pair with iconography or text.
+
+## Gradients and overlays
+
+- Use brand gradients sparingly; ensure start/end stops map to brand tokens.
+- Apply overlays using alpha of `--color-bg` or `--color-fg` tokens, not magic numbers.
+
+## Theming and implementation
+
+- Centralize tokens in a theme module (e.g., `@/theme/colors.ts` or CSS vars for web).
+- Expose a small API to fetch role colors (e.g., `getColor('action.primary')`).
+- Components accept a limited `variant` prop instead of direct color overrides.
+
+## Do-nots
+
+- Do not introduce new hex values in components.
+- Do not use brand tones for destructive actions; use `danger` tokens.
+- Do not reduce contrast below AA to “soften” UI.
+
+## Detected palette (from current code)
+
+- Brand primary: `#FF6B35`
+- Brand gradient stop: `#FF8A65`
+- Neutrals (text/bg/border):
+  - `#1F2937` (gray-800)
+  - `#374151` (gray-700)
+  - `#6B7280` (gray-500)
+  - `#9CA3AF` (gray-400)
+  - `#E5E7EB` (gray-200 border)
+  - `#F3F4F6` (gray-100 surface)
+  - `#F9FAFB` (gray-50 surface)
+  - `#FAFAFA` (gray-50 alt)
+  - `#FFFFFF` (white)
+  - `#000000` (black)
+- Feedback & accents:
+  - Blue: `#3B82F6` (info), light `#EFF6FF`, border `#BFDBFE`
+  - Green: `#10B981` (success), light `#ECFDF5`
+  - Red: `#EF4444` (danger), light `#FEF2F2`, border `#FECACA`
+  - Orange: `#FFA500` (accent orange)
+  - Gold: `#FFD700` (accent gold), light `rgba(255, 215, 0, 0.2)`
+  - Purple: `#8B5CF6` (accent purple)
+  - Brand light: `#FFF7F5`, border `#FFE5D9`
+- Common overlays:
+  - `rgba(0, 0, 0, 0.6)`, `rgba(0,0,0,0.5)`, `rgba(255,255,255,0.95)`
+
+## Proposed tokens
+
+- Base
+  - `--color-bg`: `#FFFFFF`
+  - `--color-bg-subtle`: `#F9FAFB`
+  - `--color-bg-elevated`: `#FFFFFF`
+  - `--color-fg`: `#374151`
+  - `--color-fg-muted`: `#6B7280`
+  - `--color-border`: `#E5E7EB`
+- Brand
+  - `--color-brand`: `#FF6B35`
+  - `--color-brand-foreground`: `#FFFFFF`
+  - `--color-brand-surface`: `#FFF7F5`
+  - `--color-brand-border`: `#FFE5D9`
+- Feedback
+  - `--color-info`: `#3B82F6`
+  - `--color-info-surface`: `#EFF6FF`
+  - `--color-info-border`: `#BFDBFE`
+  - `--color-success`: `#10B981`
+  - `--color-success-surface`: `#ECFDF5`
+  - `--color-success-border`: `#10B981`
+  - `--color-danger`: `#EF4444`
+  - `--color-danger-surface`: `#FEF2F2`
+  - `--color-danger-border`: `#FECACA`
+  - `--color-warning`: `#FFA500`
+  - `--color-warning-surface`: `#FFF7F5`
+  - `--color-warning-border`: `#FFE5D9`
+- Accents
+  - `--color-accent-purple`: `#8B5CF6`
+  - `--color-accent-gold`: `#FFD700`
+- States
+  - `--state-hover`: 8% darken of base
+  - `--state-pressed`: 12% darken of base
+  - `--state-focus-outline`: `#3B82F6`
+  - `--overlay-strong`: `rgba(0,0,0,0.6)`
+  - `--overlay-medium`: `rgba(0,0,0,0.5)`
+  - `--overlay-light`: `rgba(255,255,255,0.95)`
+
+## Role mapping (reference only)
+
+- `bg.default` → `--color-bg`
+- `bg.subtle` → `--color-bg-subtle`
+- `bg.elevated` → `--color-bg-elevated`
+- `fg.primary` → `--color-fg`
+- `fg.secondary` → `--color-fg`
+- `fg.muted` → `--color-fg-muted`
+- `fg.inverse` → `#FFFFFF`
+- `border.default` → `--color-border`
+- `border.subtle` → `#F3F4F6`
+- `action.primary` → `--color-brand`
+- `action.secondary` → `--color-bg-subtle`
+- `action.ghost` → transparent with `--color-fg`
+- `success.*` → success tokens
+- `warning.*` → warning/orange tokens
+- `danger.*` → danger/red tokens
+- `info.*` → info/blue tokens
+
+## Migration guidance
+
+- Replace raw `#FF6B35` with role-based colors:
+  - Buttons: background `action.primary`, text `fg.inverse`, border `--color-brand`.
+  - Pills/chips: surface `--color-brand-surface`, border `--color-brand-border`, text `--color-brand`.
+- Replace gray text `#6B7280` → `fg.muted`; headings `#374151` → `fg.primary`.
+- Replace borders `#E5E7EB` → `border.default`; dividers `#F3F4F6` → `border.subtle`.
+- Replace info elements `#3B82F6` with `info` role equivalents; same for `success`, `danger`, `warning`.
+- Centralize gradient stops (e.g., `#FF6B35` → `--color-brand`, `#FF8A65` → computed darken/secondary brand token).
+- For overlays, use `--overlay-strong|medium|light` instead of ad-hoc rgba.
+
+## Dark mode mapping (starter)
+
+- `--color-bg` → `#0B0F14`
+- `--color-bg-subtle` → `#0F141A`
+- `--color-bg-elevated` → `#121922`
+- `--color-fg` → `#E5E7EB`
+- `--color-fg-muted` → `#9CA3AF`
+- `--color-border` → `#1F2937`
+- Keep brand hues; ensure contrast with `fg.inverse` adjusted if needed.

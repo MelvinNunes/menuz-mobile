@@ -3,6 +3,7 @@ import { Home, Search, Heart, User } from 'lucide-react-native';
 import { Platform } from 'react-native';
 import { useRouter } from 'expo-router';
 import { NativeTabs, Icon, Label } from 'expo-router/unstable-native-tabs';
+import { getColor } from '@/theme/colors';
 
 export default function TabLayout() {
   const router = useRouter();
@@ -46,12 +47,12 @@ export default function TabLayout() {
     <Tabs
       screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: '#FF6B35',
-        tabBarInactiveTintColor: '#9CA3AF',
+        tabBarActiveTintColor: getColor('action.primary'),
+        tabBarInactiveTintColor: getColor('fg.muted'),
         tabBarStyle: {
-          backgroundColor: 'white',
+          backgroundColor: getColor('bg.elevated'),
           borderTopWidth: 1,
-          borderTopColor: '#F3F4F6',
+          borderTopColor: getColor('border.subtle'),
           paddingTop: Platform.OS === 'ios' ? 8 : 4,
           paddingBottom: Platform.OS === 'ios' ? 20 : 8,
           height: Platform.OS === 'ios' ? 90 : 70,

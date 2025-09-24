@@ -1,0 +1,201 @@
+---
+alwaysApply: true
+---
+
+## Libraries usage rules
+
+These guidelines standardize how to use common libraries across the app.
+
+---
+
+## zod — validation
+
+- Define schemas beside the feature that uses them (e.g., `app/suggest-restaurant.tsx` → `suggest-restaurant.schema.ts`).
+- Export schema and inferred types: `export const FormSchema = z.object({...}); export type FormValues = z.infer<typeof FormSchema>;`.
+- Keep schemas UI-agnostic (no formatting or presentational concerns).
+- Use refinements for cross-field validation and friendly error messages.
+- Reuse base schemas by composing with `.merge()`/`.extend()`.
+
+## react-hook-form — forms
+
+- Use `@hookform/resolvers/zod` for schema validation.
+- Co-locate form default values and RHF config with the screen/component.
+- For React Native inputs, wrap with `Controller` and pass `value`, `onChange`, `onBlur`.
+- Display validation messages near fields; show a toast only for form-level errors.
+- Prefer controlled submit handling: `handleSubmit(onSubmit)`; guard async with try/catch and disable the submit button while pending.
+- Reset form on successful submit using `reset()` with next defaults.
+
+Example pattern:
+
+```ts
+const form = useForm<FormValues>({
+  resolver: zodResolver(FormSchema),
+  defaultValues,
+  mode: 'onSubmit',
+});
+```
+
+## date-fns — date utils
+
+- Keep all date formatting/parsing in a small utility module per feature or in a shared `@/utils/date.ts` when reused.
+- Use ISO 8601 strings at boundaries; parse to `Date` at usage sites.
+- Prefer pure helpers (no timezone globals). Pass locales explicitly if needed.
+- Avoid heavy `formatDistance` in large lists; precompute/memoize when necessary.
+
+## nuqs — search params
+
+- Primary source of truth for route params is `expo-router` (`useLocalSearchParams`).
+- If using `nuqs` for web-only rich querystate:
+  - Guard usage with `Platform.OS === 'web'`.
+  - Provide a fallback adapter that reads/writes via `useRouter` on native.
+  - Keep serialization simple (strings, numbers, booleans). For arrays/objects, serialize with stable JSON.
+- Do not block native paths on missing `window` APIs; always branch safely.
+
+Adapter idea:
+
+```ts
+const setParam = (key: string, value: string) => {
+  if (Platform.OS === 'web') {
+    /* nuqs impl */
+  } else {
+    router.setParams({ [key]: value });
+  }
+};
+```
+
+## jotai — global state management
+
+- Use `jotai` for lightweight cross-screen state; avoid for ephemeral screen-local state.
+- Define atoms in domain-scoped modules under `@/state/<domain>.ts` (e.g., `@/state/user.ts`).
+- Export atoms and typed helpers; name atoms clearly (`userAtom`, `filtersAtom`).
+- Provide a single `<Provider>` near the app root (in `app/_layout.tsx`).
+- Derive computed values with `atom((get) => ...)`; avoid duplicating server/cache state.
+- Persist only when necessary (e.g., AsyncStorage) and isolate persistence in the state module using `jotai/utils`.
+
+Atom pattern:
+
+```ts
+export const filtersAtom = atom<Filters>({ sort: 'top', dietary: [] });
+export const hasFiltersAtom = atom(
+  (get) => get(filtersAtom).dietary.length > 0
+);
+```
+
+## Installation notes
+
+- If a library is not present, add it with pinned versions compatible with RN/Expo:
+  - zod, @hookform/resolvers, react-hook-form, date-fns, jotai, (nuqs for web-only).
+- For native/web differences (nuqs), ensure code paths are guarded and tree-shakeable.
+
+## Testing and DX
+
+- Validate form schemas with small unit tests for edge cases when complex.
+- Mock dates in tests with fixed timestamps; avoid relying on `Date.now()`.
+- For atoms, test selectors/derived atoms as pure functions.
+
+## Do-nots
+
+- Do not use `any` in form values; always infer from zod.
+- Do not mutate RHF form state directly; use RHF APIs.
+- Do not format dates in components inline; use helpers.
+- Do not rely on `nuqs` APIs on native; always guard.
+- Do not create global atoms for one-off screen state.
+
+## Libraries usage rules
+
+These guidelines standardize how to use common libraries across the app.
+
+---
+
+## zod — validation
+
+- Define schemas beside the feature that uses them (e.g., `app/suggest-restaurant.tsx` → `suggest-restaurant.schema.ts`).
+- Export schema and inferred types: `export const FormSchema = z.object({...}); export type FormValues = z.infer<typeof FormSchema>;`.
+- Keep schemas UI-agnostic (no formatting or presentational concerns).
+- Use refinements for cross-field validation and friendly error messages.
+- Reuse base schemas by composing with `.merge()`/`.extend()`.
+
+## react-hook-form — forms
+
+- Use `@hookform/resolvers/zod` for schema validation.
+- Co-locate form default values and RHF config with the screen/component.
+- For React Native inputs, wrap with `Controller` and pass `value`, `onChange`, `onBlur`.
+- Display validation messages near fields; show a toast only for form-level errors.
+- Prefer controlled submit handling: `handleSubmit(onSubmit)`; guard async with try/catch and disable the submit button while pending.
+- Reset form on successful submit using `reset()` with next defaults.
+
+Example pattern:
+
+```ts
+const form = useForm<FormValues>({
+  resolver: zodResolver(FormSchema),
+  defaultValues,
+  mode: 'onSubmit',
+});
+```
+
+## date-fns — date utils
+
+- Keep all date formatting/parsing in a small utility module per feature or in a shared `@/utils/date.ts` when reused.
+- Use ISO 8601 strings at boundaries; parse to `Date` at usage sites.
+- Prefer pure helpers (no timezone globals). Pass locales explicitly if needed.
+- Avoid heavy `formatDistance` in large lists; precompute/memoize when necessary.
+
+## nuqs — search params
+
+- Primary source of truth for route params is `expo-router` (`useLocalSearchParams`).
+- If using `nuqs` for web-only rich querystate:
+  - Guard usage with `Platform.OS === 'web'`.
+  - Provide a fallback adapter that reads/writes via `useRouter` on native.
+  - Keep serialization simple (strings, numbers, booleans). For arrays/objects, serialize with stable JSON.
+- Do not block native paths on missing `window` APIs; always branch safely.
+
+Adapter idea:
+
+```ts
+const setParam = (key: string, value: string) => {
+  if (Platform.OS === 'web') {
+    /* nuqs impl */
+  } else {
+    router.setParams({ [key]: value });
+  }
+};
+```
+
+## jotai — global state management
+
+- Use `jotai` for lightweight cross-screen state; avoid for ephemeral screen-local state.
+- Define atoms in domain-scoped modules under `@/state/<domain>.ts` (e.g., `@/state/user.ts`).
+- Export atoms and typed helpers; name atoms clearly (`userAtom`, `filtersAtom`).
+- Provide a single `<Provider>` near the app root (in `app/_layout.tsx`).
+- Derive computed values with `atom((get) => ...)`; avoid duplicating server/cache state.
+- Persist only when necessary (e.g., AsyncStorage) and isolate persistence in the state module using `jotai/utils`.
+
+Atom pattern:
+
+```ts
+export const filtersAtom = atom<Filters>({ sort: 'top', dietary: [] });
+export const hasFiltersAtom = atom(
+  (get) => get(filtersAtom).dietary.length > 0
+);
+```
+
+## Installation notes
+
+- If a library is not present, add it with pinned versions compatible with RN/Expo:
+  - zod, @hookform/resolvers, react-hook-form, date-fns, jotai, (nuqs for web-only).
+- For native/web differences (nuqs), ensure code paths are guarded and tree-shakeable.
+
+## Testing and DX
+
+- Validate form schemas with small unit tests for edge cases when complex.
+- Mock dates in tests with fixed timestamps; avoid relying on `Date.now()`.
+- For atoms, test selectors/derived atoms as pure functions.
+
+## Do-nots
+
+- Do not use `any` in form values; always infer from zod.
+- Do not mutate RHF form state directly; use RHF APIs.
+- Do not format dates in components inline; use helpers.
+- Do not rely on `nuqs` APIs on native; always guard.
+- Do not create global atoms for one-off screen state.
