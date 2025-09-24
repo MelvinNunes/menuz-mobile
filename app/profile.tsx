@@ -62,7 +62,7 @@ export default function ProfileScreen() {
     <ScreenLayout>
       <ScrollView showsVerticalScrollIndicator={false}>
         {/* Header */}
-        <Header title="Menuz" />
+        <Header title="Perfil" />
 
         {/* User Info */}
         <View style={styles.userSection}>
@@ -125,7 +125,7 @@ export default function ProfileScreen() {
 
         {/* Version Info */}
         <View style={styles.versionInfo}>
-          <Text style={styles.versionText}>Menuz v1.0.0</Text>
+          <Text style={styles.versionText}>Taste of Maputo v1.0.0</Text>
         </View>
       </ScrollView>
     </ScreenLayout>

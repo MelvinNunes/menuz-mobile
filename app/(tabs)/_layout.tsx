@@ -1,5 +1,5 @@
 import { Tabs } from 'expo-router';
-import { Home, Search, Heart, User } from 'lucide-react-native';
+import { Home, Search, Heart, User, ForkKnife } from 'lucide-react-native';
 import { Platform } from 'react-native';
 import { useRouter } from 'expo-router';
 import { NativeTabs, Icon, Label } from 'expo-router/unstable-native-tabs';
@@ -14,34 +14,31 @@ export default function TabLayout() {
   const useNativeTabs = isIos && iosVersionMajor >= 26;
 
   const handleSearchTabPress = () => {
-    // Always navigate with focus parameter to trigger scroll and focus behavior
-    // This works whether we're already on search page or coming from another page
-    const timestamp = Date.now(); // Add timestamp to ensure navigation triggers
-    router.push(`/search?focus=true&t=${timestamp}`);
+    router.push(`/search`);
   };
 
-  if (useNativeTabs) {
-    return (
-      <NativeTabs>
-        <NativeTabs.Trigger name="index">
-          <Icon sf={{ default: 'house', selected: 'house.fill' }} selectedColor={getColor('action.primary')} />
-          <Label selectedStyle={{ color: getColor('action.primary') }}>Início</Label>
-        </NativeTabs.Trigger>
-        <NativeTabs.Trigger name="search" role="search">
-          <Icon sf="magnifyingglass" selectedColor={getColor('action.primary')} />
-          <Label selectedStyle={{ color: getColor('action.primary') }}>Pesquisar</Label>
-        </NativeTabs.Trigger>
-        <NativeTabs.Trigger name="explore">
-          <Icon sf={{ default: 'fork.knife', selected: 'fork.knife.circle.fill' }} selectedColor={getColor('action.primary')} />
-          <Label selectedStyle={{ color: getColor('action.primary') }}>Explorar</Label>
-        </NativeTabs.Trigger>
-        <NativeTabs.Trigger name="favorites">
-          <Icon sf={{ default: 'heart', selected: 'heart.fill' }} selectedColor={getColor('action.primary')} />
-          <Label selectedStyle={{ color: getColor('action.primary') }}>Favoritos</Label>
-        </NativeTabs.Trigger>
-      </NativeTabs>
-    );
-  }
+  // if (useNativeTabs) {
+  //   return (
+  //     <NativeTabs>
+  //       <NativeTabs.Trigger name="index">
+  //         <Icon sf={{ default: 'house', selected: 'house.fill' }} selectedColor={getColor('action.primary')} />
+  //         <Label selectedStyle={{ color: getColor('action.primary') }}>Início</Label>
+  //       </NativeTabs.Trigger>
+  //       <NativeTabs.Trigger name="search" role="search">
+  //         <Icon sf="magnifyingglass" selectedColor={getColor('action.primary')} />
+  //         <Label selectedStyle={{ color: getColor('action.primary') }}>Pesquisar</Label>
+  //       </NativeTabs.Trigger>
+  //       <NativeTabs.Trigger name="explore">
+  //         <Icon sf={{ default: 'fork.knife', selected: 'fork.knife.circle.fill' }} selectedColor={getColor('action.primary')} />
+  //         <Label selectedStyle={{ color: getColor('action.primary') }}>Explorar</Label>
+  //       </NativeTabs.Trigger>
+  //       <NativeTabs.Trigger name="favorites">
+  //         <Icon sf={{ default: 'heart', selected: 'heart.fill' }} selectedColor={getColor('action.primary')} />
+  //         <Label selectedStyle={{ color: getColor('action.primary') }}>Favoritos</Label>
+  //       </NativeTabs.Trigger>
+  //     </NativeTabs>
+  //   );
+  // }
 
   return (
     <Tabs
@@ -88,20 +85,20 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
+        name="explore"
+        options={{
+          title: 'Explorar',
+          tabBarIcon: ({ size, color }) => (
+            <ForkKnife size={size} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
         name="favorites"
         options={{
           title: 'Favoritos',
           tabBarIcon: ({ size, color }) => (
             <Heart size={size} color={color} />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="profile"
-        options={{
-          title: 'Perfil',
-          tabBarIcon: ({ size, color }) => (
-            <User size={size} color={color} />
           ),
         }}
       />

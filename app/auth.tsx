@@ -1,12 +1,13 @@
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, ScrollView, Alert } from 'react-native';
 import { useState } from 'react';
-import { useRouter } from 'expo-router';
+import { useRouter, useLocalSearchParams } from 'expo-router';
 import { Mail, Lock, User, Eye, EyeOff, X } from 'lucide-react-native';
 import { ScreenLayout, Header, LoadingSpinner } from '@/components';
 
 export default function AuthScreen() {
   const router = useRouter();
-  const [isLogin, setIsLogin] = useState(true);
+  const params = useLocalSearchParams<{ mode?: string }>();
+  const [isLogin, setIsLogin] = useState(params.mode !== 'signup');
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
