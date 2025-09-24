@@ -17,28 +17,28 @@ export default function TabLayout() {
     router.push(`/search`);
   };
 
-  // if (useNativeTabs) {
-  //   return (
-  //     <NativeTabs>
-  //       <NativeTabs.Trigger name="index">
-  //         <Icon sf={{ default: 'house', selected: 'house.fill' }} selectedColor={getColor('action.primary')} />
-  //         <Label selectedStyle={{ color: getColor('action.primary') }}>Início</Label>
-  //       </NativeTabs.Trigger>
-  //       <NativeTabs.Trigger name="search" role="search">
-  //         <Icon sf="magnifyingglass" selectedColor={getColor('action.primary')} />
-  //         <Label selectedStyle={{ color: getColor('action.primary') }}>Pesquisar</Label>
-  //       </NativeTabs.Trigger>
-  //       <NativeTabs.Trigger name="explore">
-  //         <Icon sf={{ default: 'fork.knife', selected: 'fork.knife.circle.fill' }} selectedColor={getColor('action.primary')} />
-  //         <Label selectedStyle={{ color: getColor('action.primary') }}>Explorar</Label>
-  //       </NativeTabs.Trigger>
-  //       <NativeTabs.Trigger name="favorites">
-  //         <Icon sf={{ default: 'heart', selected: 'heart.fill' }} selectedColor={getColor('action.primary')} />
-  //         <Label selectedStyle={{ color: getColor('action.primary') }}>Favoritos</Label>
-  //       </NativeTabs.Trigger>
-  //     </NativeTabs>
-  //   );
-  // }
+  if (useNativeTabs) {
+    return (
+      <NativeTabs>
+        <NativeTabs.Trigger name="index">
+          <Icon sf={{ default: 'house', selected: 'house.fill' }} selectedColor={getColor('action.primary')} />
+          <Label selectedStyle={{ color: getColor('action.primary') }}>Início</Label>
+        </NativeTabs.Trigger>
+        <NativeTabs.Trigger name="search" role="search">
+          <Icon sf="magnifyingglass" selectedColor={getColor('action.primary')} />
+          <Label selectedStyle={{ color: getColor('action.primary') }}>Pesquisar</Label>
+        </NativeTabs.Trigger>
+        <NativeTabs.Trigger name="explore">
+          <Icon sf={{ default: 'fork.knife', selected: 'fork.knife.circle.fill' }} selectedColor={getColor('action.primary')} />
+          <Label selectedStyle={{ color: getColor('action.primary') }}>Explorar</Label>
+        </NativeTabs.Trigger>
+        <NativeTabs.Trigger name="favorites">
+          <Icon sf={{ default: 'heart', selected: 'heart.fill' }} selectedColor={getColor('action.primary')} />
+          <Label selectedStyle={{ color: getColor('action.primary') }}>Favoritos</Label>
+        </NativeTabs.Trigger>
+      </NativeTabs>
+    );
+  }
 
   return (
     <Tabs

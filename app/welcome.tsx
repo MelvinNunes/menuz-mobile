@@ -2,8 +2,11 @@ import React from 'react';
 import { View, Text, StyleSheet, Image, Pressable, Platform } from 'react-native';
 import ScreenLayout from '@/components/layouts/ScreenLayout';
 import { getColor } from '@/theme/colors';
+import { useRouter } from 'expo-router';
 
 export default function WelcomeScreen() {
+    const router = useRouter();
+
     return (
         <ScreenLayout backgroundColor={getColor('bg.default')} edges={['top', 'bottom']}>
             <View style={styles.container}>
@@ -25,6 +28,7 @@ export default function WelcomeScreen() {
                             styles.ghostButton,
                             pressed && { opacity: 0.7 },
                         ]}
+                        onPress={() => router.replace("/(tabs)")}
                     >
                         <Text style={styles.ghostButtonText}>Continuar como convidado</Text>
                     </Pressable>

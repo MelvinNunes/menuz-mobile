@@ -57,7 +57,7 @@ export default function RootLayout() {
     return <View style={{ flex: 1, backgroundColor: '#fff' }} />;
   }
 
-  if (true) {
+  if (showOnboarding) {
     return <WelcomeScreen />
   }
 
