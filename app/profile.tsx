@@ -44,7 +44,7 @@ export default function ProfileScreen() {
       icon: Settings,
       title: 'Configurações',
       subtitle: 'Privacidade e conta',
-      onPress: () => {},
+      onPress: () => { },
     },
     {
       icon: HelpCircle,
@@ -55,7 +55,7 @@ export default function ProfileScreen() {
   ];
 
   const handleSignOut = () => {
-    router.push('/auth');
+    router.push('/welcome');
   };
 
   return (
@@ -67,7 +67,7 @@ export default function ProfileScreen() {
         {/* User Info */}
         <View style={styles.userSection}>
           <View style={styles.avatarContainer}>
-            <UserAvatar 
+            <UserAvatar
               imageUri={user.avatar}
               size={80}
             />
@@ -75,7 +75,7 @@ export default function ProfileScreen() {
               <Settings size={16} color="white" />
             </TouchableOpacity>
           </View>
-          
+
           <Text style={styles.userName}>{user.name}</Text>
           <Text style={styles.userEmail}>{user.email}</Text>
 
@@ -100,8 +100,8 @@ export default function ProfileScreen() {
         {/* Menu Items */}
         <View style={styles.menuSection}>
           {menuItems.map((item, index) => (
-            <TouchableOpacity 
-              key={index} 
+            <TouchableOpacity
+              key={index}
               style={styles.menuItem}
               onPress={item.onPress}
             >
