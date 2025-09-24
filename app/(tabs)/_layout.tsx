@@ -31,7 +31,7 @@ export default function TabLayout() {
           <Icon sf="magnifyingglass" selectedColor={getColor('action.primary')} />
           <Label selectedStyle={{ color: getColor('action.primary') }}>Pesquisar</Label>
         </NativeTabs.Trigger>
-        <NativeTabs.Trigger name="profile">
+        <NativeTabs.Trigger name="explore">
           <Icon sf={{ default: 'fork.knife', selected: 'fork.knife.circle.fill' }} selectedColor={getColor('action.primary')} />
           <Label selectedStyle={{ color: getColor('action.primary') }}>Explorar</Label>
         </NativeTabs.Trigger>
