@@ -1,12 +1,16 @@
 import { Tabs } from 'expo-router';
 import { Home, Search, Heart, User } from 'lucide-react-native';
 import { Platform } from 'react-native';
-import { useRouter, usePathname } from 'expo-router';
+import { useRouter } from 'expo-router';
 import { NativeTabs, Icon, Label } from 'expo-router/unstable-native-tabs';
 
 export default function TabLayout() {
   const router = useRouter();
-  const pathname = usePathname();
+  const isIos = Platform.OS === 'ios';
+  const iosVersionMajor = isIos
+    ? parseInt(String(Platform.Version).split('.')[0], 10)
+    : 0;
+  const useNativeTabs = isIos && iosVersionMajor >= 26;
 
   const handleSearchTabPress = () => {
     // Always navigate with focus parameter to trigger scroll and focus behavior
@@ -15,7 +19,7 @@ export default function TabLayout() {
     router.push(`/search?focus=true&t=${timestamp}`);
   };
 
-  if (Platform.OS === 'ios') {
+  if (useNativeTabs) {
     return (
       <NativeTabs>
         <NativeTabs.Trigger name="index">
@@ -48,9 +52,9 @@ export default function TabLayout() {
           backgroundColor: 'white',
           borderTopWidth: 1,
           borderTopColor: '#F3F4F6',
-          paddingTop: 4,
-          paddingBottom: 8,
-          height: 70,
+          paddingTop: Platform.OS === 'ios' ? 8 : 4,
+          paddingBottom: Platform.OS === 'ios' ? 20 : 8,
+          height: Platform.OS === 'ios' ? 90 : 70,
         },
         tabBarLabelStyle: {
           fontSize: 12,
