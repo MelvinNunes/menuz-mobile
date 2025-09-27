@@ -13,17 +13,10 @@ export { default as LoadingSpinner } from './ui/LoadingSpinner';
 export { default as Toast } from './ui/Toast';
 export { default as Skeleton } from './ui/Skeleton';
 export { default as Badge } from './ui/Badge';
-export { default as ReviewCard } from './ui/ReviewCard';
 export { default as DietaryFilter } from './ui/DietaryFilter';
-export { default as MenuSection } from './ui/MenuSection';
 
 // Layout Components
 export { default as ScreenLayout } from './layouts/ScreenLayout';
 
 // Section Components
 export { default as HeroSection } from './sections/HeroSection';
-
-// Sharing Components
-export { default as QRCodeGenerator } from './sharing/QRCodeGenerator';
-export { default as QRCodeScanner } from './sharing/QRCodeScanner';
-export { default as SocialSharingCard } from './sharing/SocialSharingCard';

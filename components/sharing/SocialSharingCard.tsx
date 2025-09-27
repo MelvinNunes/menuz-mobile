@@ -42,15 +42,15 @@ export default function SocialSharingCard({
 
   const getOperatingHours = () => {
     if (!restaurant.openingHours) return 'Consulte horários';
-    
+
     const today = new Date().getDay();
     const days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
     const todayKey = days[today];
-    
+
     if (restaurant.openingHours[todayKey]) {
       return restaurant.openingHours[todayKey];
     }
-    
+
     return 'Consulte horários';
   };
 
@@ -89,18 +89,17 @@ export default function SocialSharingCard({
             text: `Confira este restaurante incrível: ${restaurant.name}`,
             url: generateQRValue(),
           };
-          
+
           // Copy to clipboard as fallback
           if (navigator.clipboard) {
             await navigator.clipboard.writeText(`${shareData.text} ${shareData.url}`);
-            alert('Copiado!', 'Link copiado para a área de transferência');
+            alert('Copiado!');
           }
         }
       } else {
         // Mobile sharing
         try {
-          await Share.share({
-            message: `Confira este restaurante incrível: ${restaurant.name} - ${generateQRValue()}`,
+          await navigator.share({
             url: uri,
             title: `${restaurant.name} - Menuz`,
           });
@@ -108,7 +107,7 @@ export default function SocialSharingCard({
           console.error('Error sharing:', error);
         }
       }
-      
+
       onShare?.(platform);
     }
   };
@@ -117,16 +116,16 @@ export default function SocialSharingCard({
     const uri = await captureCard();
     if (uri) {
       onSave?.(uri);
-      alert('Sucesso!', 'Cartão salvo na galeria');
+      alert('Sucesso!');
     }
   };
 
   const handlePlatformShare = (platform: string) => {
     const baseUrl = generateQRValue();
     const text = `Confira este restaurante incrível: ${restaurant.name}`;
-    
+
     let shareUrl = '';
-    
+
     switch (platform) {
       case 'instagram':
         // Instagram doesn't support direct URL sharing, so we'll use the general share
@@ -142,7 +141,7 @@ export default function SocialSharingCard({
         handleShare(platform);
         return;
     }
-    
+
     if (Platform.OS === 'web') {
       window.open(shareUrl, '_blank');
     } else {
@@ -175,9 +174,9 @@ export default function SocialSharingCard({
 
           {/* Restaurant Image */}
           <View style={styles.imageContainer}>
-            <Image 
-              source={{ uri: featuredDish?.image || restaurant.image }} 
-              style={styles.restaurantImage} 
+            <Image
+              source={{ uri: featuredDish?.image || restaurant.image }}
+              style={styles.restaurantImage}
             />
             <View style={styles.imageOverlay}>
               <RatingBadge rating={restaurant.rating} size="medium" />
@@ -189,7 +188,7 @@ export default function SocialSharingCard({
             <Text style={styles.restaurantName} numberOfLines={2}>
               {restaurant.name}
             </Text>
-            
+
             {featuredDish ? (
               <View style={styles.dishInfo}>
                 <Text style={styles.dishName}>Destaque: {featuredDish.name}</Text>
@@ -210,14 +209,14 @@ export default function SocialSharingCard({
                   {restaurant.rating} ({restaurant.reviewCount}+ avaliações)
                 </Text>
               </View>
-              
+
               <View style={styles.metaItem}>
                 <MapPin size={14} color="#6B7280" />
                 <Text style={styles.metaText} numberOfLines={1}>
                   {restaurant.address}
                 </Text>
               </View>
-              
+
               <View style={styles.metaItem}>
                 <Clock size={14} color="#10B981" />
                 <Text style={styles.metaText}>
@@ -242,9 +241,9 @@ export default function SocialSharingCard({
       {/* Sharing Controls */}
       <View style={styles.sharingControls}>
         <Text style={styles.sharingTitle}>Partilhar Cartão</Text>
-        
+
         <View style={styles.platformButtons}>
-          <TouchableOpacity 
+          <TouchableOpacity
             style={[styles.platformButton, styles.instagramButton]}
             onPress={() => handlePlatformShare('instagram')}
           >
@@ -252,7 +251,7 @@ export default function SocialSharingCard({
             <Text style={styles.platformButtonText}>Instagram</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity 
+          <TouchableOpacity
             style={[styles.platformButton, styles.facebookButton]}
             onPress={() => handlePlatformShare('facebook')}
           >
@@ -260,7 +259,7 @@ export default function SocialSharingCard({
             <Text style={styles.platformButtonText}>Facebook</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity 
+          <TouchableOpacity
             style={[styles.platformButton, styles.twitterButton]}
             onPress={() => handlePlatformShare('twitter')}
           >
@@ -270,7 +269,7 @@ export default function SocialSharingCard({
         </View>
 
         <View style={styles.actionButtons}>
-          <TouchableOpacity 
+          <TouchableOpacity
             style={styles.actionButton}
             onPress={() => handleShare('general')}
           >
@@ -278,7 +277,7 @@ export default function SocialSharingCard({
             <Text style={styles.actionButtonText}>Partilhar</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity 
+          <TouchableOpacity
             style={styles.actionButton}
             onPress={handleSave}
           >

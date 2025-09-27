@@ -77,8 +77,6 @@ export default function RootLayout() {
       <Stack.Screen name="restaurant/[id]" />
       <Stack.Screen name="promotion/[id]" />
       <Stack.Screen name="suggest-restaurant" />
-      <Stack.Screen name="search" />
-      <Stack.Screen name="add-experience" />
       <Stack.Screen name="my-reviews" />
       <Stack.Screen name="notification-preferences" />
       <Stack.Screen name="help-support" />
