@@ -9,8 +9,8 @@ import {
   HeroSection,
   RestaurantCard,
   PromoBanner,
-  QRCodeScanner
 } from '@/components';
+import QRCodeScanner from '@/components/sharing/QRCodeScanner';
 
 const { width } = Dimensions.get('window');
 

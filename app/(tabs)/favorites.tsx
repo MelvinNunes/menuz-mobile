@@ -4,10 +4,10 @@ import { useRouter } from 'expo-router';
 import { useState, useEffect } from 'react';
 import { featuredRestaurants } from '@/data/mockData';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { 
-  ScreenLayout, 
-  Header, 
-  RestaurantCard, 
+import {
+  ScreenLayout,
+  Header,
+  RestaurantCard,
   EmptyState,
   Toast,
   LoadingSpinner
@@ -28,7 +28,7 @@ export default function FavoritesScreen() {
   }, []);
 
   useEffect(() => {
-    const filtered = featuredRestaurants.filter(restaurant => 
+    const filtered = featuredRestaurants.filter(restaurant =>
       favorites.includes(restaurant.id)
     );
     setFavoriteRestaurants(filtered);
@@ -39,7 +39,7 @@ export default function FavoritesScreen() {
       setLoading(true);
       // Simulate loading delay for better UX
       await new Promise(resolve => setTimeout(resolve, 800));
-      
+
       const stored = await AsyncStorage.getItem('favorites');
       if (stored) {
         setFavorites(JSON.parse(stored));
@@ -57,7 +57,7 @@ export default function FavoritesScreen() {
       const updatedFavorites = favorites.filter(id => id !== restaurantId);
       setFavorites(updatedFavorites);
       await AsyncStorage.setItem('favorites', JSON.stringify(updatedFavorites));
-      
+
       const restaurant = featuredRestaurants.find(r => r.id === restaurantId);
       showToast(`${restaurant?.name} removido dos favoritos`, 'success');
     } catch (error) {
@@ -88,7 +88,7 @@ export default function FavoritesScreen() {
   const renderStatsCard = () => {
     const totalRating = favoriteRestaurants.reduce((sum, restaurant) => sum + restaurant.rating, 0);
     const averageRating = favoriteRestaurants.length > 0 ? (totalRating / favoriteRestaurants.length).toFixed(1) : '0.0';
-    
+
     return (
       <View style={styles.statsCard}>
         <View style={styles.statItem}>
@@ -100,9 +100,9 @@ export default function FavoritesScreen() {
             <Text style={styles.statLabel}>Favoritos</Text>
           </View>
         </View>
-        
+
         <View style={styles.statDivider} />
-        
+
         <View style={styles.statItem}>
           <View style={styles.statIconContainer}>
             <Star size={20} color="#FFA500" fill="#FFA500" />
@@ -149,7 +149,7 @@ export default function FavoritesScreen() {
         visible={toast.visible}
         onHide={hideToast}
       />
-      
+
       {/* Enhanced Header */}
       <Header title="Seus Favoritos" />
 
@@ -159,9 +159,6 @@ export default function FavoritesScreen() {
         <>
           {/* Stats Card */}
           {renderStatsCard()}
-
-          {/* Quick Actions for non-empty state */}
-          {renderQuickActions()}
 
           {/* Section Header */}
           <View style={styles.sectionHeader}>
