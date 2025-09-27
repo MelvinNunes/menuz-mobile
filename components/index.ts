@@ -27,7 +27,3 @@ export { default as HeroSection } from './sections/HeroSection';
 export { default as QRCodeGenerator } from './sharing/QRCodeGenerator';
 export { default as QRCodeScanner } from './sharing/QRCodeScanner';
 export { default as SocialSharingCard } from './sharing/SocialSharingCard';
-
-// Onboarding Components
-export { default as OnboardingStepper } from './onboarding/OnboardingStepper';
-export { default as OnboardingWrapper } from './onboarding/OnboardingWrapper';

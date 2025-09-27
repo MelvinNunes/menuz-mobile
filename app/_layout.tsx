@@ -5,7 +5,6 @@ import { View } from 'react-native';
 import { useFrameworkReady } from '@/hooks/useFrameworkReady';
 import { useFonts, Inter_400Regular, Inter_500Medium, Inter_600SemiBold, Inter_700Bold } from '@expo-google-fonts/inter';
 import * as SplashScreen from 'expo-splash-screen';
-import { OnboardingWrapper } from '@/components';
 import { OnboardingStorage } from '@/services/onboarding';
 import WelcomeScreen from './welcome';
 import LoadingChef from '@/components/ui/LoadingChef';
@@ -67,28 +66,25 @@ export default function RootLayout() {
     return <LoadingChef loadingMessages={inialLoadingMessages} />;
   }
 
-  if (true) {
+  if (isLoading) {
     return <WelcomeScreen />
   }
 
   return (
-    <OnboardingWrapper>
-      <Stack screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="(tabs)" />
-        <Stack.Screen name="welcome" />
-        <Stack.Screen name="restaurant/[id]" />
-        <Stack.Screen name="promotion/[id]" />
-        <Stack.Screen name="suggest-restaurant" />
-        <Stack.Screen name="search" />
-        <Stack.Screen name="add-experience" />
-        <Stack.Screen name="my-reviews" />
-        <Stack.Screen name="notification-preferences" />
-        <Stack.Screen name="help-support" />
-        <Stack.Screen name="restaurant-sharing/[id]" />
-        <Stack.Screen name="category/[type]" />
-        <Stack.Screen name="+not-found" />
-      </Stack>
-      <StatusBar style="dark" />
-    </OnboardingWrapper>
+    <Stack screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="(tabs)" />
+      <Stack.Screen name="welcome" />
+      <Stack.Screen name="restaurant/[id]" />
+      <Stack.Screen name="promotion/[id]" />
+      <Stack.Screen name="suggest-restaurant" />
+      <Stack.Screen name="search" />
+      <Stack.Screen name="add-experience" />
+      <Stack.Screen name="my-reviews" />
+      <Stack.Screen name="notification-preferences" />
+      <Stack.Screen name="help-support" />
+      <Stack.Screen name="restaurant-sharing/[id]" />
+      <Stack.Screen name="category/[type]" />
+      <Stack.Screen name="+not-found" />
+    </Stack>
   );
 }

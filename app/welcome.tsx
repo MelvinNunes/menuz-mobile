@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image, Pressable, Platform } from 'react-native';
+import { View, Text, StyleSheet, Image, Pressable, Platform, ImageBackground } from 'react-native';
 import ScreenLayout from '@/components/layouts/ScreenLayout';
 import { getColor } from '@/theme/colors';
 import { useRouter } from 'expo-router';
@@ -8,66 +8,77 @@ export default function WelcomeScreen() {
     const router = useRouter();
 
     return (
-        <ScreenLayout backgroundColor={getColor('bg.default')} edges={['top', 'bottom']}>
-            <View style={styles.container}>
-                <View style={styles.topBar}>
-                    <View style={styles.brandRow}>
-                        <Image
-                            source={require('@/assets/images/logo.png')}
-                            resizeMode="contain"
-                            style={styles.logo}
-                            accessibilityIgnoresInvertColors
-                            accessible
-                            accessibilityLabel="App logo"
-                        />
-                        <Text style={styles.brandName}>Menuz</Text>
-                    </View>
-                    <Pressable
-                        accessibilityRole="button"
-                        style={({ pressed }) => [
-                            styles.ghostButton,
-                            pressed && { opacity: 0.7 },
-                        ]}
-                        onPress={() => router.replace("/(tabs)")}
-                    >
-                        <Text style={styles.ghostButtonText}>Continuar como convidado</Text>
-                    </Pressable>
-                </View>
-
-                <View style={styles.body}>
-                    <View style={styles.content}>
-                        <Text style={styles.title}>O que está no Menuz?</Text>
-                        <Text style={styles.subtitle}>
-                            Peça do café da manhã aos desejos da madrugada. Nós entregamos
-                            onde você estiver.
-                        </Text>
-                    </View>
-                </View>
-
-                <View style={styles.footer}>
-                    <Pressable
-                        accessibilityRole="button"
-                        style={({ pressed }) => [
-                            styles.primaryButton,
-                            pressed && styles.primaryButtonPressed,
-                        ]}
-                    >
-                        <Text style={styles.primaryButtonText}>Começar</Text>
-                    </Pressable>
-
-                    <View style={styles.signInRow}>
-                        <Text style={styles.signInMuted}>Já tem uma conta? </Text>
-                        <Pressable accessibilityRole="button">
-                            <Text style={styles.signInLink}>Entrar</Text>
+        <ScreenLayout backgroundColor={getColor('bg.default')} edges={['bottom']}>
+            <ImageBackground
+                source={require('@/assets/images/background/background_1.png')}
+                style={styles.backgroundImage}
+                resizeMode="cover"
+            >
+                <View style={styles.container}>
+                    <View style={styles.topBar}>
+                        <View style={styles.brandRow}>
+                            <Image
+                                source={require('@/assets/images/logo.png')}
+                                resizeMode="contain"
+                                style={styles.logo}
+                                accessibilityIgnoresInvertColors
+                                accessible
+                                accessibilityLabel="App logo"
+                            />
+                            <Text style={styles.brandName}>Menuz</Text>
+                        </View>
+                        <Pressable
+                            accessibilityRole="button"
+                            style={({ pressed }) => [
+                                styles.ghostButton,
+                                pressed && { opacity: 0.7 },
+                            ]}
+                            onPress={() => router.replace("/(tabs)")}
+                        >
+                            <Text style={styles.ghostButtonText}>Continuar como convidado</Text>
                         </Pressable>
                     </View>
+
+                    <View style={styles.body}>
+                        <View style={styles.content}>
+                            <Text style={styles.title}>O que está no Menuz?</Text>
+                            <Text style={styles.subtitle}>
+                                Descubra os melhores restaurantes, explore cardápios únicos e
+                                encontre sua próxima experiência gastronômica.
+                            </Text>
+                        </View>
+                    </View>
+
+                    <View style={styles.footer}>
+                        <Pressable
+                            accessibilityRole="button"
+                            style={({ pressed }) => [
+                                styles.primaryButton,
+                                pressed && styles.primaryButtonPressed,
+                            ]}
+                        >
+                            <Text style={styles.primaryButtonText}>Começar</Text>
+                        </Pressable>
+
+                        <View style={styles.signInRow}>
+                            <Text style={styles.signInMuted}>Já tem uma conta? </Text>
+                            <Pressable accessibilityRole="button">
+                                <Text style={styles.signInLink}>Entrar</Text>
+                            </Pressable>
+                        </View>
+                    </View>
                 </View>
-            </View>
+            </ImageBackground>
         </ScreenLayout>
     );
 }
 
 const styles = StyleSheet.create({
+    backgroundImage: {
+        flex: 1,
+        width: '100%',
+        height: '100%',
+    },
     container: {
         flex: 1,
     },
@@ -76,7 +87,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-between',
         paddingHorizontal: 20,
-        paddingTop: Platform.select({ ios: 8, android: 8, default: 12 }),
+        paddingTop: Platform.select({ ios: 64, android: 24, default: 44 }),
     },
     brandRow: {
         flexDirection: 'row',
@@ -106,6 +117,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         paddingHorizontal: 24,
+        paddingTop: 350
     },
     content: {
         alignItems: 'center',
