@@ -25,7 +25,7 @@ export default function RootLayout() {
   useFrameworkReady();
 
   const [showOnboarding, setShowOnboarding] = useState(false);
-  const [, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
   const [fontsLoaded, fontError] = useFonts({
     'Inter-Regular': Inter_400Regular,
@@ -63,11 +63,11 @@ export default function RootLayout() {
   }
 
   // Show loading screen while checking onboarding status
-  if (true) {
+  if (isLoading) {
     return <LoadingChef loadingMessages={inialLoadingMessages} />;
   }
 
-  if (showOnboarding) {
+  if (true) {
     return <WelcomeScreen />
   }
 
