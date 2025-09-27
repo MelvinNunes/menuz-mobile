@@ -8,14 +8,24 @@ import * as SplashScreen from 'expo-splash-screen';
 import { OnboardingWrapper } from '@/components';
 import { OnboardingStorage } from '@/services/onboarding';
 import WelcomeScreen from './welcome';
+import LoadingChef from '@/components/ui/LoadingChef';
 
 SplashScreen.preventAutoHideAsync();
+
+
+const inialLoadingMessages = [
+  "Preparing your menu...",
+  "Finding the best restaurants...",
+  "Curating delicious options...",
+  "Almost ready...",
+  "Final touches..."
+]
 
 export default function RootLayout() {
   useFrameworkReady();
 
   const [showOnboarding, setShowOnboarding] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  const [, setIsLoading] = useState(true);
 
   const [fontsLoaded, fontError] = useFonts({
     'Inter-Regular': Inter_400Regular,
@@ -53,8 +63,8 @@ export default function RootLayout() {
   }
 
   // Show loading screen while checking onboarding status
-  if (isLoading) {
-    return <View style={{ flex: 1, backgroundColor: '#fff' }} />;
+  if (true) {
+    return <LoadingChef loadingMessages={inialLoadingMessages} />;
   }
 
   if (showOnboarding) {
