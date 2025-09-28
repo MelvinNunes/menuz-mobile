@@ -26,7 +26,6 @@ export default function CuisineCard({
     React.useEffect(() => {
         Animated.spring(checkAnim, {
             toValue: isSelected ? 1 : 0,
-            duration: 200,
             useNativeDriver: true,
         }).start();
     }, [isSelected]);
@@ -69,7 +68,7 @@ export default function CuisineCard({
                     {icon && (
                         <Text style={styles.icon}>{icon}</Text>
                     )}
-                    <Text style={[
+                    <Text numberOfLines={1} ellipsizeMode="tail" style={[
                         styles.label,
                         isSelected && styles.selectedLabel
                     ]}>
@@ -93,7 +92,7 @@ export default function CuisineCard({
                         },
                     ]}
                 >
-                    <Check size={16} color={getColor('fg.inverse')} />
+                    <Check size={16} color={"#FF6B35"} />
                 </Animated.View>
             </TouchableOpacity>
         </Animated.View>
@@ -135,8 +134,6 @@ const styles = StyleSheet.create({
         fontSize: 15,
         fontFamily: 'Inter-SemiBold',
         color: getColor('fg.primary'),
-        numberOfLines: 1,
-        ellipsizeMode: 'tail',
         flex: 1,
     },
     selectedLabel: {

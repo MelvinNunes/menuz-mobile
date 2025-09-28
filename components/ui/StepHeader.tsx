@@ -24,7 +24,6 @@ export default function StepHeader({
                 currentStep={currentStep}
                 totalSteps={totalSteps}
             />
-
             <View style={styles.textContainer}>
                 <Text style={styles.title}>{title}</Text>
                 <Text style={styles.subtitle}>{subtitle}</Text>
@@ -36,6 +35,7 @@ export default function StepHeader({
 const styles = StyleSheet.create({
     container: {
         marginBottom: 24,
+        marginTop: 10,
     },
     textContainer: {
         alignItems: 'center',

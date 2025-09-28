@@ -28,7 +28,6 @@ export default function PreferenceCard({
     React.useEffect(() => {
         Animated.spring(checkAnim, {
             toValue: isSelected ? 1 : 0,
-            duration: 200,
             useNativeDriver: true,
         }).start();
     }, [isSelected]);
@@ -72,14 +71,14 @@ export default function PreferenceCard({
                         <Text style={styles.icon}>{icon}</Text>
                     )}
                     <View style={styles.textContainer}>
-                        <Text style={[
+                        <Text numberOfLines={1} ellipsizeMode="tail" style={[
                             styles.label,
                             isSelected && styles.selectedLabel
                         ]}>
                             {label}
                         </Text>
                         {description && (
-                            <Text style={[
+                            <Text numberOfLines={2} ellipsizeMode="tail" style={[
                                 styles.description,
                                 isSelected && styles.selectedDescription
                             ]}>
@@ -105,7 +104,7 @@ export default function PreferenceCard({
                         },
                     ]}
                 >
-                    <Check size={20} color={getColor('fg.inverse')} />
+                    <Check size={20} color={"#FF6B35"} />
                 </Animated.View>
             </TouchableOpacity>
         </Animated.View>
@@ -151,8 +150,6 @@ const styles = StyleSheet.create({
         fontFamily: 'Inter-SemiBold',
         color: getColor('fg.primary'),
         marginBottom: 2,
-        numberOfLines: 1,
-        ellipsizeMode: 'tail',
     },
     selectedLabel: {
         color: getColor('fg.inverse'),
@@ -162,8 +159,6 @@ const styles = StyleSheet.create({
         fontFamily: 'Inter-Regular',
         color: getColor('fg.muted'),
         lineHeight: 18,
-        numberOfLines: 2,
-        ellipsizeMode: 'tail',
     },
     selectedDescription: {
         color: getColor('fg.inverse'),

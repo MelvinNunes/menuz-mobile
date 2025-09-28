@@ -87,12 +87,13 @@ const styles = StyleSheet.create({
     },
     headerContainer: {
         position: 'absolute',
-        top: 60,
+        top: 70,
         left: 20,
         zIndex: 10,
     },
     scrollView: {
         flex: 1,
+        paddingHorizontal: 15,
     },
     scrollContent: {
         paddingBottom: 24,

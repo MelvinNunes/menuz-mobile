@@ -13,7 +13,6 @@
     "subtitle": "Personalize your dining experience",
     "step": "Step {{current}} of {{total}}",
     "continue": "Continue",
-    "skip": "Skip for now",
     "complete": "Complete Setup",
     "back": "Back",
     "setupComplete": "Setup Complete!",
@@ -77,13 +76,13 @@
       "groupDining": "Group Dining",
       "homeCooking": "Home Cooking",
       "budgetFriendly": "Budget-Friendly",
-      "budgetFriendlyDesc": "Under $15",
+      "budgetFriendlyDesc": "Under 100 MZN",
       "moderate": "Moderate",
-      "moderateDesc": "$15-30",
+      "moderateDesc": "100-500 MZN",
       "premium": "Premium",
-      "premiumDesc": "$30-60",
+      "premiumDesc": "500-1500 MZN",
       "luxury": "Luxury",
-      "luxuryDesc": "$60+"
+      "luxuryDesc": "1500+ MZN"
     },
     "error": {
       "title": "Error",

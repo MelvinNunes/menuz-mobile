@@ -203,7 +203,7 @@ export const BUDGET_RANGES = [
   {
     id: 'luxury',
     label: 'preferences.diningPreferences.luxury',
-    symbol: '$$$$',
+    symbol: '$$$',
     description: 'preferences.diningPreferences.luxuryDesc',
   },
 ];

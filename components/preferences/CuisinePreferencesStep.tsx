@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
     },
     headerContainer: {
         position: 'absolute',
-        top: 60,
+        top: 70,
         left: 20,
         zIndex: 10,
     },

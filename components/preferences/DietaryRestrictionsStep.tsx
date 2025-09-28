@@ -43,10 +43,6 @@ export default function DietaryRestrictionsStep({
 
     return (
         <View style={styles.container}>
-            <View style={styles.headerContainer}>
-                <BackButton onPress={onBack} />
-            </View>
-
             <StepHeader
                 title={t('preferences.dietaryRestrictions.title')}
                 subtitle={t('preferences.dietaryRestrictions.subtitle')}

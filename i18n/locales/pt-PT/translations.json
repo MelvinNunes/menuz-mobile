@@ -13,7 +13,6 @@
     "subtitle": "Personalize sua experiência gastronômica",
     "step": "Passo {{current}} de {{total}}",
     "continue": "Continuar",
-    "skip": "Pular por agora",
     "complete": "Concluir Configuração",
     "back": "Voltar",
     "setupComplete": "Configuração Concluída!",
@@ -77,13 +76,13 @@
       "groupDining": "Jantar em Grupo",
       "homeCooking": "Culinária Caseira",
       "budgetFriendly": "Econômico",
-      "budgetFriendlyDesc": "Até R$ 15",
+      "budgetFriendlyDesc": "Até 100 MZN",
       "moderate": "Moderado",
-      "moderateDesc": "R$ 15-30",
+      "moderateDesc": "100-500 MZN",
       "premium": "Premium",
-      "premiumDesc": "R$ 30-60",
+      "premiumDesc": "500-1500 MZN",
       "luxury": "Luxo",
-      "luxuryDesc": "R$ 60+"
+      "luxuryDesc": "1500+ MZN"
     },
     "error": {
       "title": "Erro",
