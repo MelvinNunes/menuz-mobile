@@ -2,9 +2,8 @@ import { useEffect, useState } from 'react';
 import { Stack } from 'expo-router';
 import { useFonts, Inter_400Regular, Inter_500Medium, Inter_600SemiBold, Inter_700Bold } from '@expo-google-fonts/inter';
 import * as SplashScreen from 'expo-splash-screen';
-import { OnboardingStorage } from '@/services/preferences';
 import LoadingChef from '@/components/ui/LoadingChef';
-import { AnonymousAuthStorage } from '@/services/auth';
+import '@/i18n';
 
 SplashScreen.preventAutoHideAsync();
 

@@ -1,1 +1,11 @@
-{}
+{
+  "welcome": {
+    "title": "O que está no Menuz?",
+    "subtitle": "Descubra os melhores restaurantes, explore cardápios únicos e encontre sua próxima experiência gastronômica.",
+    "continueAsGuest": "Continuar como convidado",
+    "start": "Começar",
+    "alreadyHaveAccount": "Já tem uma conta?",
+    "login": "Entrar",
+    "register": "Registrar"
+  }
+}

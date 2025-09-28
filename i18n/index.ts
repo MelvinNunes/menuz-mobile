@@ -15,7 +15,7 @@ const resources = {
 
 const RTL_LANGUAGES = ['pt', 'pt-PT'];
 
-const LANGUAGE_KEY = '@app_language';
+const LANGUAGE_KEY = '@app_language_name';
 
 const initI18n = async () => {
   try {
@@ -56,7 +56,7 @@ const initI18n = async () => {
       resources,
       lng: selectedLanguage,
       fallbackLng: {
-        'en-*': ['en-US', 'en'],
+        'en-*': ['en-US', 'en', 'pt-PT'],
         'pt-*': ['pt-PT', 'pt', 'en-US'],
         default: ['pt-PT'],
       },

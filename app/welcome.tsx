@@ -4,8 +4,11 @@ import ScreenLayout from '@/components/layouts/ScreenLayout';
 import { getColor } from '@/theme/colors';
 import { useRouter } from 'expo-router';
 import { AnonymousAuthStorage } from '@/services/auth';
+import { useTranslation } from 'react-i18next';
 
 export default function WelcomeScreen() {
+    const { t } = useTranslation();
+
     const router = useRouter();
 
     async function handleContinueAsGuest() {
@@ -41,16 +44,15 @@ export default function WelcomeScreen() {
                             ]}
                             onPress={() => handleContinueAsGuest()}
                         >
-                            <Text style={styles.ghostButtonText}>Continuar como convidado</Text>
+                            <Text style={styles.ghostButtonText}>{t('welcome.continueAsGuest')}</Text>
                         </Pressable>
                     </View>
 
                     <View style={styles.body}>
                         <View style={styles.content}>
-                            <Text style={styles.title}>O que está no Menuz?</Text>
+                            <Text style={styles.title}>{t('welcome.title')}</Text>
                             <Text style={styles.subtitle}>
-                                Descubra os melhores restaurantes, explore cardápios únicos e
-                                encontre sua próxima experiência gastronômica.
+                                {t('welcome.subtitle')}
                             </Text>
                         </View>
                     </View>
@@ -64,13 +66,13 @@ export default function WelcomeScreen() {
                                 pressed && styles.primaryButtonPressed,
                             ]}
                         >
-                            <Text style={styles.primaryButtonText}>Começar</Text>
+                            <Text style={styles.primaryButtonText}>{t('welcome.start')}</Text>
                         </Pressable>
 
                         <View style={styles.signInRow}>
-                            <Text style={styles.signInMuted}>Já tem uma conta? </Text>
+                            <Text style={styles.signInMuted}>{t('welcome.alreadyHaveAccount')}</Text>
                             <Pressable onPress={() => router.replace("/login")} accessibilityRole="button">
-                                <Text style={styles.signInLink}>Entrar</Text>
+                                <Text style={styles.signInLink}>{t('welcome.login')}</Text>
                             </Pressable>
                         </View>
                     </View>
@@ -165,6 +167,7 @@ const styles = StyleSheet.create({
     },
     signInRow: {
         marginTop: 12,
+        gap: 4,
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',

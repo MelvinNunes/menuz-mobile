@@ -1,1 +1,11 @@
-{}
+{
+  "welcome": {
+    "title": "What's in Menuz?",
+    "subtitle": "Discover the best restaurants, explore unique menus and find your next gastronomic experience.",
+    "continueAsGuest": "Continue as guest",
+    "start": "Get Started",
+    "alreadyHaveAccount": "Already have an account?",
+    "login": "Login",
+    "register": "Register"
+  }
+}
