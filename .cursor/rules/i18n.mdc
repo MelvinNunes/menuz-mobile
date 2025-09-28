@@ -1,0 +1,437 @@
+---
+alwaysApply: true
+---
+
+# i18n Internationalization Rules
+
+## Overview
+
+This application uses i18next for internationalization with support for Portuguese (pt-PT) and English (en-US) languages. All user-facing text must be internationalized.
+
+## Supported Languages
+
+- **Portuguese (pt-PT)**: Primary language, default fallback
+- **English (en-US)**: Secondary language
+
+## Translation Files
+
+- `i18n/locales/pt-PT/translations.json` - Portuguese translations
+- `i18n/locales/en-US/translations.json` - English translations
+
+## Usage Requirements
+
+### All Text Must Be Internationalized
+
+- **NEVER** hardcode text strings in components
+- **ALWAYS** use translation keys for all user-facing text
+- **ALWAYS** provide translations for both languages
+
+### Import and Usage
+
+```tsx
+import { useTranslation } from 'react-i18next';
+
+const MyComponent = () => {
+  const { t } = useTranslation();
+
+  return <Text>{t('welcome.title')}</Text>;
+};
+```
+
+### Translation Key Structure
+
+Use nested objects for organization:
+
+```json
+{
+  "welcome": {
+    "title": "Welcome",
+    "subtitle": "Get started with our app"
+  },
+  "buttons": {
+    "save": "Save",
+    "cancel": "Cancel"
+  }
+}
+```
+
+### Key Naming Conventions
+
+- Use camelCase for keys: `welcome.title`, `buttons.save`
+- Group related keys under common prefixes
+- Use descriptive, hierarchical naming
+- Avoid abbreviations unless commonly understood
+
+### Adding New Translations
+
+1. **Add to both language files**:
+
+   - `i18n/locales/pt-PT/translations.json`
+   - `i18n/locales/en-US/translations.json`
+
+2. **Use consistent key structure**:
+
+   ```json
+   // Portuguese
+   {
+     "screens": {
+       "profile": {
+         "title": "Perfil",
+         "edit": "Editar"
+       }
+     }
+   }
+
+   // English
+   {
+     "screens": {
+       "profile": {
+         "title": "Profile",
+         "edit": "Edit"
+       }
+     }
+   }
+   ```
+
+### Interpolation and Variables
+
+Use i18next interpolation for dynamic content:
+
+```tsx
+// Translation files
+{
+  "welcome": {
+    "greeting": "Hello {{name}}!"
+  }
+}
+
+// Component usage
+<Text>{t('welcome.greeting', { name: 'John' })}</Text>
+```
+
+### Pluralization
+
+Use i18next pluralization for count-dependent text:
+
+```json
+{
+  "items": {
+    "count_one": "{{count}} item",
+    "count_other": "{{count}} items"
+  }
+}
+```
+
+### Common Patterns
+
+#### Screen Titles
+
+```tsx
+// In screen components
+const { t } = useTranslation();
+return <Text>{t('screens.profile.title')}</Text>;
+```
+
+#### Button Labels
+
+```tsx
+<Button title={t('buttons.save')} />
+```
+
+#### Form Labels
+
+```tsx
+<TextInput placeholder={t('forms.email.placeholder')} />
+```
+
+#### Error Messages
+
+```tsx
+<Text style={styles.error}>{t('errors.validation.required')}</Text>
+```
+
+### File Organization
+
+- Keep translation files organized by feature/screen
+- Use consistent nesting structure across languages
+- Group related translations together
+- Maintain alphabetical order within sections
+
+### Quality Requirements
+
+- **Complete translations**: Every key must exist in both languages
+- **Consistent terminology**: Use same terms across the app
+- **Proper grammar**: Ensure translations are grammatically correct
+- **Cultural appropriateness**: Consider cultural context for each language
+
+### Do Not
+
+- ❌ Hardcode any text strings
+- ❌ Use English as fallback in Portuguese translations
+- ❌ Create translation keys without providing both language versions
+- ❌ Use inconsistent key naming
+- ❌ Forget to test both languages during development
+
+### Testing
+
+- Always test both language versions
+- Verify text fits in UI components for both languages
+- Check for text overflow issues
+- Ensure proper RTL support (handled automatically by i18n setup)
+
+### Migration
+
+When adding i18n to existing components:
+
+1. Identify all hardcoded strings
+2. Create appropriate translation keys
+3. Add translations to both language files
+4. Replace hardcoded strings with `t()` calls
+5. Test both language versions
+
+### Example Component
+
+```tsx
+import React from 'react';
+import { View, Text, Button } from 'react-native';
+import { useTranslation } from 'react-i18next';
+
+const WelcomeScreen = () => {
+  const { t } = useTranslation();
+
+  return (
+    <View>
+      <Text>{t('welcome.title')}</Text>
+      <Text>{t('welcome.subtitle')}</Text>
+      <Button title={t('welcome.start')} />
+    </View>
+  );
+};
+
+export default WelcomeScreen;
+```
+
+## Implementation Notes
+
+- The i18n setup is configured in `i18n/index.ts`
+- Portuguese is the default language with English as fallback
+- Language preference is persisted using AsyncStorage
+- RTL support is handled automatically for Portuguese
+- The setup includes proper fallback chains for language variants
+
+# i18n Internationalization Rules
+
+## Overview
+
+This application uses i18next for internationalization with support for Portuguese (pt-PT) and English (en-US) languages. All user-facing text must be internationalized.
+
+## Supported Languages
+
+- **Portuguese (pt-PT)**: Primary language, default fallback
+- **English (en-US)**: Secondary language
+
+## Translation Files
+
+- `i18n/locales/pt-PT/translations.json` - Portuguese translations
+- `i18n/locales/en-US/translations.json` - English translations
+
+## Usage Requirements
+
+### All Text Must Be Internationalized
+
+- **NEVER** hardcode text strings in components
+- **ALWAYS** use translation keys for all user-facing text
+- **ALWAYS** provide translations for both languages
+
+### Import and Usage
+
+```tsx
+import { useTranslation } from 'react-i18next';
+
+const MyComponent = () => {
+  const { t } = useTranslation();
+
+  return <Text>{t('welcome.title')}</Text>;
+};
+```
+
+### Translation Key Structure
+
+Use nested objects for organization:
+
+```json
+{
+  "welcome": {
+    "title": "Welcome",
+    "subtitle": "Get started with our app"
+  },
+  "buttons": {
+    "save": "Save",
+    "cancel": "Cancel"
+  }
+}
+```
+
+### Key Naming Conventions
+
+- Use camelCase for keys: `welcome.title`, `buttons.save`
+- Group related keys under common prefixes
+- Use descriptive, hierarchical naming
+- Avoid abbreviations unless commonly understood
+
+### Adding New Translations
+
+1. **Add to both language files**:
+
+   - `i18n/locales/pt-PT/translations.json`
+   - `i18n/locales/en-US/translations.json`
+
+2. **Use consistent key structure**:
+
+   ```json
+   // Portuguese
+   {
+     "screens": {
+       "profile": {
+         "title": "Perfil",
+         "edit": "Editar"
+       }
+     }
+   }
+
+   // English
+   {
+     "screens": {
+       "profile": {
+         "title": "Profile",
+         "edit": "Edit"
+       }
+     }
+   }
+   ```
+
+### Interpolation and Variables
+
+Use i18next interpolation for dynamic content:
+
+```tsx
+// Translation files
+{
+  "welcome": {
+    "greeting": "Hello {{name}}!"
+  }
+}
+
+// Component usage
+<Text>{t('welcome.greeting', { name: 'John' })}</Text>
+```
+
+### Pluralization
+
+Use i18next pluralization for count-dependent text:
+
+```json
+{
+  "items": {
+    "count_one": "{{count}} item",
+    "count_other": "{{count}} items"
+  }
+}
+```
+
+### Common Patterns
+
+#### Screen Titles
+
+```tsx
+// In screen components
+const { t } = useTranslation();
+return <Text>{t('screens.profile.title')}</Text>;
+```
+
+#### Button Labels
+
+```tsx
+<Button title={t('buttons.save')} />
+```
+
+#### Form Labels
+
+```tsx
+<TextInput placeholder={t('forms.email.placeholder')} />
+```
+
+#### Error Messages
+
+```tsx
+<Text style={styles.error}>{t('errors.validation.required')}</Text>
+```
+
+### File Organization
+
+- Keep translation files organized by feature/screen
+- Use consistent nesting structure across languages
+- Group related translations together
+- Maintain alphabetical order within sections
+
+### Quality Requirements
+
+- **Complete translations**: Every key must exist in both languages
+- **Consistent terminology**: Use same terms across the app
+- **Proper grammar**: Ensure translations are grammatically correct
+- **Cultural appropriateness**: Consider cultural context for each language
+
+### Do Not
+
+- ❌ Hardcode any text strings
+- ❌ Use English as fallback in Portuguese translations
+- ❌ Create translation keys without providing both language versions
+- ❌ Use inconsistent key naming
+- ❌ Forget to test both languages during development
+
+### Testing
+
+- Always test both language versions
+- Verify text fits in UI components for both languages
+- Check for text overflow issues
+- Ensure proper RTL support (handled automatically by i18n setup)
+
+### Migration
+
+When adding i18n to existing components:
+
+1. Identify all hardcoded strings
+2. Create appropriate translation keys
+3. Add translations to both language files
+4. Replace hardcoded strings with `t()` calls
+5. Test both language versions
+
+### Example Component
+
+```tsx
+import React from 'react';
+import { View, Text, Button } from 'react-native';
+import { useTranslation } from 'react-i18next';
+
+const WelcomeScreen = () => {
+  const { t } = useTranslation();
+
+  return (
+    <View>
+      <Text>{t('welcome.title')}</Text>
+      <Text>{t('welcome.subtitle')}</Text>
+      <Button title={t('welcome.start')} />
+    </View>
+  );
+};
+
+export default WelcomeScreen;
+```
+
+## Implementation Notes
+
+- The i18n setup is configured in `i18n/index.ts`
+- Portuguese is the default language with English as fallback
+- Language preference is persisted using AsyncStorage
+- RTL support is handled automatically for Portuguese
+- The setup includes proper fallback chains for language variants
