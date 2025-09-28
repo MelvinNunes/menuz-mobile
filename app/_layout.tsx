@@ -1,29 +1,22 @@
 import { useEffect, useState } from 'react';
 import { Stack } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
-import { View } from 'react-native';
-import { useFrameworkReady } from '@/hooks/useFrameworkReady';
 import { useFonts, Inter_400Regular, Inter_500Medium, Inter_600SemiBold, Inter_700Bold } from '@expo-google-fonts/inter';
 import * as SplashScreen from 'expo-splash-screen';
-import { OnboardingStorage } from '@/services/onboarding';
-import WelcomeScreen from './welcome';
+import { OnboardingStorage } from '@/services/preferences';
 import LoadingChef from '@/components/ui/LoadingChef';
+import { AnonymousAuthStorage } from '@/services/auth';
 
 SplashScreen.preventAutoHideAsync();
 
-
-const inialLoadingMessages = [
+const initialLoadingMessages = [
   "Preparing your menu...",
   "Finding the best restaurants...",
   "Curating delicious options...",
   "Almost ready...",
   "Final touches..."
-]
+];
 
 export default function RootLayout() {
-  useFrameworkReady();
-
-  const [showOnboarding, setShowOnboarding] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
   const [fontsLoaded, fontError] = useFonts({
@@ -33,53 +26,32 @@ export default function RootLayout() {
     'Inter-Bold': Inter_700Bold,
   });
 
-  const checkOnboardingStatus = async () => {
-    try {
-      const completed = await OnboardingStorage.isCompleted();
-      setShowOnboarding(!completed);
-    } catch (error) {
-      console.error('Error checking onboarding status:', error);
-      // Default to showing onboarding if there's an error
-      setShowOnboarding(true);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    checkOnboardingStatus();
-  }, []);
-
   useEffect(() => {
     if (fontsLoaded || fontError) {
       SplashScreen.hideAsync();
+      setIsLoading(false);
     }
   }, [fontsLoaded, fontError]);
 
   // Show loading screen while fonts are loading
-  if (!fontsLoaded && !fontError) {
-    return null;
-  }
-
-  // Show loading screen while checking onboarding status
-  if (isLoading) {
-    return <LoadingChef loadingMessages={inialLoadingMessages} />;
-  }
-
-  if (isLoading) {
-    return <WelcomeScreen />
+  if (isLoading || (!fontsLoaded && !fontError)) {
+    return <LoadingChef loadingMessages={initialLoadingMessages} />;
   }
 
   return (
     <Stack screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="(tabs)" />
+      <Stack.Screen name="index" options={{ headerShown: false }} />
       <Stack.Screen name="welcome" />
+      <Stack.Screen name="login" />
+      <Stack.Screen name="register" />
+      <Stack.Screen name="preferences" />
+      <Stack.Screen name="(tabs)" />
+      <Stack.Screen name="help-support" />
       <Stack.Screen name="restaurant/[id]" />
       <Stack.Screen name="promotion/[id]" />
       <Stack.Screen name="suggest-restaurant" />
       <Stack.Screen name="my-reviews" />
       <Stack.Screen name="notification-preferences" />
-      <Stack.Screen name="help-support" />
       <Stack.Screen name="restaurant-sharing/[id]" />
       <Stack.Screen name="category/[type]" />
       <Stack.Screen name="+not-found" />

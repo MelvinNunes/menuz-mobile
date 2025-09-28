@@ -3,9 +3,15 @@ import { View, Text, StyleSheet, Image, Pressable, Platform, ImageBackground } f
 import ScreenLayout from '@/components/layouts/ScreenLayout';
 import { getColor } from '@/theme/colors';
 import { useRouter } from 'expo-router';
+import { AnonymousAuthStorage } from '@/services/auth';
 
 export default function WelcomeScreen() {
     const router = useRouter();
+
+    async function handleContinueAsGuest() {
+        await AnonymousAuthStorage.setAnonymous();
+        router.replace('/preferences');
+    }
 
     return (
         <ScreenLayout backgroundColor={getColor('bg.default')} edges={['bottom']}>
@@ -33,7 +39,7 @@ export default function WelcomeScreen() {
                                 styles.ghostButton,
                                 pressed && { opacity: 0.7 },
                             ]}
-                            onPress={() => router.replace("/(tabs)")}
+                            onPress={() => handleContinueAsGuest()}
                         >
                             <Text style={styles.ghostButtonText}>Continuar como convidado</Text>
                         </Pressable>
@@ -51,6 +57,7 @@ export default function WelcomeScreen() {
 
                     <View style={styles.footer}>
                         <Pressable
+                            onPress={() => router.replace("/register")}
                             accessibilityRole="button"
                             style={({ pressed }) => [
                                 styles.primaryButton,
@@ -62,7 +69,7 @@ export default function WelcomeScreen() {
 
                         <View style={styles.signInRow}>
                             <Text style={styles.signInMuted}>Já tem uma conta? </Text>
-                            <Pressable accessibilityRole="button">
+                            <Pressable onPress={() => router.replace("/login")} accessibilityRole="button">
                                 <Text style={styles.signInLink}>Entrar</Text>
                             </Pressable>
                         </View>
