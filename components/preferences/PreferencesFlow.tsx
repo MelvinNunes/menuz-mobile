@@ -96,8 +96,8 @@ export default function PreferencesFlow({ onComplete }: PreferencesFlowProps) {
 
     const handleSkip = () => {
         Alert.alert(
-            t('preferences.skip.title', 'Skip Preferences'),
-            t('preferences.skip.message', 'Are you sure you want to skip setting up your preferences? You can always change them later in settings.'),
+            t('preferences.skip.title'),
+            t('preferences.skip.message'),
             [
                 {
                     text: t('preferences.back', 'Back'),
