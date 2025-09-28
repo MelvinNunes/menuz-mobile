@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, ScrollView, StyleSheet } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { getColor } from '@/theme/colors';
@@ -25,6 +25,11 @@ export default function DietaryRestrictionsStep({
 }: DietaryRestrictionsStepProps) {
     const { t } = useTranslation();
     const [localSelections, setLocalSelections] = useState<string[]>(selectedRestrictions);
+
+    // Sync local state with parent state when selectedRestrictions changes
+    useEffect(() => {
+        setLocalSelections(selectedRestrictions);
+    }, [selectedRestrictions]);
 
     const handleRestrictionToggle = (id: string) => {
         const newSelections = localSelections.includes(id)

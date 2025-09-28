@@ -244,8 +244,12 @@ export class OnboardingStorage {
 export class PreferencesService {
   static async getPreferences(): Promise<UserPreferences | null> {
     try {
+      console.log('PreferencesService: Loading preferences from AsyncStorage');
       const data = await AsyncStorage.getItem(PREFERENCES_KEY);
-      return data ? JSON.parse(data) : null;
+      console.log('PreferencesService: Raw data from AsyncStorage:', data);
+      const parsed = data ? JSON.parse(data) : null;
+      console.log('PreferencesService: Parsed preferences:', parsed);
+      return parsed;
     } catch (error) {
       console.error('Error loading preferences:', error);
       return null;
@@ -254,7 +258,14 @@ export class PreferencesService {
 
   static async savePreferences(preferences: UserPreferences): Promise<void> {
     try {
-      await AsyncStorage.setItem(PREFERENCES_KEY, JSON.stringify(preferences));
+      console.log(
+        'PreferencesService: Saving preferences to AsyncStorage:',
+        preferences
+      );
+      const serialized = JSON.stringify(preferences);
+      console.log('PreferencesService: Serialized data:', serialized);
+      await AsyncStorage.setItem(PREFERENCES_KEY, serialized);
+      console.log('PreferencesService: Successfully saved to AsyncStorage');
     } catch (error) {
       console.error('Error saving preferences:', error);
       throw error;

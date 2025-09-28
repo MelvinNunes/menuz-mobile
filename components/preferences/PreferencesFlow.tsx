@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { View, StyleSheet, Alert } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useTranslation } from 'react-i18next';
@@ -20,29 +20,31 @@ export default function PreferencesFlow({ onComplete }: PreferencesFlowProps) {
     const [preferences, setPreferences] = useState<UserPreferences>(
         PreferencesService.getDefaultPreferences()
     );
-    const [isLoading, setIsLoading] = useState(false);
 
     const totalSteps = 4;
 
-    useEffect(() => {
-        loadExistingPreferences();
-    }, []);
-
-    const loadExistingPreferences = async () => {
+    const loadExistingPreferences = useCallback(async () => {
         try {
             const existing = await PreferencesService.getPreferences();
+
+            console.log('existing: ', existing);
             if (existing) {
                 setPreferences(existing);
             }
         } catch (error) {
             console.error('Error loading existing preferences:', error);
         }
-    };
+    }, []);
+
+    useEffect(() => {
+        loadExistingPreferences();
+    }, [loadExistingPreferences]);
 
     const savePreferences = async (updatedPreferences: UserPreferences) => {
         try {
-            setIsLoading(true);
+            console.log('Saving preferences:', updatedPreferences);
             await PreferencesService.savePreferences(updatedPreferences);
+            console.log('Preferences saved successfully');
             setPreferences(updatedPreferences);
         } catch (error) {
             console.error('Error saving preferences:', error);
@@ -50,8 +52,6 @@ export default function PreferencesFlow({ onComplete }: PreferencesFlowProps) {
                 t('preferences.error.title', 'Error'),
                 t('preferences.error.save', 'Failed to save preferences. Please try again.')
             );
-        } finally {
-            setIsLoading(false);
         }
     };
 
@@ -120,10 +120,12 @@ export default function PreferencesFlow({ onComplete }: PreferencesFlowProps) {
     };
 
     const handleDietaryRestrictionsChange = (restrictions: string[]) => {
+        console.log('Dietary restrictions changed:', restrictions);
         const updatedPreferences = {
             ...preferences,
             dietaryRestrictions: restrictions,
         };
+        console.log('Updated preferences:', updatedPreferences);
         setPreferences(updatedPreferences);
         savePreferences(updatedPreferences);
     };
