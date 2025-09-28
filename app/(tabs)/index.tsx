@@ -1,15 +1,13 @@
 import { Animated } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useRef, useEffect } from 'react';
-import {
-  ScreenLayout,
-  QuickSuggestionsSection,
-  MostExploredSection,
-  MozambiqueCategoriesSection,
-  CategoryCardsSection,
-  NearestSection,
-  SuggestRestaurantCTA,
-} from '@/components';
+import ScreenLayout from '@/components/layouts/ScreenLayout';
+import QuickSuggestionsSection from '@/components/sections/QuickSuggestionsSection';
+import MostExploredSection from '@/components/sections/MostExploredSection';
+import MozambiqueCategoriesSection from '@/components/sections/MozambiqueCategoriesSection';
+import CategoryCardsSection from '@/components/sections/CategoryCardsSection';
+import NearestSection from '@/components/sections/NearestSection';
+import SuggestRestaurantCTA from '@/components/sections/SuggestRestaurantCTA';
 
 export default function HomeScreen() {
   const router = useRouter();

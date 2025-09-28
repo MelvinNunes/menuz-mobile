@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { Star, ThumbsUp, MessageCircle } from 'lucide-react-native';
-import { UserAvatar } from '@/components';
+import UserAvatar from '@/components/ui/UserAvatar';
 
 interface Review {
   id: string;
@@ -35,11 +35,11 @@ export default function ReviewCard({
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <TouchableOpacity 
+        <TouchableOpacity
           style={styles.userInfo}
           onPress={() => onUserPress?.(review.id)}
         >
-          <UserAvatar 
+          <UserAvatar
             imageUri={review.user.avatar}
             initials={review.user.name.split(' ').map(n => n[0]).join('')}
             size={40}
@@ -55,11 +55,11 @@ export default function ReviewCard({
       <View style={styles.rating}>
         <View style={styles.stars}>
           {[1, 2, 3, 4, 5].map((star) => (
-            <Star 
-              key={star} 
-              size={16} 
-              color="#FFA500" 
-              fill={star <= review.rating ? "#FFA500" : "transparent"} 
+            <Star
+              key={star}
+              size={16}
+              color="#FFA500"
+              fill={star <= review.rating ? "#FFA500" : "transparent"}
             />
           ))}
         </View>
@@ -82,13 +82,13 @@ export default function ReviewCard({
       )}
 
       <View style={styles.actions}>
-        <TouchableOpacity 
+        <TouchableOpacity
           style={[styles.actionButton, review.isHelpful && styles.actionButtonActive]}
           onPress={() => onHelpfulPress?.(review.id)}
         >
-          <ThumbsUp 
-            size={16} 
-            color={review.isHelpful ? "#FF6B35" : "#6B7280"} 
+          <ThumbsUp
+            size={16}
+            color={review.isHelpful ? "#FF6B35" : "#6B7280"}
             fill={review.isHelpful ? "#FF6B35" : "transparent"}
           />
           <Text style={[
@@ -99,7 +99,7 @@ export default function ReviewCard({
           </Text>
         </TouchableOpacity>
 
-        <TouchableOpacity 
+        <TouchableOpacity
           style={styles.actionButton}
           onPress={() => onReplyPress?.(review.id)}
         >

@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity, Image, Platform } from 'react
 import { Share, Download, Instagram, Facebook, Twitter, MapPin, Star, Clock } from 'lucide-react-native';
 import ViewShot from 'react-native-view-shot';
 import QRCodeGenerator from './QRCodeGenerator';
-import { RatingBadge } from '@/components';
+import RatingBadge from '@/components/ui/RatingBadge';
 
 interface Restaurant {
   id: string;

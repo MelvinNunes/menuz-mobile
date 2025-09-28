@@ -2,7 +2,9 @@ import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-nati
 import { User, Settings, Heart, Star, Bell, CircleHelp as HelpCircle, LogOut, Plus } from 'lucide-react-native';
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
-import { ScreenLayout, Header, UserAvatar } from '@/components';
+import ScreenLayout from '@/components/layouts/ScreenLayout';
+import Header from '@/components/ui/Header';
+import UserAvatar from '@/components/ui/UserAvatar';
 
 export default function ProfileScreen() {
   const router = useRouter();

@@ -18,7 +18,9 @@ import {
   Bug,
   Lightbulb
 } from 'lucide-react-native';
-import { ScreenLayout, Header, Badge } from '@/components';
+import ScreenLayout from '@/components/layouts/ScreenLayout';
+import Header from '@/components/ui/Header';
+import Badge from '@/components/ui/Badge';
 
 interface FAQItem {
   id: string;

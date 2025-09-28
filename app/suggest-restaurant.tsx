@@ -2,7 +2,11 @@ import { View, Text, StyleSheet, ScrollView, TouchableOpacity, TextInput, Alert,
 import { useState } from 'react';
 import { useRouter } from 'expo-router';
 import { Camera, Plus, X, Clock, MapPin, Phone, Mail, Globe, DollarSign, ChefHat, Navigation, Map } from 'lucide-react-native';
-import { ScreenLayout, Header, LoadingSpinner, Badge, LocationPicker } from '@/components';
+import ScreenLayout from '@/components/layouts/ScreenLayout';
+import Header from '@/components/ui/Header';
+import LoadingSpinner from '@/components/ui/LoadingSpinner';
+import Badge from '@/components/ui/Badge';
+import LocationPicker from '@/components/ui/LocationPicker';
 
 interface RestaurantSubmission {
   name: string;
@@ -105,7 +109,7 @@ export default function SuggestRestaurantScreen() {
     try {
       // Simulate API submission
       await new Promise(resolve => setTimeout(resolve, 2000));
-      
+
       Alert.alert(
         'Submissão Enviada!',
         'A sua sugestão de restaurante foi enviada com sucesso. A nossa equipa irá analisá-la nos próximos 5 dias úteis.',
@@ -187,7 +191,7 @@ export default function SuggestRestaurantScreen() {
   };
 
   const toggleDietaryLabel = (itemId: string, label: string) => {
-    updateMenuItem(itemId, 'dietaryLabels', 
+    updateMenuItem(itemId, 'dietaryLabels',
       submission.menuItems.find(item => item.id === itemId)?.dietaryLabels.includes(label)
         ? submission.menuItems.find(item => item.id === itemId)?.dietaryLabels.filter(l => l !== label)
         : [...(submission.menuItems.find(item => item.id === itemId)?.dietaryLabels || []), label]
@@ -200,11 +204,11 @@ export default function SuggestRestaurantScreen() {
       Alert.alert('Funcionalidade de Câmara', 'No ambiente web, esta funcionalidade seria implementada com input de ficheiro.');
       return;
     }
-    
+
     setSubmission(prev => ({
       ...prev,
       photos: prev.photos.map(photo =>
-        photo.id === photoId 
+        photo.id === photoId
           ? { ...photo, uploaded: true, uri: 'https://images.pexels.com/photos/1267320/pexels-photo-1267320.jpeg?auto=compress&cs=tinysrgb&w=400' }
           : photo
       )
@@ -230,7 +234,7 @@ export default function SuggestRestaurantScreen() {
       navigator.geolocation.getCurrentPosition(
         async (position) => {
           const { latitude, longitude } = position.coords;
-          
+
           try {
             // Simulate reverse geocoding for web
             const locationName = `${latitude.toFixed(4)}, ${longitude.toFixed(4)}`;
@@ -284,7 +288,7 @@ export default function SuggestRestaurantScreen() {
   const renderBasicInfo = () => (
     <View style={styles.stepContent}>
       <Text style={styles.stepTitle}>Informações Básicas</Text>
-      
+
       <View style={styles.inputGroup}>
         <Text style={styles.label}>Nome do Restaurante *</Text>
         <TextInput
@@ -301,7 +305,7 @@ export default function SuggestRestaurantScreen() {
         <Text style={styles.helperText}>
           Selecione a localização exata do restaurante para ajudar os clientes a encontrá-lo
         </Text>
-        
+
         {/* Location Picker Integration */}
         <View style={styles.locationPickerContainer}>
           <LocationPicker
@@ -312,7 +316,7 @@ export default function SuggestRestaurantScreen() {
         </View>
 
         {/* Current Location Button */}
-        <TouchableOpacity 
+        <TouchableOpacity
           style={styles.currentLocationButton}
           onPress={getCurrentLocation}
         >
@@ -387,7 +391,7 @@ export default function SuggestRestaurantScreen() {
   const renderCuisineAndPricing = () => (
     <View style={styles.stepContent}>
       <Text style={styles.stepTitle}>Culinária e Preços</Text>
-      
+
       <View style={styles.inputGroup}>
         <Text style={styles.label}>Tipos de Culinária *</Text>
         <Text style={styles.helperText}>Selecione todos os tipos aplicáveis</Text>
@@ -458,7 +462,7 @@ export default function SuggestRestaurantScreen() {
   const renderOperatingHours = () => (
     <View style={styles.stepContent}>
       <Text style={styles.stepTitle}>Horários de Funcionamento</Text>
-      
+
       {daysOfWeek.map((day) => (
         <View key={day.key} style={styles.dayContainer}>
           <View style={styles.dayHeader}>
@@ -484,7 +488,7 @@ export default function SuggestRestaurantScreen() {
               </Text>
             </TouchableOpacity>
           </View>
-          
+
           {!submission.operatingHours[day.key].closed && (
             <View style={styles.timeInputs}>
               <View style={styles.timeInput}>
@@ -530,7 +534,7 @@ export default function SuggestRestaurantScreen() {
     <View style={styles.stepContent}>
       <Text style={styles.stepTitle}>Itens do Menu</Text>
       <Text style={styles.stepSubtitle}>Adicione alguns pratos principais (opcional)</Text>
-      
+
       {submission.menuItems.map((item) => (
         <View key={item.id} style={styles.menuItemCard}>
           <View style={styles.menuItemHeader}>
@@ -542,7 +546,7 @@ export default function SuggestRestaurantScreen() {
               <X size={20} color="#EF4444" />
             </TouchableOpacity>
           </View>
-          
+
           <View style={styles.inputGroup}>
             <Text style={styles.label}>Nome do Prato</Text>
             <TextInput
@@ -579,7 +583,7 @@ export default function SuggestRestaurantScreen() {
                 keyboardType="numeric"
               />
             </View>
-            
+
             <View style={[styles.inputGroup, { flex: 1, marginLeft: 8 }]}>
               <Text style={styles.label}>Categoria</Text>
               <View style={styles.categorySelector}>
@@ -626,7 +630,7 @@ export default function SuggestRestaurantScreen() {
       <Text style={styles.stepSubtitle}>
         Adicione fotos de alta qualidade (JPG/PNG, min 1000x750px, máx 5MB cada)
       </Text>
-      
+
       <View style={styles.photoGrid}>
         {submission.photos.map((photo) => (
           <View key={photo.id} style={styles.photoUploadCard}>
@@ -641,7 +645,7 @@ export default function SuggestRestaurantScreen() {
                 <Badge text="Carregado" variant="success" size="small" />
               )}
             </View>
-            
+
             <TouchableOpacity
               style={[
                 styles.photoUploadArea,
@@ -682,7 +686,7 @@ export default function SuggestRestaurantScreen() {
 
       <View style={styles.noticeContainer}>
         <Text style={styles.noticeText}>
-          Todas as submissões serão analisadas pela nossa equipa no prazo de 5 dias úteis. 
+          Todas as submissões serão analisadas pela nossa equipa no prazo de 5 dias úteis.
           Os restaurantes aprovados aparecerão na aplicação principal.
         </Text>
       </View>
@@ -703,9 +707,9 @@ export default function SuggestRestaurantScreen() {
   return (
     <ScreenLayout>
       <Header title="Sugerir Restaurante" showBackButton />
-      
+
       {renderStepIndicator()}
-      
+
       <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
         {renderCurrentStep()}
       </ScrollView>
@@ -719,7 +723,7 @@ export default function SuggestRestaurantScreen() {
             <Text style={styles.prevButtonText}>Anterior</Text>
           </TouchableOpacity>
         )}
-        
+
         {currentStep < totalSteps ? (
           <TouchableOpacity
             style={[styles.navButton, styles.nextButton]}

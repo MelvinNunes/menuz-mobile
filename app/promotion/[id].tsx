@@ -3,7 +3,9 @@ import { useLocalSearchParams, useRouter } from 'expo-router';
 import { X, Calendar, Clock, Tag, MapPin, Share } from 'lucide-react-native';
 import { useState, useEffect, useRef } from 'react';
 import { promotionalBanners } from '@/data/mockData';
-import { ScreenLayout, Header, LoadingSpinner } from '@/components';
+import ScreenLayout from '@/components/layouts/ScreenLayout';
+import Header from '@/components/ui/Header';
+import LoadingSpinner from '@/components/ui/LoadingSpinner';
 
 const { width, height } = Dimensions.get('window');
 
@@ -120,7 +122,7 @@ export default function PromotionDetailsScreen() {
       setLoading(true);
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 800));
-      
+
       const foundPromotion = mockPromotionDetails.find(p => p.id === id);
       if (foundPromotion) {
         setPromotion(foundPromotion);
@@ -337,11 +339,11 @@ export default function PromotionDetailsScreen() {
               <Text style={styles.sectionTitle}>Disponibilidade</Text>
               <View style={styles.progressContainer}>
                 <View style={styles.progressBar}>
-                  <View 
+                  <View
                     style={[
-                      styles.progressFill, 
+                      styles.progressFill,
                       { width: `${getProgressPercentage()}%` }
-                    ]} 
+                    ]}
                   />
                 </View>
                 <Text style={styles.progressText}>
@@ -365,7 +367,7 @@ export default function PromotionDetailsScreen() {
 
         {/* Bottom Action */}
         <View style={styles.bottomAction}>
-          <TouchableOpacity 
+          <TouchableOpacity
             style={[
               styles.redeemButton,
               isRedeemed && styles.redeemedButton

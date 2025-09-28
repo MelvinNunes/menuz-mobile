@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { Flame, Leaf, Wheat, Fish, TriangleAlert as AlertTriangle } from 'lucide-react-native';
-import { Badge } from '@/components';
+import Badge from '@/components/ui/Badge';
 
 interface MenuItem {
   id: string;
@@ -122,7 +122,7 @@ export default function MenuSection({
         <Text style={styles.sectionTitle}>{title}</Text>
         <View style={styles.sectionDivider} />
       </View>
-      
+
       {items.map((item) => (
         <TouchableOpacity
           key={item.id}
@@ -140,7 +140,7 @@ export default function MenuSection({
                 <Badge text="Popular" variant="warning" size="small" style={styles.popularBadge} />
               )}
             </View>
-            
+
             {/* Description with ingredients */}
             <Text style={styles.itemDescription} numberOfLines={3}>
               {item.description}
@@ -151,7 +151,7 @@ export default function MenuSection({
                 </Text>
               )}
             </Text>
-            
+
             {/* Price */}
             <View style={styles.priceContainer}>
               <Text style={styles.itemPrice}>{item.price} MZN</Text>
@@ -187,7 +187,7 @@ export default function MenuSection({
                   )}
                 </View>
               )}
-              
+
               {item.spicyLevel && item.spicyLevel > 0 && (
                 renderSpicyLevel(item.spicyLevel)
               )}
@@ -196,7 +196,7 @@ export default function MenuSection({
             {/* Allergens information */}
             {renderAllergens(item.allergens)}
           </View>
-          
+
           {/* High-quality food image */}
           {item.image && (
             <View style={styles.imageContainer}>

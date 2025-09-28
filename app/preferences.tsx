@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScreenLayout } from "@/components";
+import ScreenLayout from "@/components/layouts/ScreenLayout";
 import { getColor } from "@/theme/colors";
 import PreferencesFlow from "@/components/preferences/PreferencesFlow";
 

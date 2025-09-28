@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, FlatList, TouchableOpacity, Animated } from 're
 import { useTranslation } from 'react-i18next';
 import { quickSuggestionsCategories } from '@/data/mockData';
 import { getColor } from '@/theme/colors';
-import { Skeleton } from '@/components';
+import Skeleton from '@/components/ui/Skeleton';
 
 interface QuickSuggestionsSectionProps {
     fadeAnim: Animated.Value;

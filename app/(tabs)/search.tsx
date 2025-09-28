@@ -3,16 +3,14 @@ import { Filter, Plus, X, Check, ChevronDown } from 'lucide-react-native';
 import { useRouter, useLocalSearchParams } from 'expo-router';
 import { useState, useEffect, useRef } from 'react';
 import { featuredRestaurants, promotionalBanners } from '@/data/mockData';
-import { 
-  ScreenLayout, 
-  Header, 
-  LocationPicker, 
-  SearchBar, 
-  FilterButton, 
-  PromoBanner, 
-  RestaurantCard,
-  DietaryFilter 
-} from '@/components';
+import ScreenLayout from '@/components/layouts/ScreenLayout';
+import Header from '@/components/ui/Header';
+import LocationPicker from '@/components/ui/LocationPicker';
+import SearchBar from '@/components/ui/SearchBar';
+import FilterButton from '@/components/ui/FilterButton';
+import PromoBanner from '@/components/ui/PromoBanner';
+import RestaurantCard from '@/components/ui/RestaurantCard';
+import DietaryFilter from '@/components/ui/DietaryFilter';
 
 interface FilterState {
   price: string[];
@@ -56,7 +54,7 @@ export default function SearchScreen() {
   const [searchQuery, setSearchQuery] = useState('');
   const [showFiltersModal, setShowFiltersModal] = useState(false);
   const [showDietaryFilters, setShowDietaryFilters] = useState(false);
-  
+
   const [filters, setFilters] = useState<FilterState>({
     price: [],
     cuisine: [],
@@ -72,7 +70,7 @@ export default function SearchScreen() {
   useEffect(() => {
     if (focus === 'true') {
       scrollViewRef.current?.scrollTo({ y: 0, animated: false });
-      
+
       const focusTimeout = setTimeout(() => {
         searchInputRef.current?.focus();
       }, 100);
@@ -144,43 +142,43 @@ export default function SearchScreen() {
   };
 
   const getActiveFiltersCount = () => {
-    return filters.price.length + 
-           filters.cuisine.length + 
-           filters.dietary.length + 
-           (filters.rating ? 1 : 0) + 
-           (filters.distance ? 1 : 0) + 
-           (filters.openNow ? 1 : 0);
+    return filters.price.length +
+      filters.cuisine.length +
+      filters.dietary.length +
+      (filters.rating ? 1 : 0) +
+      (filters.distance ? 1 : 0) +
+      (filters.openNow ? 1 : 0);
   };
 
   // Filter restaurants based on all criteria
   const filteredRestaurants = featuredRestaurants.filter(restaurant => {
     // Search query filter
-    const matchesSearch = searchQuery === '' || 
+    const matchesSearch = searchQuery === '' ||
       restaurant.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       restaurant.cuisine.some(c => c.toLowerCase().includes(searchQuery.toLowerCase()));
-    
+
     // Dietary filter
     const matchesDietary = filters.dietary.length === 0 ||
       filters.dietary.some(filter => restaurant.dietary?.includes(filter));
-    
+
     // Price filter (simplified - in real app would use actual price data)
     const matchesPrice = filters.price.length === 0 || filters.price.includes('moderate');
-    
+
     // Cuisine filter
     const matchesCuisine = filters.cuisine.length === 0 ||
       filters.cuisine.some(cuisine => restaurant.cuisine.includes(cuisine));
-    
+
     // Rating filter
     const matchesRating = !filters.rating || restaurant.rating >= filters.rating;
-    
+
     // Distance filter (simplified - in real app would calculate actual distance)
     const matchesDistance = !filters.distance || true; // Simplified for demo
-    
+
     // Open now filter (simplified - in real app would check actual hours)
     const matchesOpenNow = !filters.openNow || true; // Simplified for demo
-    
-    return matchesSearch && matchesDietary && matchesPrice && 
-           matchesCuisine && matchesRating && matchesDistance && matchesOpenNow;
+
+    return matchesSearch && matchesDietary && matchesPrice &&
+      matchesCuisine && matchesRating && matchesDistance && matchesOpenNow;
   });
 
   const renderFiltersModal = () => (
@@ -344,7 +342,7 @@ export default function SearchScreen() {
             >
               <Text style={styles.clearFiltersText}>Limpar Filtros</Text>
             </TouchableOpacity>
-            
+
             <TouchableOpacity
               style={styles.applyFiltersButton}
               onPress={() => setShowFiltersModal(false)}
@@ -414,9 +412,9 @@ export default function SearchScreen() {
 
   return (
     <ScreenLayout>
-      <ScrollView 
+      <ScrollView
         ref={scrollViewRef}
-        showsVerticalScrollIndicator={false} 
+        showsVerticalScrollIndicator={false}
         style={styles.scrollContainer}
         keyboardShouldPersistTaps="handled"
         contentInsetAdjustmentBehavior="automatic"
@@ -426,8 +424,8 @@ export default function SearchScreen() {
 
         {/* Location Picker */}
         <View style={styles.locationSection}>
-          <LocationPicker 
-            location={selectedLocation} 
+          <LocationPicker
+            location={selectedLocation}
             onLocationChange={handleLocationChange}
           />
         </View>
@@ -450,8 +448,8 @@ export default function SearchScreen() {
 
         {/* Filters */}
         <View style={styles.filtersSection}>
-          <ScrollView 
-            horizontal 
+          <ScrollView
+            horizontal
             showsHorizontalScrollIndicator={false}
             contentContainerStyle={styles.filtersContent}
           >
@@ -528,11 +526,11 @@ export default function SearchScreen() {
                 {filters.dietary.map(diet => (
                   <View key={diet} style={styles.activeFilterTag}>
                     <Text style={styles.activeFilterText}>
-                      {diet === 'vegetarian' ? 'Vegetariano' : 
-                       diet === 'vegan' ? 'Vegano' : 
-                       diet === 'gluten-free' ? 'Sem Glúten' :
-                       diet === 'seafood' ? 'Frutos do Mar' :
-                       diet === 'halal' ? 'Halal' : diet}
+                      {diet === 'vegetarian' ? 'Vegetariano' :
+                        diet === 'vegan' ? 'Vegano' :
+                          diet === 'gluten-free' ? 'Sem Glúten' :
+                            diet === 'seafood' ? 'Frutos do Mar' :
+                              diet === 'halal' ? 'Halal' : diet}
                     </Text>
                     <TouchableOpacity onPress={() => handleDietaryFilterChange(filters.dietary.filter(d => d !== diet))}>
                       <X size={14} color="#FF6B35" />
@@ -549,8 +547,8 @@ export default function SearchScreen() {
 
         {/* Promotional Banners */}
         <View style={styles.promoBannersSection}>
-          <ScrollView 
-            horizontal 
+          <ScrollView
+            horizontal
             showsHorizontalScrollIndicator={false}
             contentContainerStyle={styles.promoBannersContent}
           >
@@ -594,14 +592,14 @@ export default function SearchScreen() {
               showFavoriteButton={true}
             />
           ))}
-          
+
           {filteredRestaurants.length === 0 && (
             <View style={styles.noResults}>
               <Text style={styles.noResultsTitle}>Nenhum resultado encontrado</Text>
               <Text style={styles.noResultsText}>
                 Tente ajustar os filtros ou pesquisar por outros termos
               </Text>
-              <TouchableOpacity 
+              <TouchableOpacity
                 style={styles.suggestFromNoResults}
                 onPress={handleSuggestRestaurant}
               >

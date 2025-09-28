@@ -2,15 +2,13 @@ import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Alert, Modal, Tex
 import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'expo-router';
 import { Star, Calendar, CreditCard as Edit3, Trash2, Filter, ChevronDown, Camera, X, Plus, RefreshCw } from 'lucide-react-native';
-import {
-  ScreenLayout,
-  Header,
-  EmptyState,
-  LoadingSpinner,
-  Toast,
-  UserAvatar,
-  Badge
-} from '@/components';
+import ScreenLayout from '@/components/layouts/ScreenLayout';
+import Header from '@/components/ui/Header';
+import EmptyState from '@/components/ui/EmptyState';
+import LoadingSpinner from '@/components/ui/LoadingSpinner';
+import Toast from '@/components/ui/Toast';
+import UserAvatar from '@/components/ui/UserAvatar';
+import Badge from '@/components/ui/Badge';
 import { useToast } from '@/hooks/useToast';
 
 interface UserReview {

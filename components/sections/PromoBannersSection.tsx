@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, ScrollView, Animated, Dimensions } from 'react-native';
 import { TrendingUp } from 'lucide-react-native';
 import { promotionalBanners } from '@/data/mockData';
-import { PromoBanner } from '@/components';
+import PromoBanner from '@/components/ui/PromoBanner';
 import { getColor } from '@/theme/colors';
 
 const { width } = Dimensions.get('window');

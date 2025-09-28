@@ -4,14 +4,12 @@ import { useRouter } from 'expo-router';
 import { useState, useEffect } from 'react';
 import { featuredRestaurants } from '@/data/mockData';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {
-  ScreenLayout,
-  Header,
-  RestaurantCard,
-  EmptyState,
-  Toast,
-  LoadingSpinner
-} from '@/components';
+import ScreenLayout from '@/components/layouts/ScreenLayout';
+import Header from '@/components/ui/Header';
+import RestaurantCard from '@/components/ui/RestaurantCard';
+import EmptyState from '@/components/ui/EmptyState';
+import Toast from '@/components/ui/Toast';
+import LoadingSpinner from '@/components/ui/LoadingSpinner';
 import { useToast } from '@/hooks/useToast';
 
 const { width } = Dimensions.get('window');

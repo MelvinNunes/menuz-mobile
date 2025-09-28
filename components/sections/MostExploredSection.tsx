@@ -4,7 +4,7 @@ import { Star, MapPin } from 'lucide-react-native';
 import { useTranslation } from 'react-i18next';
 import { mostExploredRestaurants } from '@/data/mockData';
 import { getColor } from '@/theme/colors';
-import { Skeleton } from '@/components';
+import Skeleton from '@/components/ui/Skeleton';
 
 interface MostExploredSectionProps {
     fadeAnim: Animated.Value;

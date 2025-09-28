@@ -20,7 +20,11 @@ import {
   Settings,
   Check
 } from 'lucide-react-native';
-import { ScreenLayout, Header, LoadingSpinner, Toast, Badge } from '@/components';
+import ScreenLayout from '@/components/layouts/ScreenLayout';
+import Header from '@/components/ui/Header';
+import LoadingSpinner from '@/components/ui/LoadingSpinner';
+import Toast from '@/components/ui/Toast';
+import Badge from '@/components/ui/Badge';
 import { useToast } from '@/hooks/useToast';
 
 interface NotificationCategory {

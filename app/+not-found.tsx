@@ -1,7 +1,8 @@
 import { Link, Stack } from 'expo-router';
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { Chrome as Home } from 'lucide-react-native';
-import { ScreenLayout, EmptyState } from '@/components';
+import ScreenLayout from '@/components/layouts/ScreenLayout';
+import EmptyState from '@/components/ui/EmptyState';
 
 export default function NotFoundScreen() {
   return (

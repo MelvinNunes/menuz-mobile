@@ -3,7 +3,8 @@ import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Modal } from 'rea
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { QrCode, Share, Camera, X } from 'lucide-react-native';
 import { featuredRestaurants, mockMenuItems } from '@/data/mockData';
-import { ScreenLayout, Header } from '@/components';
+import ScreenLayout from '@/components/layouts/ScreenLayout';
+import Header from '@/components/ui/Header';
 import QRCodeGenerator from '@/components/sharing/QRCodeGenerator';
 import QRCodeScanner from '@/components/sharing/QRCodeScanner';
 import SocialSharingCard from '@/components/sharing/SocialSharingCard';
@@ -45,7 +46,7 @@ export default function RestaurantSharingScreen() {
       ...mockMenuItems.desserts
     ];
     const popularDish = allItems.find(item => item.popular);
-    
+
     if (popularDish) {
       return {
         name: popularDish.name,
@@ -53,7 +54,7 @@ export default function RestaurantSharingScreen() {
         description: popularDish.description
       };
     }
-    
+
     return undefined;
   };
 
@@ -76,7 +77,7 @@ export default function RestaurantSharingScreen() {
         <Text style={styles.sectionSubtitle}>
           Partilhe este código QR para que outros possam aceder rapidamente ao menu digital
         </Text>
-        
+
         <View style={styles.qrContainer}>
           <QRCodeGenerator
             value={generateQRValue()}
@@ -98,7 +99,7 @@ export default function RestaurantSharingScreen() {
           </View>
         </View>
 
-        <TouchableOpacity 
+        <TouchableOpacity
           style={styles.scanButton}
           onPress={() => setShowQRScanner(true)}
         >
@@ -115,7 +116,7 @@ export default function RestaurantSharingScreen() {
       <Text style={styles.sectionSubtitle}>
         Crie um cartão visual atrativo para partilhar nas redes sociais
       </Text>
-      
+
       <SocialSharingCard
         restaurant={restaurant}
         featuredDish={getFeaturedDish()}
@@ -128,7 +129,7 @@ export default function RestaurantSharingScreen() {
   return (
     <ScreenLayout>
       <Header title="Partilhar Restaurante" showBackButton />
-      
+
       <View style={styles.container}>
         {/* Restaurant Header */}
         <View style={styles.restaurantHeader}>

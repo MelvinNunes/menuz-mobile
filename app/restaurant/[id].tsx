@@ -4,17 +4,15 @@ import { Camera, Star, MapPin, Clock, Phone, Heart, MessageCircle, Globe, Share,
 import { useState, useEffect, useRef } from 'react';
 import { featuredRestaurants, mockMenuItems, mockReviews } from '@/data/mockData';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { 
-  ScreenLayout, 
-  Header, 
-  SearchBar, 
-  FilterButton, 
-  RatingBadge,
-  ReviewCard,
-  MenuSection,
-  DietaryFilter,
-  Badge
-} from '@/components';
+import ScreenLayout from '@/components/layouts/ScreenLayout';
+import Header from '@/components/ui/Header';
+import SearchBar from '@/components/ui/SearchBar';
+import FilterButton from '@/components/ui/FilterButton';
+import RatingBadge from '@/components/ui/RatingBadge';
+import ReviewCard from '@/components/ui/ReviewCard';
+import MenuSection from '@/components/ui/MenuSection';
+import DietaryFilter from '@/components/ui/DietaryFilter';
+import Badge from '@/components/ui/Badge';
 
 const { width } = Dimensions.get('window');
 
@@ -53,13 +51,13 @@ export default function RestaurantScreen() {
     try {
       const favorites = await AsyncStorage.getItem('favorites');
       let favoritesList = favorites ? JSON.parse(favorites) : [];
-      
+
       if (isFavorite) {
         favoritesList = favoritesList.filter((favId: string) => favId !== id);
       } else {
         favoritesList.push(id);
       }
-      
+
       await AsyncStorage.setItem('favorites', JSON.stringify(favoritesList));
       setIsFavorite(!isFavorite);
     } catch (error) {
@@ -72,10 +70,10 @@ export default function RestaurantScreen() {
       prevReviews.map(review =>
         review.id === reviewId
           ? {
-              ...review,
-              isHelpful: !review.isHelpful,
-              helpful: review.isHelpful ? review.helpful - 1 : review.helpful + 1
-            }
+            ...review,
+            isHelpful: !review.isHelpful,
+            helpful: review.isHelpful ? review.helpful - 1 : review.helpful + 1
+          }
           : review
       )
     );
@@ -120,7 +118,7 @@ export default function RestaurantScreen() {
             <View style={styles.restaurantHeader}>
               <RatingBadge rating={restaurant.rating} />
               <Text style={styles.reviewCount}>{restaurant.reviewCount}+ reviews</Text>
-              <TouchableOpacity 
+              <TouchableOpacity
                 style={styles.saveButton}
                 onPress={toggleFavorite}
               >
@@ -143,16 +141,16 @@ export default function RestaurantScreen() {
                 <Text style={styles.sectionTitle}>Opções Dietéticas</Text>
                 <View style={styles.dietaryTags}>
                   {restaurant.dietary.map((diet: string, index: number) => (
-                    <Badge 
-                      key={index} 
-                      text={diet === 'vegetarian' ? 'Vegetariano' : 
-                            diet === 'vegan' ? 'Vegano' : 
-                            diet === 'gluten-free' ? 'Sem Glúten' :
+                    <Badge
+                      key={index}
+                      text={diet === 'vegetarian' ? 'Vegetariano' :
+                        diet === 'vegan' ? 'Vegano' :
+                          diet === 'gluten-free' ? 'Sem Glúten' :
                             diet === 'seafood' ? 'Frutos do Mar' :
-                            diet === 'halal' ? 'Halal' : diet}
-                      variant="success" 
-                      size="small" 
-                      style={styles.dietaryBadge} 
+                              diet === 'halal' ? 'Halal' : diet}
+                      variant="success"
+                      size="small"
+                      style={styles.dietaryBadge}
                     />
                   ))}
                 </View>
@@ -238,16 +236,16 @@ export default function RestaurantScreen() {
         return (
           <View style={styles.tabContent}>
             <Text style={styles.reviewsTitle}>O que {restaurant.reviewCount} pessoas estão a dizer</Text>
-            
+
             <View style={styles.overallRating}>
               <Text style={styles.overallRatingTitle}>Avaliações e comentários gerais</Text>
               <View style={styles.ratingStars}>
                 {[1, 2, 3, 4, 5].map((star) => (
-                  <Star 
-                    key={star} 
-                    size={20} 
-                    color="#FFA500" 
-                    fill={star <= Math.floor(restaurant.rating) ? "#FFA500" : "transparent"} 
+                  <Star
+                    key={star}
+                    size={20}
+                    color="#FFA500"
+                    fill={star <= Math.floor(restaurant.rating) ? "#FFA500" : "transparent"}
                   />
                 ))}
                 <Text style={styles.overallRatingText}>{restaurant.rating} baseado em todas as avaliações</Text>
@@ -306,16 +304,16 @@ export default function RestaurantScreen() {
             <Text style={styles.photoSectionTitle}>Comida</Text>
 
             <View style={styles.photoGrid}>
-              <Image 
+              <Image
                 source={{ uri: 'https://images.pexels.com/photos/1267320/pexels-photo-1267320.jpeg?auto=compress&cs=tinysrgb&w=400' }}
                 style={styles.largePhoto}
               />
               <View style={styles.smallPhotos}>
-                <Image 
+                <Image
                   source={{ uri: 'https://images.pexels.com/photos/696218/pexels-photo-696218.jpeg?auto=compress&cs=tinysrgb&w=200' }}
                   style={styles.smallPhoto}
                 />
-                <Image 
+                <Image
                   source={{ uri: 'https://images.pexels.com/photos/1199957/pexels-photo-1199957.jpeg?auto=compress&cs=tinysrgb&w=200' }}
                   style={styles.smallPhoto}
                 />
@@ -332,9 +330,9 @@ export default function RestaurantScreen() {
   return (
     <ScreenLayout>
       <View style={styles.container}>
-        <ScrollView 
+        <ScrollView
           ref={scrollViewRef}
-          style={styles.mainScrollView} 
+          style={styles.mainScrollView}
           showsVerticalScrollIndicator={false}
           onScroll={handleScroll}
           scrollEventThrottle={16}
@@ -357,12 +355,12 @@ export default function RestaurantScreen() {
           </View>
 
           {/* Tabs */}
-          <View 
+          <View
             style={styles.tabsContainer}
             onLayout={onTabsLayout}
           >
-            <ScrollView 
-              horizontal 
+            <ScrollView
+              horizontal
               showsHorizontalScrollIndicator={false}
               contentContainerStyle={styles.tabsContent}
             >
@@ -395,8 +393,8 @@ export default function RestaurantScreen() {
         {/* Sticky Tabs Overlay */}
         {isTabsSticky && (
           <View style={styles.stickyTabsOverlay}>
-            <ScrollView 
-              horizontal 
+            <ScrollView
+              horizontal
               showsHorizontalScrollIndicator={false}
               contentContainerStyle={styles.tabsContent}
             >

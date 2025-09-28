@@ -3,7 +3,8 @@ import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Modal } from 'rea
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { QrCode, Share, Camera, X } from 'lucide-react-native';
 import { featuredRestaurants, mockMenuItems } from '@/data/mockData';
-import { ScreenLayout, Header } from '@/components';
+import ScreenLayout from '@/components/layouts/ScreenLayout';
+import Header from '@/components/ui/Header';
 import QRCodeGenerator from '@/components/sharing/QRCodeGenerator';
 import QRCodeScanner from '@/components/sharing/QRCodeScanner';
 import SocialSharingCard from '@/components/sharing/SocialSharingCard';

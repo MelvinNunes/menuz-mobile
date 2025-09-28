@@ -5,7 +5,7 @@ import { useRouter } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import { nearestRestaurants } from '@/data/mockData';
 import { getColor } from '@/theme/colors';
-import { Skeleton } from '@/components';
+import Skeleton from '@/components/ui/Skeleton';
 
 interface NearestSectionProps {
     fadeAnim: Animated.Value;

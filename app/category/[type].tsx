@@ -3,14 +3,12 @@ import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useState, useEffect } from 'react';
 import { Clock, Users, Star, MapPin, Filter, ChevronDown, Utensils, Wine, Coffee, Sparkles, TrendingUp, Award } from 'lucide-react-native';
 import { featuredRestaurants } from '@/data/mockData';
-import { 
-  ScreenLayout, 
-  Header, 
-  RestaurantCard, 
-  FilterButton,
-  RatingBadge,
-  Badge
-} from '@/components';
+import ScreenLayout from '@/components/layouts/ScreenLayout';
+import Header from '@/components/ui/Header';
+import RestaurantCard from '@/components/ui/RestaurantCard';
+import FilterButton from '@/components/ui/FilterButton';
+import RatingBadge from '@/components/ui/RatingBadge';
+import Badge from '@/components/ui/Badge';
 
 const { width, height } = Dimensions.get('window');
 
@@ -177,8 +175,8 @@ export default function CategoryScreen() {
     return featuredRestaurants.map(restaurant => ({
       ...restaurant,
       // Add category-specific modifications
-      priceRange: categoryType === 'dinner' ? 
-        `${parseInt(restaurant.priceRange.split(' ')[0]) + 50} MZN` : 
+      priceRange: categoryType === 'dinner' ?
+        `${parseInt(restaurant.priceRange.split(' ')[0]) + 50} MZN` :
         restaurant.priceRange
     }));
   };
@@ -293,14 +291,14 @@ export default function CategoryScreen() {
 
   const renderHeroSection = () => {
     const IconComponent = LucideIcons[data.iconName];
-    
+
     return (
       <View style={[styles.heroContainer, { height: heroHeight }]}>
         <Image source={{ uri: data.heroImage }} style={styles.heroImage} />
-        
+
         {/* Enhanced gradient overlay */}
         <View style={styles.heroGradient} />
-        
+
         <View style={styles.heroOverlay}>
           <View style={[
             styles.heroContent,
@@ -313,8 +311,8 @@ export default function CategoryScreen() {
             {/* Enhanced icon with glow effect */}
             <View style={[styles.heroIconContainer, { marginBottom: spacing.iconMargin }]}>
               <View style={[
-                styles.heroIconGlow, 
-                { 
+                styles.heroIconGlow,
+                {
                   backgroundColor: data.color + '30',
                   width: iconSize * 3,
                   height: iconSize * 3,
@@ -324,8 +322,8 @@ export default function CategoryScreen() {
                 }
               ]} />
               <View style={[
-                styles.heroIcon, 
-                { 
+                styles.heroIcon,
+                {
                   backgroundColor: data.backgroundColor,
                   width: iconSize * 2,
                   height: iconSize * 2,
@@ -344,12 +342,12 @@ export default function CategoryScreen() {
                 <Sparkles size={iconSize * 0.6} color="#FFD700" fill="#FFD700" />
               </View>
             </View>
-            
+
             {/* Enhanced title section */}
             <View style={[styles.heroTitleSection, { marginBottom: spacing.vertical }]}>
               <Text style={[
-                styles.heroTitle, 
-                { 
+                styles.heroTitle,
+                {
                   fontSize: fontSizes.title,
                   marginBottom: spacing.vertical * 0.3,
                 }
@@ -357,8 +355,8 @@ export default function CategoryScreen() {
                 {data.title}
               </Text>
               <Text style={[
-                styles.heroSubtitle, 
-                { 
+                styles.heroSubtitle,
+                {
                   fontSize: fontSizes.subtitle,
                   marginBottom: spacing.vertical * 0.5,
                 }
@@ -366,8 +364,8 @@ export default function CategoryScreen() {
                 {data.subtitle}
               </Text>
               <Text style={[
-                styles.heroDescription, 
-                { 
+                styles.heroDescription,
+                {
                   fontSize: fontSizes.description,
                   maxWidth: isTablet ? 500 : 320,
                 }
@@ -375,7 +373,7 @@ export default function CategoryScreen() {
                 {data.description}
               </Text>
             </View>
-            
+
             {/* Enhanced stats grid - responsive layout */}
             <View style={[
               styles.heroStatsGrid,
@@ -389,7 +387,7 @@ export default function CategoryScreen() {
             ]}>
               <View style={[
                 styles.heroStatCard,
-                { 
+                {
                   padding: spacing.cardPadding,
                   minWidth: isSmallScreen ? '100%' : isTablet ? 120 : 90,
                   flex: isSmallScreen ? 0 : 1,
@@ -406,22 +404,22 @@ export default function CategoryScreen() {
                   <Clock size={iconSize * 0.5} color={data.color} />
                 </View>
                 <Text style={[
-                  styles.heroStatValue, 
+                  styles.heroStatValue,
                   { fontSize: fontSizes.statValue }
                 ]}>
                   {data.timeRange}
                 </Text>
                 <Text style={[
-                  styles.heroStatLabel, 
+                  styles.heroStatLabel,
                   { fontSize: fontSizes.statLabel }
                 ]}>
                   Horário ideal
                 </Text>
               </View>
-              
+
               <View style={[
                 styles.heroStatCard,
-                { 
+                {
                   padding: spacing.cardPadding,
                   minWidth: isSmallScreen ? '100%' : isTablet ? 120 : 90,
                   flex: isSmallScreen ? 0 : 1,
@@ -438,22 +436,22 @@ export default function CategoryScreen() {
                   <Utensils size={iconSize * 0.5} color={data.color} />
                 </View>
                 <Text style={[
-                  styles.heroStatValue, 
+                  styles.heroStatValue,
                   { fontSize: fontSizes.statValue }
                 ]}>
                   {data.stats.totalRestaurants}
                 </Text>
                 <Text style={[
-                  styles.heroStatLabel, 
+                  styles.heroStatLabel,
                   { fontSize: fontSizes.statLabel }
                 ]}>
                   Restaurantes
                 </Text>
               </View>
-              
+
               <View style={[
                 styles.heroStatCard,
-                { 
+                {
                   padding: spacing.cardPadding,
                   minWidth: isSmallScreen ? '100%' : isTablet ? 120 : 90,
                   flex: isSmallScreen ? 0 : 1,
@@ -470,13 +468,13 @@ export default function CategoryScreen() {
                   <Star size={iconSize * 0.5} color={data.color} />
                 </View>
                 <Text style={[
-                  styles.heroStatValue, 
+                  styles.heroStatValue,
                   { fontSize: fontSizes.statValue }
                 ]}>
                   {data.stats.avgRating}
                 </Text>
                 <Text style={[
-                  styles.heroStatLabel, 
+                  styles.heroStatLabel,
                   { fontSize: fontSizes.statLabel }
                 ]}>
                   Avaliação média
@@ -495,7 +493,7 @@ export default function CategoryScreen() {
               <TrendingUp size={iconSize * 0.4} color="#FFD700" />
               <Text style={[
                 styles.popularTimeText,
-                { 
+                {
                   fontSize: fontSizes.popularTime,
                   marginLeft: spacing.cardPadding * 0.5,
                 }
@@ -521,7 +519,7 @@ export default function CategoryScreen() {
         <Award size={isTablet ? 28 : 24} color={data.color} />
         <Text style={[
           styles.sectionTitle,
-          { 
+          {
             fontSize: isTablet ? 28 : 24,
             marginLeft: spacing.cardPadding * 0.5,
           }
@@ -531,7 +529,7 @@ export default function CategoryScreen() {
       </View>
       <Text style={[
         styles.sectionSubtitle,
-        { 
+        {
           fontSize: isTablet ? 18 : 16,
           marginBottom: spacing.vertical * 0.8,
         }
@@ -547,8 +545,8 @@ export default function CategoryScreen() {
       ]}>
         {data.recommendations.map((recommendation, index) => (
           <View key={index} style={[
-            styles.recommendationChip, 
-            { 
+            styles.recommendationChip,
+            {
               borderColor: data.color,
               paddingHorizontal: spacing.cardPadding,
               paddingVertical: spacing.cardPadding * 0.6,
@@ -556,12 +554,12 @@ export default function CategoryScreen() {
             }
           ]}>
             <View style={[
-              styles.recommendationDot, 
+              styles.recommendationDot,
               { backgroundColor: data.color }
             ]} />
             <Text style={[
-              styles.recommendationText, 
-              { 
+              styles.recommendationText,
+              {
                 color: data.color,
                 fontSize: isTablet ? 16 : 14,
               }
@@ -586,7 +584,7 @@ export default function CategoryScreen() {
         <Sparkles size={isTablet ? 28 : 24} color={data.color} />
         <Text style={[
           styles.sectionTitle,
-          { 
+          {
             fontSize: isTablet ? 28 : 24,
             marginLeft: spacing.cardPadding * 0.5,
           }
@@ -596,7 +594,7 @@ export default function CategoryScreen() {
       </View>
       <Text style={[
         styles.sectionSubtitle,
-        { 
+        {
           fontSize: isTablet ? 18 : 16,
           marginBottom: spacing.vertical * 0.8,
           paddingHorizontal: spacing.horizontal,
@@ -604,9 +602,9 @@ export default function CategoryScreen() {
       ]}>
         Os pratos mais pedidos para {categoryType === 'dinner' ? 'jantar' : 'almoço'}
       </Text>
-      
-      <ScrollView 
-        horizontal 
+
+      <ScrollView
+        horizontal
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={[
           styles.dishesScrollContent,
@@ -614,8 +612,8 @@ export default function CategoryScreen() {
         ]}
       >
         {data.popularDishes.map((dish, index) => (
-          <TouchableOpacity 
-            key={index} 
+          <TouchableOpacity
+            key={index}
             style={[
               styles.dishCard,
               {
@@ -625,18 +623,18 @@ export default function CategoryScreen() {
             ]}
           >
             <View style={styles.dishImageContainer}>
-              <Image 
-                source={{ uri: dish.image }} 
+              <Image
+                source={{ uri: dish.image }}
                 style={[
                   styles.dishImage,
                   { height: isTablet ? 160 : 140 }
-                ]} 
+                ]}
               />
               <View style={styles.dishImageOverlay}>
-                <Badge 
-                  text="Popular" 
-                  variant="warning" 
-                  size="small" 
+                <Badge
+                  text="Popular"
+                  variant="warning"
+                  size="small"
                 />
               </View>
             </View>
@@ -652,7 +650,7 @@ export default function CategoryScreen() {
               </Text>
               <Text style={[
                 styles.dishDescription,
-                { 
+                {
                   fontSize: isTablet ? 16 : 14,
                   marginBottom: spacing.cardPadding,
                 }
@@ -664,7 +662,7 @@ export default function CategoryScreen() {
                   <Utensils size={14} color="#6B7280" />
                   <Text style={[
                     styles.dishRestaurants,
-                    { 
+                    {
                       fontSize: isTablet ? 15 : 13,
                       marginLeft: 6,
                     }
@@ -694,8 +692,8 @@ export default function CategoryScreen() {
         styles.filtersSection,
         { paddingVertical: spacing.vertical * 0.8 }
       ]}>
-        <ScrollView 
-          horizontal 
+        <ScrollView
+          horizontal
           showsHorizontalScrollIndicator={false}
           contentContainerStyle={[
             styles.filtersContent,
@@ -719,7 +717,7 @@ export default function CategoryScreen() {
     <View style={styles.restaurantsSection}>
       <View style={[
         styles.restaurantsHeader,
-        { 
+        {
           paddingHorizontal: spacing.horizontal,
           marginBottom: spacing.vertical * 0.8,
         }
@@ -740,7 +738,7 @@ export default function CategoryScreen() {
 
       <View style={[
         styles.restaurantsList,
-        { 
+        {
           paddingHorizontal: spacing.horizontal,
           paddingBottom: spacing.vertical,
         }
@@ -759,7 +757,7 @@ export default function CategoryScreen() {
 
   const renderSpecialOffers = () => {
     const IconComponent = LucideIcons[data.iconName];
-    
+
     return (
       <View style={[
         styles.specialOffersSection,
@@ -772,7 +770,7 @@ export default function CategoryScreen() {
           <TrendingUp size={isTablet ? 28 : 24} color={data.color} />
           <Text style={[
             styles.sectionTitle,
-            { 
+            {
               fontSize: isTablet ? 28 : 24,
               marginLeft: spacing.cardPadding * 0.5,
             }
@@ -790,7 +788,7 @@ export default function CategoryScreen() {
         ]}>
           <View style={[
             styles.offerContent,
-            { 
+            {
               flex: isSmallScreen ? 0 : 1,
               alignItems: isSmallScreen ? 'center' : 'flex-start',
               marginBottom: isSmallScreen ? spacing.cardPadding : 0,
@@ -798,7 +796,7 @@ export default function CategoryScreen() {
           ]}>
             <Text style={[
               styles.offerTitle,
-              { 
+              {
                 fontSize: isTablet ? 24 : 20,
                 textAlign: isSmallScreen ? 'center' : 'left',
                 marginBottom: spacing.cardPadding * 0.4,
@@ -808,13 +806,13 @@ export default function CategoryScreen() {
             </Text>
             <Text style={[
               styles.offerDescription,
-              { 
+              {
                 fontSize: isTablet ? 17 : 15,
                 textAlign: isSmallScreen ? 'center' : 'left',
                 marginBottom: spacing.cardPadding,
               }
             ]}>
-              {categoryType === 'dinner' 
+              {categoryType === 'dinner'
                 ? 'Experiência gastronómica completa com 5 pratos especiais'
                 : 'Refeição completa com entrada, prato principal e sobremesa'
               }
@@ -835,8 +833,8 @@ export default function CategoryScreen() {
             </View>
           </View>
           <View style={[
-            styles.offerIcon, 
-            { 
+            styles.offerIcon,
+            {
               backgroundColor: data.backgroundColor,
               width: isTablet ? 90 : 70,
               height: isTablet ? 90 : 70,
@@ -854,7 +852,7 @@ export default function CategoryScreen() {
   return (
     <ScreenLayout>
       <Header title={data.title} showBackButton />
-      
+
       <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
         {/* Enhanced Hero Section */}
         {renderHeroSection()}
@@ -1006,7 +1004,7 @@ const styles = StyleSheet.create({
     marginBottom: 4,
     textShadowColor: 'rgba(0, 0, 0, 0.6)',
     textShadowOffset: { width: 0, height: 1 },
-    textShadowRadius:  2,
+    textShadowRadius: 2,
   },
   heroStatLabel: {
     fontFamily: 'Inter-Medium',

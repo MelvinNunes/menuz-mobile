@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Animated } from 'react-native';
 import { Plus } from 'lucide-react-native';
 import { getColor } from '@/theme/colors';
-import { Skeleton } from '@/components';
+import Skeleton from '@/components/ui/Skeleton';
 
 interface SuggestRestaurantCTAProps {
     fadeAnim: Animated.Value;

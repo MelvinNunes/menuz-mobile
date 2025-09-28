@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, FlatList, TouchableOpacity, Animated } from 'react-native';
 import { mozambiqueCategories } from '@/data/mockData';
 import { getColor } from '@/theme/colors';
-import { Skeleton } from '@/components';
+import Skeleton from '@/components/ui/Skeleton';
 
 interface MozambiqueCategoriesSectionProps {
     fadeAnim: Animated.Value;
