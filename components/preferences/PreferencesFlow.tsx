@@ -3,7 +3,7 @@ import { View, StyleSheet, Alert } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import { getColor } from '@/theme/colors';
-import { UserPreferences, PreferencesService } from '@/services/preferences';
+import { UserPreferences, PreferencesService, OnboardingStorage } from '@/services/preferences';
 import DietaryRestrictionsStep from './DietaryRestrictionsStep';
 import CuisinePreferencesStep from './CuisinePreferencesStep';
 import SpiceToleranceStep from './SpiceToleranceStep';
@@ -100,17 +100,18 @@ export default function PreferencesFlow({ onComplete }: PreferencesFlowProps) {
             t('preferences.skip.message'),
             [
                 {
-                    text: t('preferences.back', 'Back'),
+                    text: t('preferences.back'),
                     style: 'cancel',
                 },
                 {
-                    text: t('preferences.skip.confirm', 'Skip'),
+                    text: t('preferences.skip.confirm'),
                     style: 'destructive',
-                    onPress: () => {
+                    onPress: async () => {
                         if (onComplete) {
                             onComplete();
                         } else {
-                            router.back();
+                            await OnboardingStorage.markCompleted();
+                            router.replace('/(tabs)');
                         }
                     },
                 },
