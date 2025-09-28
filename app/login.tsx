@@ -218,7 +218,7 @@ const styles = StyleSheet.create({
     },
     forgotPassword: {
         alignSelf: 'flex-end',
-        marginBottom: 32,
+        marginBottom: 24,
         paddingVertical: 8,
         paddingHorizontal: 4,
     },
