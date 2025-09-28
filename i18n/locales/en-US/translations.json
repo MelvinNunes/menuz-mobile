@@ -25,11 +25,33 @@
       "networkError": "Connection error. Check your internet.",
       "loading": "Signing in..."
     },
+    "register": {
+      "title": "Create Account",
+      "subtitle": "Join Menuz and discover the best restaurants in Mozambique.",
+      "name": "Full name",
+      "namePlaceholder": "Enter your full name",
+      "email": "Email",
+      "emailPlaceholder": "Enter your email",
+      "password": "Password",
+      "passwordPlaceholder": "Create a secure password",
+      "confirmPassword": "Confirm password",
+      "confirmPasswordPlaceholder": "Enter password again",
+      "registerButton": "Create account",
+      "haveAccount": "Already have an account?",
+      "login": "Login",
+      "loading": "Creating account...",
+      "success": "Account created successfully!",
+      "networkError": "Connection error. Check your internet."
+    },
     "validation": {
+      "nameRequired": "Name is required",
+      "nameMinLength": "Name must be at least 2 characters",
       "emailRequired": "Email is required",
       "emailInvalid": "Enter a valid email",
       "passwordRequired": "Password is required",
-      "passwordMinLength": "Password must be at least 6 characters"
+      "passwordMinLength": "Password must be at least 6 characters",
+      "confirmPasswordRequired": "Password confirmation is required",
+      "passwordsDoNotMatch": "Passwords do not match"
     }
   },
   "preferences": {

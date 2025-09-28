@@ -79,7 +79,7 @@ export default function PreferencesFlow({ onComplete }: PreferencesFlowProps) {
                             if (onComplete) {
                                 onComplete();
                             } else {
-                                router.back();
+                                router.replace('/(tabs)');
                             }
                         },
                     },

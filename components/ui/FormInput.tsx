@@ -1,6 +1,6 @@
 import React, { forwardRef, useState, useCallback, useRef, useEffect } from 'react';
 import { View, TextInput, Text, StyleSheet, TouchableOpacity, TextInputProps } from 'react-native';
-import { Eye, EyeOff, Mail, Lock } from 'lucide-react-native';
+import { Eye, EyeOff, Mail, Lock, User } from 'lucide-react-native';
 import { getColor } from '@/theme/colors';
 
 interface FormInputProps extends TextInputProps {
@@ -8,7 +8,7 @@ interface FormInputProps extends TextInputProps {
     error?: string;
     containerStyle?: any;
     inputStyle?: any;
-    icon?: 'mail' | 'lock';
+    icon?: 'mail' | 'lock' | 'user';
     showPasswordToggle?: boolean;
 }
 
@@ -63,6 +63,9 @@ const FormInput = forwardRef<TextInput, FormInputProps>(({
         }
         if (icon === 'lock') {
             return <Lock size={20} color={isFocused ? getColor('action.primary') : getColor('fg.muted')} />;
+        }
+        if (icon === 'user') {
+            return <User size={20} color={isFocused ? getColor('action.primary') : getColor('fg.muted')} />;
         }
         return null;
     };

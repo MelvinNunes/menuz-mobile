@@ -32,7 +32,7 @@ export default function IndexScreen() {
 
             // Users who need onboarding (anonymous or auth without onboarding) → Preferences  
             if (!hasCompletedOnboarding) {
-                router.replace('/preferences');
+                router.replace('/welcome');
                 return;
             }
 

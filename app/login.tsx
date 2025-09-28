@@ -22,8 +22,6 @@ export default function LoginScreen() {
         control,
         handleSubmit,
         formState: { errors, isSubmitting },
-        setError,
-        clearErrors,
     } = useForm<LoginFormData>({
         resolver: zodResolver(loginSchema),
         defaultValues: {
@@ -51,6 +49,7 @@ export default function LoginScreen() {
                 showToast(t('auth.login.invalidCredentials'), 'error');
             }
         } catch (error) {
+            console.error(error);
             showToast(t('auth.login.networkError'), 'error');
         }
     };
@@ -75,6 +74,7 @@ export default function LoginScreen() {
                     title: t('auth.login.title'),
                     headerShown: true,
                     headerShadowVisible: false,
+                    headerBackTitle: "Back",
                     headerStyle: {
                         backgroundColor: getColor('bg.elevated'),
                     },

@@ -25,11 +25,33 @@
       "networkError": "Erro de conexão. Verifique sua internet.",
       "loading": "Entrando..."
     },
+    "register": {
+      "title": "Criar Conta",
+      "subtitle": "Junte-se ao Menuz e descubra os melhores restaurantes de Moçambique.",
+      "name": "Nome completo",
+      "namePlaceholder": "Digite seu nome completo",
+      "email": "Email",
+      "emailPlaceholder": "Digite seu email",
+      "password": "Senha",
+      "passwordPlaceholder": "Crie uma senha segura",
+      "confirmPassword": "Confirmar senha",
+      "confirmPasswordPlaceholder": "Digite a senha novamente",
+      "registerButton": "Criar conta",
+      "haveAccount": "Já tem uma conta?",
+      "login": "Entrar",
+      "loading": "Criando conta...",
+      "success": "Conta criada com sucesso!",
+      "networkError": "Erro de conexão. Verifique sua internet."
+    },
     "validation": {
+      "nameRequired": "Nome é obrigatório",
+      "nameMinLength": "Nome deve ter pelo menos 2 caracteres",
       "emailRequired": "Email é obrigatório",
       "emailInvalid": "Digite um email válido",
       "passwordRequired": "Senha é obrigatória",
-      "passwordMinLength": "Senha deve ter pelo menos 6 caracteres"
+      "passwordMinLength": "Senha deve ter pelo menos 6 caracteres",
+      "confirmPasswordRequired": "Confirmação de senha é obrigatória",
+      "passwordsDoNotMatch": "As senhas não coincidem"
     }
   },
   "preferences": {
