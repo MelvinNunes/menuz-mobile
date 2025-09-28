@@ -15,8 +15,25 @@ export { default as Skeleton } from './ui/Skeleton';
 export { default as Badge } from './ui/Badge';
 export { default as DietaryFilter } from './ui/DietaryFilter';
 
+// Preference Components
+export { default as PreferenceCard } from './ui/PreferenceCard';
+export { default as CuisineCard } from './ui/CuisineCard';
+export { default as SpiceSlider } from './ui/SpiceSlider';
+export { default as BudgetCard } from './ui/BudgetCard';
+export { default as ProgressBar } from './ui/ProgressBar';
+export { default as StepHeader } from './ui/StepHeader';
+export { default as StepNavigation } from './ui/StepNavigation';
+export { default as BackButton } from './ui/BackButton';
+
 // Layout Components
 export { default as ScreenLayout } from './layouts/ScreenLayout';
 
 // Section Components
 export { default as HeroSection } from './sections/HeroSection';
+
+// Preference Flow Components
+export { default as PreferencesFlow } from './preferences/PreferencesFlow';
+export { default as DietaryRestrictionsStep } from './preferences/DietaryRestrictionsStep';
+export { default as CuisinePreferencesStep } from './preferences/CuisinePreferencesStep';
+export { default as SpiceToleranceStep } from './preferences/SpiceToleranceStep';
+export { default as DiningPreferencesStep } from './preferences/DiningPreferencesStep';
