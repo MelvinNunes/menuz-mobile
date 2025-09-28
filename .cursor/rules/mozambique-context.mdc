@@ -1,0 +1,238 @@
+---
+alwaysApply: true
+---
+
+# Mozambique Context and Currency Rules
+
+## Overview
+
+This application is designed for the Mozambique market and must always use Mozambican context, currency, and cultural considerations.
+
+## Currency and Financial
+
+### Always Use MZN (Mozambican Metical)
+
+- **NEVER** use USD, EUR, or other international currencies
+- **ALWAYS** use MZN (Mozambican Metical) for all price displays
+- **ALWAYS** format currency using Mozambican conventions
+- **ALWAYS** consider local purchasing power and pricing expectations
+
+### Currency Formatting
+
+```tsx
+// Correct - Mozambican Metical formatting
+const formatPrice = (amount: number) => {
+  return new Intl.NumberFormat('pt-MZ', {
+    style: 'currency',
+    currency: 'MZN',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 2,
+  }).format(amount);
+};
+
+// Examples:
+// 150 MZN (not $150 or €150)
+// 1.500 MZN (not $1,500)
+// 25.000 MZN (not $25,000)
+```
+
+### Price Ranges and Budgets
+
+- Use realistic price ranges for Mozambique market
+- Consider local economic conditions
+- Budget categories should reflect local spending patterns:
+  - Low: 50-200 MZN
+  - Medium: 200-500 MZN
+  - High: 500+ MZN
+
+## Geographic Context
+
+### Always Use Mozambique References
+
+- **NEVER** use international cities as examples
+- **ALWAYS** use Mozambican cities: Maputo, Beira, Nampula, Chimoio, Quelimane, etc.
+- **ALWAYS** use Mozambican regions and provinces
+- **ALWAYS** consider local geography and distances
+
+### Location Examples
+
+```tsx
+// Correct - Mozambican cities
+const popularCities = [
+  'Maputo',
+  'Beira',
+  'Nampula',
+  'Chimoio',
+  'Quelimane',
+  'Tete',
+  'Pemba',
+];
+
+// Correct - Mozambican regions
+const regions = [
+  'Cidade de Maputo',
+  'Maputo',
+  'Gaza',
+  'Inhambane',
+  'Sofala',
+  'Manica',
+  'Tete',
+  'Zambézia',
+  'Nampula',
+  'Cabo Delgado',
+  'Niassa',
+];
+```
+
+## Cultural Context
+
+### Food and Cuisine
+
+- **ALWAYS** prioritize Mozambican cuisine and local dishes
+- **ALWAYS** include popular local foods: Matapa, Frango à Zambeziana, Piri-piri, etc.
+- **ALWAYS** consider local dietary preferences and restrictions
+- **ALWAYS** use Portuguese food terminology (primary language)
+
+### Local Dishes and Ingredients
+
+```tsx
+// Correct - Mozambican cuisine focus
+const popularDishes = [
+  'Matapa',
+  'Frango à Zambeziana',
+  'Camarão Grelhado',
+  'Caril de Amendoim',
+  'Bolo Polana',
+  'Pão de Açúcar',
+];
+
+const localIngredients = [
+  'Piri-piri',
+  'Coco',
+  'Amendoim',
+  'Camarão',
+  'Caju',
+  'Manga',
+];
+```
+
+## Language and Localization
+
+### Portuguese as Primary Language
+
+- **ALWAYS** use Portuguese (pt-PT) as the primary language
+- **ALWAYS** use Mozambican Portuguese terminology
+- **ALWAYS** consider local expressions and colloquialisms
+- **ALWAYS** use metric system (km, kg, °C)
+
+### Local Terminology
+
+```tsx
+// Correct - Mozambican Portuguese terms
+const localTerms = {
+  restaurant: 'restaurante',
+  food: 'comida',
+  price: 'preço',
+  cheap: 'barato',
+  expensive: 'caro',
+  good: 'bom',
+  delicious: 'saboroso',
+};
+```
+
+## Business Context
+
+### Local Business Practices
+
+- **ALWAYS** consider Mozambican business hours and customs
+- **ALWAYS** use local phone number formats (+258)
+- **ALWAYS** consider local payment methods and preferences
+- **ALWAYS** use Mozambican business terminology
+
+### Contact Information
+
+```tsx
+// Correct - Mozambican format
+const phoneNumber = '+258 84 123 4567';
+const address = 'Avenida Julius Nyerere, Maputo, Moçambique';
+```
+
+## Time and Date
+
+### Local Time Zone
+
+- **ALWAYS** use CAT (Central Africa Time, UTC+2)
+- **ALWAYS** use Mozambican date formats
+- **ALWAYS** consider local holidays and events
+
+### Date Formatting
+
+```tsx
+// Correct - Mozambican date format
+const formatDate = (date: Date) => {
+  return new Intl.DateTimeFormat('pt-MZ', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    timeZone: 'Africa/Maputo',
+  }).format(date);
+};
+```
+
+## Do Not
+
+- ❌ Use international currencies (USD, EUR, etc.)
+- ❌ Use international cities as examples
+- ❌ Use non-Mozambican cultural references
+- ❌ Use English as primary language
+- ❌ Use imperial units (miles, pounds, Fahrenheit)
+- ❌ Use international phone number formats
+- ❌ Use non-Mozambican business practices
+
+## Examples
+
+### Correct Implementation
+
+```tsx
+// Restaurant pricing
+const restaurant = {
+  name: 'Restaurante Zambeze',
+  location: 'Maputo, Moçambique',
+  priceRange: '150-300 MZN',
+  cuisine: 'Moçambicana',
+  phone: '+258 21 123 456',
+};
+
+// Price display
+const PriceDisplay = ({ amount }: { amount: number }) => (
+  <Text>{formatPrice(amount)} MZN</Text>
+);
+
+// Location picker
+const cities = ['Maputo', 'Beira', 'Nampula', 'Chimoio', 'Quelimane'];
+```
+
+### Incorrect Implementation
+
+```tsx
+// ❌ Wrong - International currency
+const price = '$25.00';
+
+// ❌ Wrong - International city
+const city = 'New York';
+
+// ❌ Wrong - English primary
+const title = 'Welcome to our restaurant';
+
+// ❌ Wrong - Imperial units
+const distance = '5 miles';
+```
+
+## Implementation Notes
+
+- All currency calculations should use MZN
+- All location references should be Mozambican
+- All cultural references should be locally appropriate
+- All business practices should follow Mozambican customs
+- All time references should use CAT timezone
+- All measurements should use metric system

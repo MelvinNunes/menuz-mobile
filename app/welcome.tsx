@@ -59,7 +59,7 @@ export default function WelcomeScreen() {
 
                     <View style={styles.footer}>
                         <Pressable
-                            onPress={() => router.replace("/register")}
+                            onPress={() => router.navigate("/register")}
                             accessibilityRole="button"
                             style={({ pressed }) => [
                                 styles.primaryButton,
@@ -71,7 +71,7 @@ export default function WelcomeScreen() {
 
                         <View style={styles.signInRow}>
                             <Text style={styles.signInMuted}>{t('welcome.alreadyHaveAccount')}</Text>
-                            <Pressable onPress={() => router.replace("/login")} accessibilityRole="button">
+                            <Pressable onPress={() => router.navigate("/login")} accessibilityRole="button">
                                 <Text style={styles.signInLink}>{t('welcome.login')}</Text>
                             </Pressable>
                         </View>
@@ -174,11 +174,11 @@ const styles = StyleSheet.create({
     },
     signInMuted: {
         color: getColor('fg.primary'),
-        fontSize: 14,
+        fontSize: 15,
     },
     signInLink: {
         color: getColor('action.primary'),
-        fontSize: 14,
+        fontSize: 15,
         fontWeight: '600',
     },
 });

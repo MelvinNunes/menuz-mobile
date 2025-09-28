@@ -8,6 +8,30 @@
     "login": "Login",
     "register": "Register"
   },
+  "auth": {
+    "login": {
+      "title": "Login",
+      "subtitle": "Welcome back! Sign in to your account to continue exploring.",
+      "email": "Email",
+      "emailPlaceholder": "Enter your email",
+      "password": "Password",
+      "passwordPlaceholder": "Enter your password",
+      "loginButton": "Login",
+      "forgotPassword": "Forgot password?",
+      "noAccount": "Don't have an account?",
+      "register": "Register",
+      "loginError": "Login error",
+      "invalidCredentials": "Invalid email or password",
+      "networkError": "Connection error. Check your internet.",
+      "loading": "Signing in..."
+    },
+    "validation": {
+      "emailRequired": "Email is required",
+      "emailInvalid": "Enter a valid email",
+      "passwordRequired": "Password is required",
+      "passwordMinLength": "Password must be at least 6 characters"
+    }
+  },
   "preferences": {
     "title": "Preferences",
     "subtitle": "Personalize your dining experience",

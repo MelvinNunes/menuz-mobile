@@ -8,6 +8,30 @@
     "login": "Entrar",
     "register": "Registrar"
   },
+  "auth": {
+    "login": {
+      "title": "Entrar",
+      "subtitle": "Bem-vindo de volta! Entre na sua conta para continuar explorando.",
+      "email": "Email",
+      "emailPlaceholder": "Digite seu email",
+      "password": "Senha",
+      "passwordPlaceholder": "Digite sua senha",
+      "loginButton": "Entrar",
+      "forgotPassword": "Esqueceu a senha?",
+      "noAccount": "Não tem uma conta?",
+      "register": "Registrar",
+      "loginError": "Erro ao fazer login",
+      "invalidCredentials": "Email ou senha inválidos",
+      "networkError": "Erro de conexão. Verifique sua internet.",
+      "loading": "Entrando..."
+    },
+    "validation": {
+      "emailRequired": "Email é obrigatório",
+      "emailInvalid": "Digite um email válido",
+      "passwordRequired": "Senha é obrigatória",
+      "passwordMinLength": "Senha deve ter pelo menos 6 caracteres"
+    }
+  },
   "preferences": {
     "title": "Preferências",
     "subtitle": "Personalize sua experiência gastronômica",

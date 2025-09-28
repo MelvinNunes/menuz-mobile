@@ -1,0 +1,627 @@
+---
+alwaysApply: true
+---
+
+# Form Validation Rules
+
+## Overview
+
+All forms in this application MUST use Zod for schema validation and React Hook Form for form state management. This ensures type safety, consistent validation patterns, and optimal performance.
+
+## Required Dependencies
+
+- `zod` - Schema validation library
+- `react-hook-form` - Form state management
+- `@hookform/resolvers` - Integration between React Hook Form and Zod
+
+## Schema Organization
+
+### Schema Files Location
+
+- All form schemas must be placed in `schemas/` directory
+- File naming: `[feature].schema.ts` (e.g., `login.schema.ts`, `register.schema.ts`)
+- Export both schema and inferred type
+
+### Schema Structure
+
+```typescript
+import { z } from 'zod';
+
+export const [feature]Schema = z.object({
+  field1: z.string().min(1, 'validation.field1Required'),
+  field2: z.string().email('validation.field2Invalid'),
+});
+
+export type [Feature]FormData = z.infer<typeof [feature]Schema>;
+```
+
+## Form Implementation
+
+### Required Imports
+
+```typescript
+import { useForm, Controller } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { [feature]Schema, [Feature]FormData } from '@/schemas/[feature].schema';
+```
+
+### Form Setup
+
+```typescript
+const {
+  control,
+  handleSubmit,
+  formState: { errors, isSubmitting },
+  setError,
+  clearErrors,
+} = useForm<[Feature]FormData>({
+  resolver: zodResolver([feature]Schema),
+  defaultValues: {
+    // Define default values
+  },
+});
+```
+
+### Input Implementation
+
+```typescript
+<Controller
+  control={control}
+  name="fieldName"
+  render={({ field: { onChange, onBlur, value } }) => (
+    <FormInput
+      value={value}
+      onChangeText={onChange}
+      onBlur={onBlur}
+      error={errors.fieldName ? t(errors.fieldName.message || '') : undefined}
+      // ... other props
+    />
+  )}
+/>
+```
+
+### Submit Handler
+
+```typescript
+const onSubmit = async (data: [Feature]FormData) => {
+  try {
+    // Form submission logic
+  } catch (error) {
+    // Error handling
+  }
+};
+
+// In JSX
+<PrimaryButton
+  onPress={handleSubmit(onSubmit)}
+  loading={isSubmitting}
+  disabled={isSubmitting}
+/>
+```
+
+## Validation Rules
+
+### Email Validation
+
+```typescript
+email: z.string()
+  .min(1, 'validation.emailRequired')
+  .email('validation.emailInvalid');
+```
+
+### Password Validation
+
+```typescript
+password: z.string()
+  .min(1, 'validation.passwordRequired')
+  .min(6, 'validation.passwordMinLength');
+```
+
+### Required Fields
+
+```typescript
+field: z.string().min(1, 'validation.fieldRequired');
+```
+
+### Optional Fields
+
+```typescript
+field: z.string().optional();
+```
+
+### Custom Validation
+
+```typescript
+field: z.string().refine(
+  (value) => customValidation(value),
+  'validation.customError'
+);
+```
+
+## Error Handling
+
+### Translation Keys
+
+- All validation messages must use translation keys
+- Keys should follow pattern: `validation.[fieldName][ErrorType]`
+- Examples: `validation.emailRequired`, `validation.passwordMinLength`
+
+### Error Display
+
+```typescript
+error={errors.fieldName ? t(errors.fieldName.message || '') : undefined}
+```
+
+### Server-Side Errors
+
+```typescript
+// Set field-specific errors
+setError('fieldName', {
+  type: 'server',
+  message: 'validation.serverError',
+});
+
+// Set general form errors
+setError('root', {
+  type: 'server',
+  message: 'validation.generalError',
+});
+```
+
+## Performance Considerations
+
+### Form Optimization
+
+- Use `Controller` for controlled inputs
+- Implement proper `defaultValues`
+- Use `isSubmitting` for loading states
+- Avoid unnecessary re-renders with proper memoization
+
+### Validation Timing
+
+- Validation runs on submit by default
+- Use `mode: 'onChange'` for real-time validation if needed
+- Use `mode: 'onBlur'` for validation on field blur
+
+## Accessibility
+
+### Form Labels
+
+- All form inputs must have proper labels
+- Use `accessibilityLabel` for screen readers
+- Ensure proper focus management
+
+### Error Announcements
+
+- Errors should be announced to screen readers
+- Use proper ARIA attributes
+- Ensure error messages are descriptive
+
+## Testing
+
+### Schema Testing
+
+- Test all validation rules
+- Test edge cases and boundary conditions
+- Test custom validation functions
+
+### Form Testing
+
+- Test form submission
+- Test validation errors
+- Test loading states
+- Test error handling
+
+## Do Not
+
+- ❌ Use manual form state management
+- ❌ Use manual validation without Zod
+- ❌ Create forms without React Hook Form
+- ❌ Hardcode validation messages
+- ❌ Skip error handling
+- ❌ Use uncontrolled inputs without Controller
+- ❌ Ignore accessibility requirements
+
+## Examples
+
+### Complete Form Example
+
+```typescript
+// schemas/login.schema.ts
+import { z } from 'zod';
+
+export const loginSchema = z.object({
+  email: z
+    .string()
+    .min(1, 'validation.emailRequired')
+    .email('validation.emailInvalid'),
+  password: z
+    .string()
+    .min(1, 'validation.passwordRequired')
+    .min(6, 'validation.passwordMinLength'),
+});
+
+export type LoginFormData = z.infer<typeof loginSchema>;
+
+// components/LoginForm.tsx
+import { useForm, Controller } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { loginSchema, LoginFormData } from '@/schemas/login.schema';
+
+export default function LoginForm() {
+  const { t } = useTranslation();
+
+  const {
+    control,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<LoginFormData>({
+    resolver: zodResolver(loginSchema),
+    defaultValues: {
+      email: '',
+      password: '',
+    },
+  });
+
+  const onSubmit = async (data: LoginFormData) => {
+    // Handle form submission
+  };
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <Controller
+        control={control}
+        name="email"
+        render={({ field }) => (
+          <FormInput
+            {...field}
+            error={errors.email ? t(errors.email.message || '') : undefined}
+          />
+        )}
+      />
+
+      <PrimaryButton
+        onPress={handleSubmit(onSubmit)}
+        loading={isSubmitting}
+        disabled={isSubmitting}
+      />
+    </form>
+  );
+}
+```
+
+## Migration Guide
+
+When updating existing forms:
+
+1. **Install dependencies** if not already present
+2. **Create schema** in `schemas/` directory
+3. **Replace manual state** with `useForm` hook
+4. **Wrap inputs** with `Controller`
+5. **Update validation** to use Zod schema
+6. **Update submit handler** to use `handleSubmit`
+7. **Test thoroughly** to ensure functionality
+
+## Quality Checklist
+
+- ✅ Schema defined with proper validation rules
+- ✅ Form uses React Hook Form with Zod resolver
+- ✅ All inputs wrapped with Controller
+- ✅ Error messages use translation keys
+- ✅ Loading states properly handled
+- ✅ ✅ Accessibility requirements met
+- ✅ Form submission properly handled
+- ✅ Error handling implemented
+- ✅ Performance optimized
+- ✅ Tests written and passing# Form Validation Rules
+
+## Overview
+
+All forms in this application MUST use Zod for schema validation and React Hook Form for form state management. This ensures type safety, consistent validation patterns, and optimal performance.
+
+## Required Dependencies
+
+- `zod` - Schema validation library
+- `react-hook-form` - Form state management
+- `@hookform/resolvers` - Integration between React Hook Form and Zod
+
+## Schema Organization
+
+### Schema Files Location
+
+- All form schemas must be placed in `schemas/` directory
+- File naming: `[feature].schema.ts` (e.g., `login.schema.ts`, `register.schema.ts`)
+- Export both schema and inferred type
+
+### Schema Structure
+
+```typescript
+import { z } from 'zod';
+
+export const [feature]Schema = z.object({
+  field1: z.string().min(1, 'validation.field1Required'),
+  field2: z.string().email('validation.field2Invalid'),
+});
+
+export type [Feature]FormData = z.infer<typeof [feature]Schema>;
+```
+
+## Form Implementation
+
+### Required Imports
+
+```typescript
+import { useForm, Controller } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { [feature]Schema, [Feature]FormData } from '@/schemas/[feature].schema';
+```
+
+### Form Setup
+
+```typescript
+const {
+  control,
+  handleSubmit,
+  formState: { errors, isSubmitting },
+  setError,
+  clearErrors,
+} = useForm<[Feature]FormData>({
+  resolver: zodResolver([feature]Schema),
+  defaultValues: {
+    // Define default values
+  },
+});
+```
+
+### Input Implementation
+
+```typescript
+<Controller
+  control={control}
+  name="fieldName"
+  render={({ field: { onChange, onBlur, value } }) => (
+    <FormInput
+      value={value}
+      onChangeText={onChange}
+      onBlur={onBlur}
+      error={errors.fieldName ? t(errors.fieldName.message || '') : undefined}
+      // ... other props
+    />
+  )}
+/>
+```
+
+### Submit Handler
+
+```typescript
+const onSubmit = async (data: [Feature]FormData) => {
+  try {
+    // Form submission logic
+  } catch (error) {
+    // Error handling
+  }
+};
+
+// In JSX
+<PrimaryButton
+  onPress={handleSubmit(onSubmit)}
+  loading={isSubmitting}
+  disabled={isSubmitting}
+/>
+```
+
+## Validation Rules
+
+### Email Validation
+
+```typescript
+email: z.string()
+  .min(1, 'validation.emailRequired')
+  .email('validation.emailInvalid');
+```
+
+### Password Validation
+
+```typescript
+password: z.string()
+  .min(1, 'validation.passwordRequired')
+  .min(6, 'validation.passwordMinLength');
+```
+
+### Required Fields
+
+```typescript
+field: z.string().min(1, 'validation.fieldRequired');
+```
+
+### Optional Fields
+
+```typescript
+field: z.string().optional();
+```
+
+### Custom Validation
+
+```typescript
+field: z.string().refine(
+  (value) => customValidation(value),
+  'validation.customError'
+);
+```
+
+## Error Handling
+
+### Translation Keys
+
+- All validation messages must use translation keys
+- Keys should follow pattern: `validation.[fieldName][ErrorType]`
+- Examples: `validation.emailRequired`, `validation.passwordMinLength`
+
+### Error Display
+
+```typescript
+error={errors.fieldName ? t(errors.fieldName.message || '') : undefined}
+```
+
+### Server-Side Errors
+
+```typescript
+// Set field-specific errors
+setError('fieldName', {
+  type: 'server',
+  message: 'validation.serverError',
+});
+
+// Set general form errors
+setError('root', {
+  type: 'server',
+  message: 'validation.generalError',
+});
+```
+
+## Performance Considerations
+
+### Form Optimization
+
+- Use `Controller` for controlled inputs
+- Implement proper `defaultValues`
+- Use `isSubmitting` for loading states
+- Avoid unnecessary re-renders with proper memoization
+
+### Validation Timing
+
+- Validation runs on submit by default
+- Use `mode: 'onChange'` for real-time validation if needed
+- Use `mode: 'onBlur'` for validation on field blur
+
+## Accessibility
+
+### Form Labels
+
+- All form inputs must have proper labels
+- Use `accessibilityLabel` for screen readers
+- Ensure proper focus management
+
+### Error Announcements
+
+- Errors should be announced to screen readers
+- Use proper ARIA attributes
+- Ensure error messages are descriptive
+
+## Testing
+
+### Schema Testing
+
+- Test all validation rules
+- Test edge cases and boundary conditions
+- Test custom validation functions
+
+### Form Testing
+
+- Test form submission
+- Test validation errors
+- Test loading states
+- Test error handling
+
+## Do Not
+
+- ❌ Use manual form state management
+- ❌ Use manual validation without Zod
+- ❌ Create forms without React Hook Form
+- ❌ Hardcode validation messages
+- ❌ Skip error handling
+- ❌ Use uncontrolled inputs without Controller
+- ❌ Ignore accessibility requirements
+
+## Examples
+
+### Complete Form Example
+
+```typescript
+// schemas/login.schema.ts
+import { z } from 'zod';
+
+export const loginSchema = z.object({
+  email: z
+    .string()
+    .min(1, 'validation.emailRequired')
+    .email('validation.emailInvalid'),
+  password: z
+    .string()
+    .min(1, 'validation.passwordRequired')
+    .min(6, 'validation.passwordMinLength'),
+});
+
+export type LoginFormData = z.infer<typeof loginSchema>;
+
+// components/LoginForm.tsx
+import { useForm, Controller } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { loginSchema, LoginFormData } from '@/schemas/login.schema';
+
+export default function LoginForm() {
+  const { t } = useTranslation();
+
+  const {
+    control,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<LoginFormData>({
+    resolver: zodResolver(loginSchema),
+    defaultValues: {
+      email: '',
+      password: '',
+    },
+  });
+
+  const onSubmit = async (data: LoginFormData) => {
+    // Handle form submission
+  };
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <Controller
+        control={control}
+        name="email"
+        render={({ field }) => (
+          <FormInput
+            {...field}
+            error={errors.email ? t(errors.email.message || '') : undefined}
+          />
+        )}
+      />
+
+      <PrimaryButton
+        onPress={handleSubmit(onSubmit)}
+        loading={isSubmitting}
+        disabled={isSubmitting}
+      />
+    </form>
+  );
+}
+```
+
+## Migration Guide
+
+When updating existing forms:
+
+1. **Install dependencies** if not already present
+2. **Create schema** in `schemas/` directory
+3. **Replace manual state** with `useForm` hook
+4. **Wrap inputs** with `Controller`
+5. **Update validation** to use Zod schema
+6. **Update submit handler** to use `handleSubmit`
+7. **Test thoroughly** to ensure functionality
+
+## Quality Checklist
+
+- ✅ Schema defined with proper validation rules
+- ✅ Form uses React Hook Form with Zod resolver
+- ✅ All inputs wrapped with Controller
+- ✅ Error messages use translation keys
+- ✅ Loading states properly handled
+- ✅ ✅ Accessibility requirements met
+- ✅ Form submission properly handled
+- ✅ Error handling implemented
+- ✅ Performance optimized
+- ✅ Tests written and passing

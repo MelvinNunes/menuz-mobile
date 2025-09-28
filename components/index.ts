@@ -14,6 +14,8 @@ export { default as Toast } from './ui/Toast';
 export { default as Skeleton } from './ui/Skeleton';
 export { default as Badge } from './ui/Badge';
 export { default as DietaryFilter } from './ui/DietaryFilter';
+export { default as FormInput } from './ui/FormInput';
+export { default as PrimaryButton } from './ui/PrimaryButton';
 
 // Preference Components
 export { default as PreferenceCard } from './ui/PreferenceCard';

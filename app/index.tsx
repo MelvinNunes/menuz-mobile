@@ -37,7 +37,7 @@ export default function IndexScreen() {
             }
 
             // Users with completed onboarding → Main app
-            router.replace('/(tabs)');
+            router.replace('/welcome');
 
         } catch (error) {
             console.error('Error checking initial route:', error);
