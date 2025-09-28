@@ -92,7 +92,7 @@ export default function CuisineCard({
                         },
                     ]}
                 >
-                    <Check size={16} color={"#FF6B35"} />
+                    <Check size={16} color={getColor('fg.inverse')} />
                 </Animated.View>
             </TouchableOpacity>
         </Animated.View>
@@ -118,8 +118,8 @@ const styles = StyleSheet.create({
         elevation: 1,
     },
     selectedContainer: {
-        backgroundColor: getColor('action.primary'),
-        borderColor: getColor('action.primary'),
+        backgroundColor: getColor('warning.surface'),
+        borderColor: getColor('warning.text'),
     },
     content: {
         flexDirection: 'row',
@@ -137,13 +137,13 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     selectedLabel: {
-        color: getColor('fg.inverse'),
+        color: getColor('warning.text'),
     },
     checkContainer: {
         width: 24,
         height: 24,
         borderRadius: 12,
-        backgroundColor: getColor('fg.inverse'),
+        backgroundColor: getColor('warning.text'),
         alignItems: 'center',
         justifyContent: 'center',
         marginLeft: 8,

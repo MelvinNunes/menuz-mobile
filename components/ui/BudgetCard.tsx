@@ -70,7 +70,6 @@ export default function BudgetCard({
                     <View style={styles.symbolContainer}>
                         <Text style={[
                             styles.symbol,
-                            isSelected && styles.selectedSymbol
                         ]}>
                             {symbol}
                         </Text>
@@ -107,7 +106,7 @@ export default function BudgetCard({
                         },
                     ]}
                 >
-                    <Check size={20} color={"#FF6B35"} />
+                    <Check size={20} color={getColor('fg.inverse')} />
                 </Animated.View>
             </TouchableOpacity>
         </Animated.View>
@@ -133,8 +132,8 @@ const styles = StyleSheet.create({
         elevation: 2,
     },
     selectedContainer: {
-        backgroundColor: getColor('action.primary'),
-        borderColor: getColor('action.primary'),
+        backgroundColor: getColor('warning.surface'),
+        borderColor: getColor('warning.text'),
     },
     content: {
         flexDirection: 'row',
@@ -151,7 +150,7 @@ const styles = StyleSheet.create({
         marginRight: 12,
     },
     selectedSymbol: {
-        backgroundColor: getColor('fg.inverse'),
+        backgroundColor: getColor('warning.text'),
     },
     symbol: {
         fontSize: 18,
@@ -168,7 +167,7 @@ const styles = StyleSheet.create({
         marginBottom: 2,
     },
     selectedLabel: {
-        color: getColor('fg.inverse'),
+        color: getColor('warning.text'),
     },
     description: {
         fontSize: 14,
@@ -177,14 +176,14 @@ const styles = StyleSheet.create({
         lineHeight: 18,
     },
     selectedDescription: {
-        color: getColor('fg.inverse'),
-        opacity: 0.9,
+        color: getColor('warning.text'),
+        opacity: 0.8,
     },
     checkContainer: {
         width: 28,
         height: 28,
         borderRadius: 14,
-        backgroundColor: getColor('fg.inverse'),
+        backgroundColor: getColor('warning.text'),
         alignItems: 'center',
         justifyContent: 'center',
         marginLeft: 12,
