@@ -1,0 +1,469 @@
+---
+alwaysApply: true
+---
+
+# Cursor Rules for Menuz Mobile App
+
+## Mandatory Modularization Rule
+
+**CRITICAL: All screens and complex components MUST be broken down into smaller, modular components.**
+
+### Rules for Screen Components:
+
+- **NEVER** write entire application logic in a single screen file
+- **ALWAYS** break down screens into logical sections/components/modules
+- **MANDATORY** to create separate component files for:
+  - Each major section of a screen (e.g., header, content sections, footer)
+  - Reusable UI patterns (cards, lists, forms)
+  - Complex interactive elements
+  - Data display components
+
+### Component Organization:
+
+- Place section components in `components/sections/`
+- Place reusable UI components in `components/ui/`
+- Each component should have a single responsibility
+- Components should be no more than 200-300 lines of code
+- Extract complex logic into custom hooks
+
+### Examples of Required Modularization:
+
+- Home screen → QuickSuggestionsSection, MostExploredSection, etc.
+- Restaurant detail → RestaurantHeader, MenuSection, ReviewsSection
+- Profile screen → UserInfoSection, PreferencesSection, SettingsSection
+- Search screen → SearchFilters, SearchResults, SearchSuggestions
+
+### Benefits:
+
+- Improved maintainability
+- Better code reusability
+- Easier testing
+- Cleaner separation of concerns
+- Better performance through targeted re-renders
+
+### Enforcement:
+
+- Any screen file over 500 lines MUST be refactored
+- Any component over 300 lines MUST be broken down
+- All new features MUST follow modular architecture
+- Code reviews will enforce these rules
+
+## Additional Development Rules
+
+### TypeScript
+
+- Use strict mode
+- Avoid `any` type
+- Define proper interfaces for all props
+- Use path alias `@/*` for imports
+
+### React Native Best Practices
+
+- Use functional components with hooks
+- Implement proper accessibility
+- Use proper touch targets (44x44 minimum)
+- Handle loading and error states
+
+### Styling
+
+- Use theme tokens from `@/theme/colors`
+- Follow design system patterns
+- Use consistent spacing (8px rhythm)
+- Implement proper dark mode support
+
+### Performance
+
+- Memoize expensive components
+- Use FlatList for large lists
+- Implement proper key extraction
+- Avoid unnecessary re-renders
+
+### Internationalization
+
+- All text must use translation keys
+- Support Portuguese (pt-PT) and English (en-US)
+- Use `useTranslation` hook for all user-facing text
+
+### Form Handling
+
+- Use React Hook Form with Zod validation
+- Implement proper error handling
+- Use controlled components
+- Provide user feedback
+
+### Navigation
+
+- Use Expo Router for navigation
+- Implement proper deep linking
+- Handle navigation state properly
+- Use typed route parameters
+
+### Data Management
+
+- Use proper state management
+- Implement caching strategies
+- Handle offline scenarios
+- Use optimistic updates where appropriate
+
+### Testing
+
+- Write unit tests for utilities
+- Test component behavior
+- Mock external dependencies
+- Test accessibility features
+
+### Code Quality
+
+- Follow consistent naming conventions
+- Use meaningful variable names
+- Implement proper error boundaries
+- Add proper documentation
+- Keep functions small and focused
+
+### Security
+
+- Validate all inputs
+- Sanitize user data
+- Implement proper authentication
+- Handle sensitive data securely
+
+### Accessibility
+
+- Add proper accessibility labels
+- Support screen readers
+- Implement keyboard navigation
+- Use semantic HTML elements
+- Test with accessibility tools
+
+### Performance Monitoring
+
+- Monitor app performance
+- Track user interactions
+- Implement crash reporting
+- Monitor memory usage
+- Optimize bundle size
+
+## File Structure Rules
+
+### Components
+
+- `components/ui/` - Reusable UI primitives
+- `components/sections/` - Screen sections
+- `components/layouts/` - Layout components
+- `components/forms/` - Form components
+
+### Screens
+
+- Keep screens minimal and focused
+- Use composition over large components
+- Extract business logic to hooks
+- Implement proper loading states
+
+### Hooks
+
+- `hooks/` - Custom hooks for business logic
+- Keep hooks focused and reusable
+- Implement proper error handling
+- Use proper dependency arrays
+
+### Utils
+
+- `utils/` - Pure utility functions
+- Keep functions pure and testable
+- Implement proper error handling
+- Use TypeScript for type safety
+
+### Types
+
+- Define proper TypeScript interfaces
+- Use generic types where appropriate
+- Implement proper type guards
+- Export types from appropriate files
+
+## Code Review Checklist
+
+### Modularization
+
+- [ ] Screen is broken into logical sections
+- [ ] Components are under 300 lines
+- [ ] Reusable components are extracted
+- [ ] Business logic is in custom hooks
+
+### TypeScript
+
+- [ ] All props are properly typed
+- [ ] No `any` types used
+- [ ] Interfaces are well-defined
+- [ ] Generic types used appropriately
+
+### Performance
+
+- [ ] Components are properly memoized
+- [ ] Lists use proper optimization
+- [ ] Images are optimized
+- [ ] Bundle size is reasonable
+
+### Accessibility
+
+- [ ] Proper accessibility labels
+- [ ] Keyboard navigation works
+- [ ] Screen reader support
+- [ ] Touch targets are appropriate
+
+### Testing
+
+- [ ] Unit tests for utilities
+- [ ] Component tests written
+- [ ] Integration tests implemented
+- [ ] Accessibility tests included
+
+### Documentation
+
+- [ ] Code is well-documented
+- [ ] README is updated
+- [ ] API documentation exists
+- [ ] Examples are provided
+
+## Enforcement
+
+These rules are MANDATORY and will be enforced through:
+
+- Code review process
+- Automated linting
+- CI/CD pipeline checks
+- Regular architecture reviews
+
+**Violation of these rules will result in code rejection and required refactoring.**
+
+# Cursor Rules for Menuz Mobile App
+
+## Mandatory Modularization Rule
+
+**CRITICAL: All screens and complex components MUST be broken down into smaller, modular components.**
+
+### Rules for Screen Components:
+
+- **NEVER** write entire application logic in a single screen file
+- **ALWAYS** break down screens into logical sections/components
+- **MANDATORY** to create separate component files for:
+  - Each major section of a screen (e.g., header, content sections, footer)
+  - Reusable UI patterns (cards, lists, forms)
+  - Complex interactive elements
+  - Data display components
+
+### Component Organization:
+
+- Place section components in `components/sections/`
+- Place reusable UI components in `components/ui/`
+- Each component should have a single responsibility
+- Components should be no more than 200-300 lines of code
+- Extract complex logic into custom hooks
+
+### Examples of Required Modularization:
+
+- Home screen → QuickSuggestionsSection, MostExploredSection, etc.
+- Restaurant detail → RestaurantHeader, MenuSection, ReviewsSection
+- Profile screen → UserInfoSection, PreferencesSection, SettingsSection
+- Search screen → SearchFilters, SearchResults, SearchSuggestions
+
+### Benefits:
+
+- Improved maintainability
+- Better code reusability
+- Easier testing
+- Cleaner separation of concerns
+- Better performance through targeted re-renders
+
+### Enforcement:
+
+- Any screen file over 500 lines MUST be refactored
+- Any component over 300 lines MUST be broken down
+- All new features MUST follow modular architecture
+- Code reviews will enforce these rules
+
+## Additional Development Rules
+
+### TypeScript
+
+- Use strict mode
+- Avoid `any` type
+- Define proper interfaces for all props
+- Use path alias `@/*` for imports
+
+### React Native Best Practices
+
+- Use functional components with hooks
+- Implement proper accessibility
+- Use proper touch targets (44x44 minimum)
+- Handle loading and error states
+
+### Styling
+
+- Use theme tokens from `@/theme/colors`
+- Follow design system patterns
+- Use consistent spacing (8px rhythm)
+- Implement proper dark mode support
+
+### Performance
+
+- Memoize expensive components
+- Use FlatList for large lists
+- Implement proper key extraction
+- Avoid unnecessary re-renders
+
+### Internationalization
+
+- All text must use translation keys
+- Support Portuguese (pt-PT) and English (en-US)
+- Use `useTranslation` hook for all user-facing text
+
+### Form Handling
+
+- Use React Hook Form with Zod validation
+- Implement proper error handling
+- Use controlled components
+- Provide user feedback
+
+### Navigation
+
+- Use Expo Router for navigation
+- Implement proper deep linking
+- Handle navigation state properly
+- Use typed route parameters
+
+### Data Management
+
+- Use proper state management
+- Implement caching strategies
+- Handle offline scenarios
+- Use optimistic updates where appropriate
+
+### Testing
+
+- Write unit tests for utilities
+- Test component behavior
+- Mock external dependencies
+- Test accessibility features
+
+### Code Quality
+
+- Follow consistent naming conventions
+- Use meaningful variable names
+- Implement proper error boundaries
+- Add proper documentation
+- Keep functions small and focused
+
+### Security
+
+- Validate all inputs
+- Sanitize user data
+- Implement proper authentication
+- Handle sensitive data securely
+
+### Accessibility
+
+- Add proper accessibility labels
+- Support screen readers
+- Implement keyboard navigation
+- Use semantic HTML elements
+- Test with accessibility tools
+
+### Performance Monitoring
+
+- Monitor app performance
+- Track user interactions
+- Implement crash reporting
+- Monitor memory usage
+- Optimize bundle size
+
+## File Structure Rules
+
+### Components
+
+- `components/ui/` - Reusable UI primitives
+- `components/sections/` - Screen sections
+- `components/layouts/` - Layout components
+- `components/forms/` - Form components
+
+### Screens
+
+- Keep screens minimal and focused
+- Use composition over large components
+- Extract business logic to hooks
+- Implement proper loading states
+
+### Hooks
+
+- `hooks/` - Custom hooks for business logic
+- Keep hooks focused and reusable
+- Implement proper error handling
+- Use proper dependency arrays
+
+### Utils
+
+- `utils/` - Pure utility functions
+- Keep functions pure and testable
+- Implement proper error handling
+- Use TypeScript for type safety
+
+### Types
+
+- Define proper TypeScript interfaces
+- Use generic types where appropriate
+- Implement proper type guards
+- Export types from appropriate files
+
+## Code Review Checklist
+
+### Modularization
+
+- [ ] Screen is broken into logical sections
+- [ ] Components are under 300 lines
+- [ ] Reusable components are extracted
+- [ ] Business logic is in custom hooks
+
+### TypeScript
+
+- [ ] All props are properly typed
+- [ ] No `any` types used
+- [ ] Interfaces are well-defined
+- [ ] Generic types used appropriately
+
+### Performance
+
+- [ ] Components are properly memoized
+- [ ] Lists use proper optimization
+- [ ] Images are optimized
+- [ ] Bundle size is reasonable
+
+### Accessibility
+
+- [ ] Proper accessibility labels
+- [ ] Keyboard navigation works
+- [ ] Screen reader support
+- [ ] Touch targets are appropriate
+
+### Testing
+
+- [ ] Unit tests for utilities
+- [ ] Component tests written
+- [ ] Integration tests implemented
+- [ ] Accessibility tests included
+
+### Documentation
+
+- [ ] Code is well-documented
+- [ ] README is updated
+- [ ] API documentation exists
+- [ ] Examples are provided
+
+## Enforcement
+
+These rules are MANDATORY and will be enforced through:
+
+- Code review process
+- Automated linting
+- CI/CD pipeline checks
+- Regular architecture reviews
+
+**Violation of these rules will result in code rejection and required refactoring.**

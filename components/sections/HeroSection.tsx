@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, ImageBackground, TouchableOpacity, Dimensions } from 'react-native';
-import { Search, Sparkles, MapPin } from 'lucide-react-native';
-import { LocationPicker } from '@/components';
+import { Search, Sparkles } from 'lucide-react-native';
 
 const { width } = Dimensions.get('window');
 

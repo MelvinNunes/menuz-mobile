@@ -32,6 +32,13 @@ export { default as ScreenLayout } from './layouts/ScreenLayout';
 
 // Section Components
 export { default as HeroSection } from './sections/HeroSection';
+export { default as QuickSuggestionsSection } from './sections/QuickSuggestionsSection';
+export { default as MostExploredSection } from './sections/MostExploredSection';
+export { default as MozambiqueCategoriesSection } from './sections/MozambiqueCategoriesSection';
+export { default as CategoryCardsSection } from './sections/CategoryCardsSection';
+export { default as PromoBannersSection } from './sections/PromoBannersSection';
+export { default as NearestSection } from './sections/NearestSection';
+export { default as SuggestRestaurantCTA } from './sections/SuggestRestaurantCTA';
 
 // Preference Flow Components
 export { default as PreferencesFlow } from './preferences/PreferencesFlow';

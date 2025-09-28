@@ -57,6 +57,52 @@
       "passwordsDoNotMatch": "As senhas não coincidem"
     }
   },
+  "home": {
+    "greeting": {
+      "loggedIn": "Olá {{name}},",
+      "guest": "Olá, Explorador!",
+      "subtitle": "O que vais explorar hoje?"
+    },
+    "sections": {
+      "quickSuggestions": "Sugestões Rápidas",
+      "mostExplored": "Mais Explorados",
+      "nearest": "Mais Próximos",
+      "seeAll": "Ver todos"
+    },
+    "quickCategories": {
+      "hamburgers": "HAMBURGERS",
+      "drinks": "BEBIDAS",
+      "pizzas": "PIZZAS",
+      "desserts": "SOBREMESAS",
+      "vegetables": "VEGETAIS",
+      "chicken": "FRANGO",
+      "fish": "PEIXE",
+      "juices": "SUMOS"
+    },
+    "restaurants": {
+      "galitos": "Galito's Maputo",
+      "pizzariaItaliano": "Pizzaria Italiano",
+      "oceanBasket": "Ocean Basket",
+      "cafeSol": "Café Sol",
+      "burgerKing": "Burger King Maputo",
+      "costaDoSol": "Restaurante Costa do Sol"
+    },
+    "cuisines": {
+      "grilledChicken": "Frango Grelhado",
+      "pizzaPasta": "Pizza & Massas",
+      "seafood": "Frutos do Mar",
+      "coffeePastries": "Café & Pastéis",
+      "fastFood": "Fast Food",
+      "mozambican": "Cozinha Moçambicana"
+    },
+    "mozambiqueCategories": {
+      "localChains": "Cadeias Locais",
+      "traditional": "Tradicional",
+      "seafood": "Frutos do Mar",
+      "fastFood": "Fast Food",
+      "cafes": "Cafés"
+    }
+  },
   "preferences": {
     "title": "Preferências",
     "subtitle": "Personalize sua experiência gastronômica",

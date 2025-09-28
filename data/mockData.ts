@@ -4,21 +4,175 @@ export const promotionalBanners = [
     title: 'Dia de Pizza!',
     discount: '10%',
     description: 'desconto',
-    image: 'https://images.pexels.com/photos/315755/pexels-photo-315755.jpeg?auto=compress&cs=tinysrgb&w=400',
+    image:
+      'https://images.pexels.com/photos/315755/pexels-photo-315755.jpeg?auto=compress&cs=tinysrgb&w=400',
   },
   {
     id: '2',
     title: 'Seafood Special',
     discount: '15%',
     description: 'desconto',
-    image: 'https://images.pexels.com/photos/566566/pexels-photo-566566.jpeg?auto=compress&cs=tinysrgb&w=400',
+    image:
+      'https://images.pexels.com/photos/566566/pexels-photo-566566.jpeg?auto=compress&cs=tinysrgb&w=400',
   },
   {
     id: '3',
     title: 'Happy Hour',
     discount: '20%',
     description: 'desconto em bebidas',
-    image: 'https://images.pexels.com/photos/941861/pexels-photo-941861.jpeg?auto=compress&cs=tinysrgb&w=400',
+    image:
+      'https://images.pexels.com/photos/941861/pexels-photo-941861.jpeg?auto=compress&cs=tinysrgb&w=400',
+  },
+];
+
+// Quick Suggestions Categories
+export const quickSuggestionsCategories = [
+  {
+    id: 'hamburgers',
+    name: 'HAMBURGERS',
+    icon: '🍔',
+    color: '#FF6B35',
+  },
+  {
+    id: 'drinks',
+    name: 'BEBIDAS',
+    icon: '🥤',
+    color: '#3B82F6',
+  },
+  {
+    id: 'pizzas',
+    name: 'PIZZAS',
+    icon: '🍕',
+    color: '#10B981',
+  },
+  {
+    id: 'desserts',
+    name: 'SOBREMESAS',
+    icon: '🍰',
+    color: '#8B5CF6',
+  },
+  {
+    id: 'vegetables',
+    name: 'VEGETAIS',
+    icon: '🥗',
+    color: '#059669',
+  },
+  {
+    id: 'chicken',
+    name: 'FRANGO',
+    icon: '🍗',
+    color: '#DC2626',
+  },
+  {
+    id: 'fish',
+    name: 'PEIXE',
+    icon: '🐟',
+    color: '#0891B2',
+  },
+  {
+    id: 'juices',
+    name: 'SUMOS',
+    icon: '🧃',
+    color: '#EA580C',
+  },
+];
+
+// Most Explored Restaurants (Mozambican context)
+export const mostExploredRestaurants = [
+  {
+    id: '1',
+    name: "Galito's Maputo",
+    cuisine: 'Frango Grelhado',
+    rating: 4.4,
+    reviewCount: 312,
+    distance: '2.1km',
+    priceRange: 'MT 200-400',
+    image:
+      'https://images.pexels.com/photos/1199957/pexels-photo-1199957.jpeg?auto=compress&cs=tinysrgb&w=400',
+  },
+  {
+    id: '2',
+    name: 'Pizzaria Italiano',
+    cuisine: 'Pizza & Massas',
+    rating: 4.6,
+    reviewCount: 189,
+    distance: '1.5km',
+    priceRange: 'MT 300-600',
+    image:
+      'https://images.pexels.com/photos/315755/pexels-photo-315755.jpeg?auto=compress&cs=tinysrgb&w=400',
+  },
+  {
+    id: '3',
+    name: 'Ocean Basket',
+    cuisine: 'Frutos do Mar',
+    rating: 4.2,
+    reviewCount: 156,
+    distance: '3.2km',
+    priceRange: 'MT 400-800',
+    image:
+      'https://images.pexels.com/photos/566566/pexels-photo-566566.jpeg?auto=compress&cs=tinysrgb&w=400',
+  },
+];
+
+// Nearest Restaurants
+export const nearestRestaurants = [
+  {
+    id: '4',
+    name: 'Café Sol',
+    cuisine: 'Café & Pastéis',
+    distance: '0.4km',
+    image:
+      'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=400',
+  },
+  {
+    id: '5',
+    name: 'Burger King Maputo',
+    cuisine: 'Fast Food',
+    distance: '0.6km',
+    image:
+      'https://images.pexels.com/photos/1267320/pexels-photo-1267320.jpeg?auto=compress&cs=tinysrgb&w=400',
+  },
+  {
+    id: '6',
+    name: 'Restaurante Costa do Sol',
+    cuisine: 'Cozinha Moçambicana',
+    distance: '0.8km',
+    image:
+      'https://images.pexels.com/photos/696218/pexels-photo-696218.jpeg?auto=compress&cs=tinysrgb&w=400',
+  },
+];
+
+// Mozambique-specific restaurant categories
+export const mozambiqueCategories = [
+  {
+    id: 'localChains',
+    name: 'Cadeias Locais',
+    icon: '🏪',
+    color: '#FF6B35',
+  },
+  {
+    id: 'traditional',
+    name: 'Tradicional',
+    icon: '🏛️',
+    color: '#8B5CF6',
+  },
+  {
+    id: 'seafood',
+    name: 'Frutos do Mar',
+    icon: '🐟',
+    color: '#0891B2',
+  },
+  {
+    id: 'fastFood',
+    name: 'Fast Food',
+    icon: '🍔',
+    color: '#DC2626',
+  },
+  {
+    id: 'cafes',
+    name: 'Cafés',
+    icon: '☕',
+    color: '#EA580C',
   },
 ];
 
@@ -32,7 +186,8 @@ export const featuredRestaurants = [
     distance: '2,3 km distante',
     priceRange: '100 MZN',
     hasPromotion: true,
-    image: 'https://images.pexels.com/photos/1267320/pexels-photo-1267320.jpeg?auto=compress&cs=tinysrgb&w=800',
+    image:
+      'https://images.pexels.com/photos/1267320/pexels-photo-1267320.jpeg?auto=compress&cs=tinysrgb&w=800',
     cuisine: ['Mediterranean', 'Seafood', 'Portuguese'],
     dietary: ['vegetarian', 'gluten-free'],
     openingHours: {
@@ -54,7 +209,8 @@ export const featuredRestaurants = [
     distance: '1,8 km distante',
     priceRange: '150 MZN',
     hasPromotion: false,
-    image: 'https://images.pexels.com/photos/696218/pexels-photo-696218.jpeg?auto=compress&cs=tinysrgb&w=800',
+    image:
+      'https://images.pexels.com/photos/696218/pexels-photo-696218.jpeg?auto=compress&cs=tinysrgb&w=800',
     cuisine: ['Seafood', 'Mozambican', 'Grilled'],
     dietary: ['seafood'],
     phone: '+258 21 234 567',
@@ -69,7 +225,8 @@ export const featuredRestaurants = [
     distance: '3,1 km distante',
     priceRange: '80 MZN',
     hasPromotion: true,
-    image: 'https://images.pexels.com/photos/1199957/pexels-photo-1199957.jpeg?auto=compress&cs=tinysrgb&w=800',
+    image:
+      'https://images.pexels.com/photos/1199957/pexels-photo-1199957.jpeg?auto=compress&cs=tinysrgb&w=800',
     cuisine: ['Portuguese', 'Grilled', 'Chicken'],
     dietary: ['halal'],
     phone: '+258 21 345 678',
@@ -82,18 +239,27 @@ export const mockMenuItems = {
     {
       id: '1',
       name: 'Camarão Grelhado',
-      description: 'Camarões frescos grelhados com alho e ervas aromáticas, servidos com molho de manteiga e limão. Uma entrada perfeita para os amantes de frutos do mar.',
+      description:
+        'Camarões frescos grelhados com alho e ervas aromáticas, servidos com molho de manteiga e limão. Uma entrada perfeita para os amantes de frutos do mar.',
       price: 120,
-      image: 'https://images.pexels.com/photos/566566/pexels-photo-566566.jpeg?auto=compress&cs=tinysrgb&w=400',
+      image:
+        'https://images.pexels.com/photos/566566/pexels-photo-566566.jpeg?auto=compress&cs=tinysrgb&w=400',
       dietary: ['seafood'],
       popular: true,
-      ingredients: ['Camarão fresco', 'Alho', 'Ervas aromáticas', 'Manteiga', 'Limão'],
+      ingredients: [
+        'Camarão fresco',
+        'Alho',
+        'Ervas aromáticas',
+        'Manteiga',
+        'Limão',
+      ],
       allergens: ['Crustáceos'],
     },
     {
       id: '2',
       name: 'Samosas de Carne',
-      description: 'Samosas tradicionais com recheio de carne temperada e especiarias, servidas com chutney de manga. Crocantes por fora e suculentas por dentro.',
+      description:
+        'Samosas tradicionais com recheio de carne temperada e especiarias, servidas com chutney de manga. Crocantes por fora e suculentas por dentro.',
       price: 85,
       dietary: ['halal'],
       spicyLevel: 2,
@@ -103,9 +269,11 @@ export const mockMenuItems = {
     {
       id: '3',
       name: 'Salada Tropical',
-      description: 'Mistura de folhas verdes frescas com manga, abacate e molho de coco. Uma opção refrescante e nutritiva para começar a refeição.',
+      description:
+        'Mistura de folhas verdes frescas com manga, abacate e molho de coco. Uma opção refrescante e nutritiva para começar a refeição.',
       price: 95,
-      image: 'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=400',
+      image:
+        'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=400',
       dietary: ['vegetarian', 'vegan', 'gluten-free'],
       ingredients: ['Folhas verdes', 'Manga', 'Abacate', 'Coco', 'Azeite'],
       allergens: [],
@@ -115,35 +283,53 @@ export const mockMenuItems = {
     {
       id: '4',
       name: 'Lagosta Grelhada',
-      description: 'Lagosta fresca grelhada com manteiga de ervas e especiarias, acompanhada de arroz de coco e legumes salteados. Um prato premium para ocasiões especiais.',
+      description:
+        'Lagosta fresca grelhada com manteiga de ervas e especiarias, acompanhada de arroz de coco e legumes salteados. Um prato premium para ocasiões especiais.',
       price: 450,
-      image: 'https://images.pexels.com/photos/1267320/pexels-photo-1267320.jpeg?auto=compress&cs=tinysrgb&w=400',
+      image:
+        'https://images.pexels.com/photos/1267320/pexels-photo-1267320.jpeg?auto=compress&cs=tinysrgb&w=400',
       dietary: ['seafood'],
       popular: true,
-      ingredients: ['Lagosta fresca', 'Manteiga', 'Ervas', 'Arroz', 'Coco', 'Legumes'],
+      ingredients: [
+        'Lagosta fresca',
+        'Manteiga',
+        'Ervas',
+        'Arroz',
+        'Coco',
+        'Legumes',
+      ],
       allergens: ['Crustáceos'],
     },
     {
       id: '5',
       name: 'Frango Piri Piri',
-      description: 'Frango grelhado no estilo português tradicional com molho piri piri picante, servido com batatas assadas e salada mista. Um clássico da culinária lusófona.',
+      description:
+        'Frango grelhado no estilo português tradicional com molho piri piri picante, servido com batatas assadas e salada mista. Um clássico da culinária lusófona.',
       price: 180,
       dietary: ['halal'],
       spicyLevel: 3,
       popular: true,
-      image: 'https://images.pexels.com/photos/1199957/pexels-photo-1199957.jpeg?auto=compress&cs=tinysrgb&w=400',
+      image:
+        'https://images.pexels.com/photos/1199957/pexels-photo-1199957.jpeg?auto=compress&cs=tinysrgb&w=400',
       ingredients: ['Frango', 'Piri piri', 'Batatas', 'Azeite', 'Alho'],
       allergens: [],
     },
     {
       id: '6',
       name: 'Curry Vegetariano',
-      description: 'Curry rico em leite de coco com legumes da época e especiarias aromáticas, servido com arroz basmati. Uma explosão de sabores vegetarianos.',
+      description:
+        'Curry rico em leite de coco com legumes da época e especiarias aromáticas, servido com arroz basmati. Uma explosão de sabores vegetarianos.',
       price: 140,
       dietary: ['vegetarian', 'vegan'],
       spicyLevel: 2,
-      image: 'https://images.pexels.com/photos/2474661/pexels-photo-2474661.jpeg?auto=compress&cs=tinysrgb&w=400',
-      ingredients: ['Legumes da época', 'Leite de coco', 'Especiarias', 'Arroz basmati'],
+      image:
+        'https://images.pexels.com/photos/2474661/pexels-photo-2474661.jpeg?auto=compress&cs=tinysrgb&w=400',
+      ingredients: [
+        'Legumes da época',
+        'Leite de coco',
+        'Especiarias',
+        'Arroz basmati',
+      ],
       allergens: [],
     },
   ],
@@ -151,20 +337,24 @@ export const mockMenuItems = {
     {
       id: '7',
       name: 'Pudim de Coco',
-      description: 'Pudim tradicional de coco com calda de caramelo, preparado com leite de coco fresco e ovos. Uma sobremesa cremosa e irresistível.',
+      description:
+        'Pudim tradicional de coco com calda de caramelo, preparado com leite de coco fresco e ovos. Uma sobremesa cremosa e irresistível.',
       price: 65,
       dietary: ['vegetarian'],
-      image: 'https://images.pexels.com/photos/1126359/pexels-photo-1126359.jpeg?auto=compress&cs=tinysrgb&w=400',
+      image:
+        'https://images.pexels.com/photos/1126359/pexels-photo-1126359.jpeg?auto=compress&cs=tinysrgb&w=400',
       ingredients: ['Leite de coco', 'Ovos', 'Açúcar', 'Baunilha'],
       allergens: ['Ovos', 'Lactose'],
     },
     {
       id: '8',
       name: 'Gelado Tropical',
-      description: 'Gelado artesanal de frutas tropicais com manga fresca e maracujá, sem adição de conservantes. Refrescante e natural.',
+      description:
+        'Gelado artesanal de frutas tropicais com manga fresca e maracujá, sem adição de conservantes. Refrescante e natural.',
       price: 55,
       dietary: ['vegetarian', 'gluten-free'],
-      image: 'https://images.pexels.com/photos/1352278/pexels-photo-1352278.jpeg?auto=compress&cs=tinysrgb&w=400',
+      image:
+        'https://images.pexels.com/photos/1352278/pexels-photo-1352278.jpeg?auto=compress&cs=tinysrgb&w=400',
       ingredients: ['Manga', 'Maracujá', 'Açúcar', 'Água'],
       allergens: [],
     },
@@ -176,7 +366,8 @@ export const mockReviews = [
     id: '1',
     user: {
       name: 'Kelly Blackwell',
-      avatar: 'https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=200',
+      avatar:
+        'https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=200',
       reviewCount: 5,
     },
     rating: 5,
@@ -194,7 +385,8 @@ export const mockReviews = [
     id: '2',
     user: {
       name: 'Maria Fernandes',
-      avatar: 'https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=200',
+      avatar:
+        'https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=200',
       reviewCount: 12,
     },
     rating: 4,
@@ -208,7 +400,8 @@ export const mockReviews = [
     id: '3',
     user: {
       name: 'João Silva',
-      avatar: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=200',
+      avatar:
+        'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=200',
       reviewCount: 8,
     },
     rating: 5,
@@ -251,7 +444,8 @@ export const mockUser = {
   id: '1',
   name: 'João Silva',
   email: 'joao.silva@email.com',
-  avatar: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=200',
+  avatar:
+    'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=200',
   reviewsCount: 12,
   photosCount: 35,
   favoritesCount: 8,

@@ -34,7 +34,7 @@ export default function PromoBanner({
   };
 
   return (
-    <TouchableOpacity 
+    <TouchableOpacity
       style={[styles.container, { width, height }]}
       onPress={handlePress}
       activeOpacity={0.9}
@@ -57,8 +57,8 @@ const styles = StyleSheet.create({
     elevation: 3,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.15,
-    shadowRadius: 4,
+    shadowOpacity: 0.08,
+    shadowRadius: 6,
   },
   image: {
     width: '50%',

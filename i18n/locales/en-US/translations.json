@@ -57,6 +57,52 @@
       "passwordsDoNotMatch": "Passwords do not match"
     }
   },
+  "home": {
+    "greeting": {
+      "loggedIn": "Hello {{name}},",
+      "guest": "Hello, Explorer!",
+      "subtitle": "What will you explore today?"
+    },
+    "sections": {
+      "quickSuggestions": "Quick Suggestions",
+      "mostExplored": "Most Explored",
+      "nearest": "Nearest",
+      "seeAll": "See all"
+    },
+    "quickCategories": {
+      "hamburgers": "BURGERS",
+      "drinks": "DRINKS",
+      "pizzas": "PIZZAS",
+      "desserts": "DESSERTS",
+      "vegetables": "VEGETABLES",
+      "chicken": "CHICKEN",
+      "fish": "FISH",
+      "juices": "JUICES"
+    },
+    "restaurants": {
+      "galitos": "Galito's Maputo",
+      "pizzariaItaliano": "Pizzaria Italiano",
+      "oceanBasket": "Ocean Basket",
+      "cafeSol": "Café Sol",
+      "burgerKing": "Burger King Maputo",
+      "costaDoSol": "Restaurante Costa do Sol"
+    },
+    "cuisines": {
+      "grilledChicken": "Grilled Chicken",
+      "pizzaPasta": "Pizza & Pasta",
+      "seafood": "Seafood",
+      "coffeePastries": "Coffee & Pastries",
+      "fastFood": "Fast Food",
+      "mozambican": "Mozambican Cuisine"
+    },
+    "mozambiqueCategories": {
+      "localChains": "Local Chains",
+      "traditional": "Traditional",
+      "seafood": "Seafood",
+      "fastFood": "Fast Food",
+      "cafes": "Cafés"
+    }
+  },
   "preferences": {
     "title": "Preferences",
     "subtitle": "Personalize your dining experience",
