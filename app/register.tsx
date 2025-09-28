@@ -64,7 +64,7 @@ export default function RegisterScreen() {
                     title: t('auth.register.title'),
                     headerShown: true,
                     headerShadowVisible: false,
-                    headerBackTitle: 'Back',
+                    headerBackTitle: t('buttons.back'),
                     headerStyle: {
                         backgroundColor: getColor('bg.elevated'),
                     },

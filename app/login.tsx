@@ -74,7 +74,7 @@ export default function LoginScreen() {
                     title: t('auth.login.title'),
                     headerShown: true,
                     headerShadowVisible: false,
-                    headerBackTitle: "Back",
+                    headerBackTitle: t('buttons.back'),
                     headerStyle: {
                         backgroundColor: getColor('bg.elevated'),
                     },

@@ -8,6 +8,9 @@
     "login": "Entrar",
     "register": "Registrar"
   },
+  "buttons": {
+    "back": "Voltar"
+  },
   "auth": {
     "login": {
       "title": "Entrar",

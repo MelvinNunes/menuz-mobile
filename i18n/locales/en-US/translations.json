@@ -8,6 +8,9 @@
     "login": "Login",
     "register": "Register"
   },
+  "buttons": {
+    "back": "Back"
+  },
   "auth": {
     "login": {
       "title": "Login",

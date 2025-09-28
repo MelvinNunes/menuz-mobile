@@ -4,6 +4,7 @@ import { useFonts, Inter_400Regular, Inter_500Medium, Inter_600SemiBold, Inter_7
 import * as SplashScreen from 'expo-splash-screen';
 import LoadingChef from '@/components/ui/LoadingChef';
 import '@/i18n';
+import { useTranslation } from 'react-i18next';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -17,6 +18,7 @@ const initialLoadingMessages = [
 
 export default function RootLayout() {
   const [isLoading, setIsLoading] = useState(true);
+  const { t } = useTranslation();
 
   const [fontsLoaded, fontError] = useFonts({
     'Inter-Regular': Inter_400Regular,
@@ -38,7 +40,7 @@ export default function RootLayout() {
   }
 
   return (
-    <Stack screenOptions={{ headerShown: false, headerBackTitle: '' }}>
+    <Stack screenOptions={{ headerShown: false, headerBackTitle: t('buttons.back') }}>
       <Stack.Screen name="index" options={{ headerShown: false }} />
       <Stack.Screen name="welcome" />
       <Stack.Screen name="login" />
